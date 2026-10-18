@@ -1,0 +1,2136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta name="sm-build" content="sm-ba22cb48c879688c">
+  <meta name="robots" content="noindex,nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="description" content="Evo perfomance: студия детейлинга в Оренбурге, Полтавская улица, 43/3.">
+  <title>Evo perfomance: студия детейлинга в Оренбурге</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Evo perfomance">
+  <meta property="og:title" content="Evo perfomance: студия детейлинга в Оренбурге">
+  <meta property="og:description" content="Evo perfomance: студия детейлинга в Оренбурге, Полтавская улица, 43/3.">
+  <style>
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
+@font-face {
+  font-family: 'Manrope DB';
+  src: url('assets/canon/aac75b2706974f96.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope DB';
+  src: url('assets/canon/d49c03853497feb1.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Unbounded DB';
+  src: url('assets/canon/b5cd8461911c59e6.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Unbounded DB';
+  src: url('assets/canon/837b431d57187ff1.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --ink: #0b0c0e;
+  --ink-soft: #121418;
+  --paper: #f0eee8;
+  --muted: #aaa9a5;
+  --line: rgba(240, 238, 232, 0.18);
+  --accent: #ff680a;
+  --orange: var(--accent);
+  --hero-title: #f3f1eb;
+  --wishes-bg: #ece9e1;
+  --wishes-ink: #17191d;
+  --contact-photo: none;
+  --orange-dark: #b13700;
+  --header-h: 74px;
+  --edge: clamp(22px, 4.3vw, 72px);
+  --display: 'Unbounded DB', sans-serif;
+  --body: 'Manrope DB', sans-serif;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+  scrollbar-color: var(--orange) var(--ink);
+  scrollbar-width: thin;
+}
+
+html.lenis, html.lenis body { height: auto; }
+html.lenis:not(.lenis-stopped) { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: clip;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.nav-open, body.lightbox-open { overflow: hidden; }
+
+::selection { background: var(--orange); color: #090909; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 999px; }
+
+a, button { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-underline-offset: 0.24em; }
+button, a { outline: none; }
+button:focus-visible, a:focus-visible { box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px var(--orange); }
+img, video { max-width: 100%; }
+button { font: inherit; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 10px;
+  z-index: 1000;
+  transform: translateY(-150%);
+  padding: 10px 14px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 8px;
+}
+.skip-link:focus { transform: translateY(0); }
+
+.site-header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) auto minmax(230px, 1fr);
+  align-items: center;
+  gap: 28px;
+  padding: 0 var(--edge);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  background: rgba(7, 8, 10, .72);
+  backdrop-filter: blur(18px) saturate(110%);
+  transition: background 240ms var(--ease-out), transform 240ms var(--ease-out);
+}
+
+.site-header.is-solid { background: rgba(7, 8, 10, .94); }
+
+.brand {
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--paper);
+  text-decoration: none;
+}
+.brand img { width: 31px; height: 38px; object-fit: contain; }
+.brand__text { display: grid; line-height: 1.03; }
+.brand__text strong { font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: -.025em; }
+.brand__text small { margin-top: 5px; color: #c4c3be; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+
+.site-nav { display: flex; align-items: center; gap: 28px; }
+.site-nav a {
+  position: relative;
+  color: #deddd8;
+  font-size: 13px;
+  text-decoration: none;
+}
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -7px;
+  height: 1px;
+  background: var(--orange);
+  transition: right 180ms var(--ease-out);
+}
+.site-nav a[aria-current="true"]::after { right: 0; }
+
+.header-call {
+  justify-self: end;
+  min-width: 132px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px 12px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 999px;
+  text-align: center;
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 160ms var(--ease-out), color 180ms var(--ease-out), background 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.header-call:active { transform: scale(.97); }
+.nav-toggle { display: none; }
+
+/* 600vh -> 1000vh (2026-09-17, revised same day: an earlier 2800vh pass over-corrected -- a
+   strict "every caption >=2.5s at max fling speed" floor forced ~43s/27 screens, well past what
+   was actually asked for ("chut'-chut' medlennee, kak beauty"). 1000vh is the coordinator's own
+   explicit target after dropping that floor. At FILM_LEAD_K=0.12 (unchanged, measured
+   ~565.4px/s max sustained trackpad-fling speed) this gives a ~12.7s minimum full-film traverse
+   at max speed and ~0.93-1.33s minimum per-caption visibility -- see PROJECT_SHARED_STATE.md
+   "Тачпад: медленнее подписи и раздельный конец фильма — 2026-09-17" (both the original and the
+   2026-09-17b correction block) for the full before/after table and the end-hold/close-card
+   verification re-run at this height. min-height scaled proportionally to the old 600vh:3600px
+   ratio (6px per vh). This only touches the desktop (no-media-query) rule; the two narrower
+   breakpoints below (900px, 600px) are unchanged (mobile scroll-film pacing is out of scope
+   here, per PROJECT_SHARED_STATE.md). */
+.cinema { position: relative; height: 1000vh; min-height: 6000px; background: #07080a; }
+.cinema__sticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+.cinema__media { position: absolute; inset: 0; background: #07080a; }
+.cinema__media video, .cinema__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center var(--media-y, 50%);
+}
+.cinema__media video { z-index: 2; opacity: 0; transition: opacity .5s var(--ease-out); }
+.cinema__media.is-ready video { opacity: 1; }
+.cinema__fallback { z-index: 1; }
+.cinema__media.is-ready .cinema__fallback { opacity: 0; }
+.cinema__shade {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(3,4,6,.82) 0%, rgba(3,4,6,.34) 31%, rgba(3,4,6,0) 63%), linear-gradient(0deg, rgba(3,4,6,.45), transparent 22%, transparent 76%, rgba(3,4,6,.22));
+  pointer-events: none;
+}
+
+/* 2026-10-17: плашка загрузки сайта вместо «Загружаем сцену» (index.html, app.js setupScrubVideo). Тёмная, на весь экран,
+   название, слово «Загрузка», тонкая полоса. Уходит плавно (.is-leaving), потом hidden. Запасной потолок: если скрипт не
+   запустился, плашка сама гаснет через 8,6 с (анимация ниже); обычный потолок 8 с держит app.js. */
+.site-loader {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #07080a;
+  color: var(--paper);
+  opacity: 1;
+  transition: opacity 450ms var(--ease-out), visibility 450ms;
+  animation: site-loader-failsafe 450ms var(--ease-out) 8600ms forwards;
+}
+.site-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.site-loader[hidden] { display: none; }
+.site-loader__inner { display: grid; justify-items: center; gap: 14px; width: min(260px, 100%); text-align: center; }
+.site-loader__name { margin: 0; max-width: 100%; overflow-wrap: anywhere; font-family: var(--display); font-size: 17px; font-weight: 500; letter-spacing: .02em; line-height: 1.25; }
+.site-loader__name:empty { display: none; }
+.site-loader__label { margin: 0; color: rgba(240,238,232,.62); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.site-loader__bar { display: block; width: 100%; height: 1px; overflow: hidden; background: rgba(240,238,232,.16); }
+.site-loader__bar i { display: block; width: 100%; height: 100%; background: var(--orange); transform: scaleX(.06); transform-origin: left center; transition: transform 300ms linear; }
+@keyframes site-loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+/* пока плашка видна, фон блока контактов (внизу страницы, прозрачность .12-.2) не грузится и не делит канал с роликом */
+.site-loader[data-loading] ~ main .contact::after { background-image: linear-gradient(90deg, var(--orange), transparent 30%); }
+
+.media-status {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: 11vh;
+  display: grid;
+  width: min(300px, calc(100vw - 44px));
+  transform: translateX(-50%);
+  gap: 9px;
+  color: #d7d6d0;
+  font-size: 12px;
+  text-align: center;
+  transition: opacity 240ms var(--ease-out), visibility 240ms;
+}
+.media-status.is-hidden { opacity: 0; visibility: hidden; }
+.media-status__bar { height: 2px; overflow: hidden; background: rgba(255,255,255,.22); }
+.media-status__bar i { display: block; width: 12%; height: 100%; background: var(--orange); transition: width .2s linear; }
+.media-status button { justify-self: center; padding: 8px 15px; border: 1px solid var(--paper); border-radius: 999px; background: transparent; color: var(--paper); cursor: pointer; }
+
+.hero-copy {
+  position: absolute;
+  z-index: 5;
+  left: max(var(--edge), calc((100vw - 1440px) / 2 + 58px));
+  top: clamp(118px, 15vh, 158px);
+  max-width: min(31vw, 440px);
+  transform-origin: left top;
+  transition: opacity .12s linear;
+}
+.hero-copy h1 {
+  display: grid;
+  margin: 0;
+  color: var(--hero-title);
+  font-family: var(--display);
+  font-size: clamp(52px, 6.8vw, 96px);
+  font-weight: 700;
+  line-height: .84;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+  /* Default/no-JS baseline: never split a word mid-run. app.js's fitOverflowingHeadings()
+     shrinks font-size first so the longest word fits with margin, and only overrides this
+     (inline, higher specificity) to overflow-wrap: anywhere as a last-resort backstop if even
+     the floor size still doesn't fit. */
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+.hero-copy h1 span:last-child { color: var(--orange); }
+.hero-copy p { margin: 25px 0 0; color: #d3d2cd; font-size: clamp(15px, 1.3vw, 19px); line-height: 1.4; }
+.text-link { display: inline-flex; gap: 12px; margin-top: 28px; color: #fff; font-size: 13px; font-weight: 600; text-decoration: none; transition: transform 160ms var(--ease-out); }
+.text-link:active { transform: scale(.97); }
+.text-link svg { width: 15px; height: 15px; fill: none; stroke: var(--orange); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.scene-caption {
+  position: absolute;
+  z-index: 5;
+  left: var(--edge);
+  bottom: clamp(95px, 13vh, 135px);
+  width: min(620px, 46vw);
+  max-width: none;
+  opacity: var(--caption-opacity, 0);
+  transform: translateY(var(--caption-y, 30px));
+  will-change: opacity, transform;
+}
+.scene-caption::before { content: ''; display: block; width: 86px; height: 2px; margin-bottom: 19px; background: var(--orange); transform: scaleX(var(--caption-line, 0)); transform-origin: left center; }
+.scene-caption[data-position="left-high"] { top: clamp(128px, 15vh, 170px); bottom: auto; left: max(var(--edge), 6vw); }
+.scene-caption[data-position="right-low"] { right: max(var(--edge), 6vw); bottom: clamp(108px, 15vh, 158px); left: auto; }
+.scene-caption[data-position="left-low"] { left: max(var(--edge), 6vw); }
+.scene-caption__title { margin: 0; max-width: 12ch; font-family: var(--display); font-size: clamp(38px, 4.6vw, 72px); font-weight: 500; line-height: .98; letter-spacing: -.045em; text-wrap: balance; }
+.scene-caption__note { max-width: 34ch; margin: 17px 0 0; color: #deddd8; font-size: clamp(15px, 1.25vw, 18px); opacity: var(--caption-note-opacity, 0); transform: translateY(calc((1 - var(--caption-note-opacity, 0)) * 10px)); }
+.scene-caption.is-scroll-ended { opacity: 0; visibility: hidden; }
+
+.cinema__footer {
+  position: absolute;
+  z-index: 5;
+  left: var(--edge);
+  right: var(--edge);
+  bottom: 29px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 24px;
+  align-items: center;
+  color: #b6b5b0;
+  font-size: 11px;
+}
+.cinema__time b { color: var(--paper); font-weight: 600; font-variant-numeric: tabular-nums; }
+.cinema__progress { grid-column: 1 / -1; height: 1px; overflow: hidden; background: rgba(255,255,255,.2); }
+.cinema__progress i { display: block; width: 0; height: 100%; background: var(--orange); }
+
+.cinema__close {
+  position: absolute;
+  z-index: 6;
+  left: max(var(--edge), calc((100vw - 1440px) / 2 + 58px));
+  right: auto;
+  bottom: clamp(110px, 16vh, 165px);
+  display: grid;
+  justify-items: start;
+  width: min(540px, 44vw);
+  opacity: 0;
+  transform: translateY(26px);
+  pointer-events: none;
+  transition: opacity 350ms var(--ease-out), transform 450ms var(--ease-out);
+}
+.cinema__close.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.cinema__close p { margin: 0 0 27px; font-family: var(--display); font-size: clamp(29px, 3.8vw, 56px); line-height: 1.05; letter-spacing: -.04em; }
+
+.button {
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 23px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 160ms var(--ease-out), background 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.button:active { transform: scale(.97); }
+.button--bright { background: var(--orange); color: #090909; box-shadow: 0 14px 34px rgba(139,47,0,.34); }
+.button--dark { background: var(--ink); color: var(--paper); }
+.button--line { border: 1px solid rgba(10,11,13,.48); color: var(--ink); }
+
+.section { padding: clamp(110px, 13vw, 190px) var(--edge); }
+.section-heading { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(220px, .55fr); align-items: end; gap: clamp(45px, 8vw, 130px); margin-bottom: clamp(64px, 8vw, 120px); }
+.section-heading h2 { max-width: 21ch; margin: 0; font-family: var(--display); font-size: clamp(34px, 4.9vw, 72px); font-weight: 500; line-height: 1.04; letter-spacing: -.04em; text-wrap: balance; }
+.section-heading p { max-width: 34ch; margin: 0; color: #aeadA8; }
+
+.wishes { background: var(--wishes-bg); color: var(--wishes-ink); }
+.wishes__heading { grid-template-columns: 1fr; align-items: start; gap: 28px; }
+.wishes__heading h2 { max-width: 18ch; color: var(--wishes-ink); }
+.wishes__heading p { max-width: 58ch; color: #55585d; font-size: clamp(17px, 1.45vw, 21px); }
+.wishes__content { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, .7fr); gap: clamp(58px, 8vw, 136px); align-items: start; }
+.wish-list { border-top: 1px solid rgba(23,25,29,.22); }
+.wish-choice {
+  position: relative;
+  width: 100%;
+  min-height: clamp(118px, 11vw, 158px);
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 28px;
+  gap: clamp(14px, 2vw, 30px);
+  align-items: center;
+  padding: clamp(26px, 3vw, 42px) clamp(12px, 1.2vw, 20px);
+  border: 0;
+  border-bottom: 1px solid rgba(23,25,29,.22);
+  background: transparent;
+  color: var(--wishes-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.wish-choice__number { color: #777a7f; font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+.wish-choice__title { max-width: 19ch; font-family: var(--display); font-size: clamp(24px, 3vw, 43px); font-weight: 500; line-height: 1.08; letter-spacing: -.04em; text-wrap: balance; }
+.wish-choice__indicator { position: relative; width: 22px; height: 22px; border: 1px solid #777a7f; border-radius: 50%; }
+.wish-choice__indicator::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: var(--orange); opacity: 0; transform: scale(.9); }
+.wish-choice[aria-selected="true"] { background: rgba(255,104,10,.085); }
+.wish-choice[aria-selected="true"] .wish-choice__number { color: var(--orange-dark); }
+.wish-choice[aria-selected="true"] .wish-choice__indicator { border-color: var(--orange-dark); }
+.wish-choice[aria-selected="true"] .wish-choice__indicator::after { opacity: 1; transform: scale(1); }
+.wish-details { position: sticky; top: calc(var(--header-h) + 42px); min-height: 430px; padding: clamp(42px, 5vw, 72px) 0 12px; border-top: 3px solid var(--orange); }
+.wish-details h3 { max-width: 15ch; margin: 0; font-family: var(--display); font-size: clamp(27px, 3.1vw, 44px); font-weight: 500; line-height: 1.08; letter-spacing: -.04em; text-wrap: balance; }
+.wish-details p { max-width: 39ch; margin: 27px 0 0; color: #55585d; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.6; }
+.wishes__cta { width: max-content; margin-top: 42px; }
+
+.works { background: var(--paper); color: var(--ink); }
+.works .section-heading p { color: #55575b; }
+.gallery { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(12px, 1.5vw, 24px); }
+.gallery__item {
+  position: relative;
+  grid-column: span 4;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 14px;
+  background: #d5d2cb;
+  color: #fff;
+  cursor: zoom-in;
+  aspect-ratio: 4 / 5;
+  transition: transform 160ms var(--ease-out);
+}
+.gallery__item:nth-child(1), .gallery__item:nth-child(5) { grid-column: span 7; aspect-ratio: 16 / 10; }
+.gallery__item:nth-child(2), .gallery__item:nth-child(6) { grid-column: span 5; aspect-ratio: 16 / 10; }
+.gallery__item img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 280ms var(--ease-out), filter 220ms var(--ease-out); }
+.gallery__item:nth-child(1) img { object-position: 58% center; }
+.gallery__item:nth-child(4) img { object-position: 68% center; }
+.gallery__item span {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(8px);
+  font-size: 13px;
+  text-align: left;
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+.gallery__item span::after { content: ''; width: 17px; height: 17px; flex: 0 0 auto; border: 1px solid currentColor; border-radius: 50%; background: linear-gradient(currentColor,currentColor) center/7px 1px no-repeat, linear-gradient(currentColor,currentColor) center/1px 7px no-repeat; }
+.gallery__item:focus-visible span { opacity: 1; transform: translateY(0); }
+.gallery__item:active { transform: scale(.99); }
+
+.reviews { background: var(--ink-soft); color: var(--paper); }
+.reviews__heading { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-bottom: clamp(32px, 4vw, 52px); }
+.reviews__heading h2 { max-width: 16ch; margin: 0; font-family: var(--display); font-size: clamp(30px, 3.4vw, 48px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
+.reviews__nav { display: flex; align-items: center; gap: 22px; }
+.reviews__status { min-width: 150px; display: grid; grid-template-columns: auto minmax(72px,1fr) auto; align-items: center; gap: 10px; color: #aaa9a5; font-size: 12px; font-variant-numeric: tabular-nums; }
+.reviews__status i { height: 2px; overflow: hidden; background: rgba(240,238,232,.18); }
+.reviews__status b { display: block; width: 100%; height: 100%; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 240ms var(--ease-out); }
+.reviews__controls { display: flex; gap: 10px; }
+.reviews__controls[hidden] { display: none; }
+.reviews__controls button { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(240,238,232,.34); border-radius: 50%; background: #202329; color: var(--paper); cursor: pointer; transition: transform 160ms var(--ease-out), background-color 180ms var(--ease-out), opacity 180ms var(--ease-out); }
+.reviews__controls button:active { transform: scale(.97); }
+.reviews__controls button:disabled { opacity: .3; cursor: default; }
+.reviews__controls svg { width: 21px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.reviews__track { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 44.5%; gap: 18px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline mandatory; scroll-padding-inline: 0; scrollbar-width: none; touch-action: pan-x pan-y; }
+.reviews__track::-webkit-scrollbar { display: none; }
+.review-card { position: relative; min-height: 226px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px; margin: 0; padding: clamp(26px, 3vw, 38px); overflow: hidden; border-radius: 14px; background: #dedcd6; color: var(--ink); opacity: .72; transform: scale(.985); scroll-snap-align: start; transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out), background-color 240ms var(--ease-out); }
+.review-card::before { content: '“'; position: absolute; right: 22px; top: 4px; color: rgba(11,12,14,.12); font-family: var(--display); font-size: 92px; line-height: 1; pointer-events: none; }
+.review-card.is-current { opacity: 1; transform: scale(1); background: var(--paper); }
+.review-card blockquote { position: relative; z-index: 1; max-width: 38ch; margin: 0; font-size: clamp(17px, 1.6vw, 22px); font-weight: 400; line-height: 1.42; letter-spacing: -.015em; }
+.review-card footer { min-height: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 18px 0 0; background: none; border: 0; border-top: 1px solid rgba(11,12,14,.18); color: #5c5d59; font-size: 12px; }
+.review-card cite { color: var(--ink); font-style: normal; font-weight: 600; }
+
+.contact {
+  position: relative;
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: minmax(280px, .85fr) minmax(480px, 1.15fr);
+  gap: 8vw;
+  align-items: center;
+  overflow: hidden;
+  background: var(--orange);
+  color: var(--ink);
+}
+.contact::after { content: ''; position: absolute; inset: 0 0 0 58%; background: linear-gradient(90deg, var(--orange), transparent 30%), var(--contact-photo) center / cover no-repeat; opacity: .2; mix-blend-mode: multiply; pointer-events: none; }
+.contact::before { content: ''; position: absolute; top: 0; left: var(--edge); right: var(--edge); height: 1px; background: rgba(8,9,11,.28); }
+.contact__mark { position: relative; display: grid; width: min(36vw, 430px); aspect-ratio: 1; place-items: center; color: var(--ink); font-family: var(--display); font-size: clamp(100px, 15vw, 220px); font-weight: 700; line-height: .7; letter-spacing: -.1em; }
+.contact__mark::before, .contact__mark::after { content: ''; position: absolute; inset: 8%; border: clamp(10px, 1.5vw, 22px) solid currentColor; transform: rotate(45deg); }
+.contact__mark::after { inset: 25%; border-width: 2px; opacity: .45; }
+.contact__mark span { position: relative; z-index: 1; }
+.contact__mark span + span { margin-top: -24%; margin-left: 24%; }
+/* min-width: 0 stops this CSS-grid item's track from auto-growing to the h2's min-content width
+   (the default grid sizing behaviour) when a long city name has no natural break point -- without
+   it, .contact's own overflow: hidden clips the grown-past-viewport heading, which looks like the
+   text got truncated, and the JS/CSS fits below never get a chance to engage on a real overflow. */
+.contact__body { position: relative; z-index: 2; min-width: 0; }
+/* See .hero-copy h1's comment: normal/keep-all is the baseline, JS overrides to anywhere only
+   as a last-resort backstop. */
+.contact__body h2 { margin: 0 0 42px; font-family: var(--display); font-size: clamp(52px, 7.2vw, 96px); font-weight: 700; line-height: .94; letter-spacing: -.04em; overflow-wrap: normal; word-break: keep-all; }
+.contact address { max-width: 34ch; margin-bottom: 27px; font-style: normal; font-size: clamp(18px, 1.8vw, 26px); }
+.contact__phones { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 38px; }
+.contact__phones a { font-family: var(--display); font-size: clamp(17px, 1.7vw, 24px); font-weight: 500; text-decoration-thickness: 1px; }
+.contact__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.site-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 35px;
+  padding: 46px var(--edge) 48px;
+  background: var(--ink);
+  color: #b8b7b2;
+  font-size: 13px;
+}
+.site-footer > div:first-child { display: grid; gap: 6px; }
+.site-footer strong { color: var(--paper); font-family: var(--display); font-size: 16px; }
+.site-footer__links { display: flex; gap: 28px; }
+.site-footer__links > span { display: flex; gap: 28px; }
+
+.lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 38px;
+  border: 0;
+  background: rgba(7,8,10,.97);
+  color: var(--paper);
+}
+.lightbox::backdrop { background: rgba(0,0,0,.8); }
+.lightbox[open] { display: grid; grid-template-columns: 64px minmax(0, 1fr) 64px; align-items: center; gap: 22px; }
+.lightbox figure { min-width: 0; height: calc(100dvh - 76px); display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 16px; margin: 0; }
+.lightbox figure img { width: 100%; height: 100%; object-fit: contain; }
+/* No src is set until the first gallery item opens the lightbox (setupLightbox's render() in
+   app.js); force display: none for that placeholder state on the element itself, not just via
+   the closed <dialog> ancestor, so it never reads as a stray non-none-display broken image. */
+.lightbox figure img:not([src]) { display: none; }
+.lightbox figcaption { color: #c7c6c1; text-align: center; font-size: 13px; }
+.lightbox button { display: grid; width: 52px; height: 52px; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(255,255,255,.04); color: #fff; cursor: pointer; transition: transform 160ms var(--ease-out), background 180ms var(--ease-out); }
+.lightbox button:active { transform: scale(.97); }
+.lightbox svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.lightbox__close { position: absolute; z-index: 2; top: 22px; right: 22px; }
+
+/* C1 reveal-on-scroll (wishes / works / reviews / contact): hidden start state is scoped under
+   html.js-reveal only, which app.js's setupReveal() adds to <html> after IntersectionObserver
+   init succeeds and prefers-reduced-motion does not match -- without JS, on script error, or
+   under reduced motion, none of this ever applies and every section stays fully visible. Mask
+   headings translate an inner wrapper span (not the heading element itself), so the heading's
+   own box -- and therefore fitOverflowingHeadings()'s clientWidth/getBoundingClientRect reads --
+   is unaffected by the animation. */
+.reveal-mask { overflow: hidden; }
+.reveal-mask-inner { display: block; }
+html.js-reveal .reveal-mask-inner {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 600ms var(--ease-out), opacity 600ms var(--ease-out);
+}
+html.js-reveal .reveal-section:not(.is-inview) .reveal-mask-inner { transform: translateY(100%); opacity: 0; }
+html.js-reveal .reveal-fade {
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.js-reveal .reveal-section:not(.is-inview) .reveal-fade { opacity: 0; transform: translateY(16px); }
+/* .gallery__item img already has its own permanent hover-zoom transition/transform (see .works
+   rules above); the reveal transition + stagger delay is scoped to .is-revealing only (a class
+   app.js removes ~1.4s after reveal) so hover-zoom timing is never permanently altered. */
+html.js-reveal .reveal-section.is-revealing .gallery__item img { transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+html.js-reveal .reveal-section:not(.is-inview) .gallery__item img { opacity: 0; transform: scale(1.04); }
+
+@media (max-width: 900px) {
+  :root { --header-h: 68px; }
+  .site-header { grid-template-columns: 1fr auto auto; gap: 13px; }
+  .brand__text small { display: none; }
+  .nav-toggle { display: grid; width: 44px; height: 44px; place-content: center; gap: 4px; border: 0; border-radius: 50%; background: transparent; color: var(--paper); cursor: pointer; }
+  .nav-toggle { transition: transform 160ms var(--ease-out), background 180ms var(--ease-out); }
+  .nav-toggle:active { transform: scale(.97); }
+  .nav-toggle span:not(.sr-only) { width: 19px; height: 1px; background: currentColor; transition: transform 200ms var(--ease-out), opacity 160ms var(--ease-out); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+  .site-nav { position: fixed; top: var(--header-h); left: 0; right: 0; display: grid; gap: 0; padding: 18px var(--edge) 28px; border-bottom: 1px solid var(--line); background: #0b0c0e; opacity: 0; visibility: hidden; transform: translateY(-10px); transform-origin: top center; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), visibility 200ms; }
+  .site-nav.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .site-nav a { padding: 15px 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 17px; }
+  .site-nav a::after { display: none; }
+  .header-call { min-width: 0; padding: 10px 15px; }
+
+  .section-heading { grid-template-columns: 1fr; gap: 25px; }
+  .wishes__content { grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 48px; }
+  .gallery__item, .gallery__item:nth-child(n) { grid-column: span 6; aspect-ratio: 4 / 5; }
+  .contact { min-height: 680px; grid-template-columns: minmax(210px, .65fr) 1fr; gap: 4vw; }
+}
+
+@media (max-width: 600px) {
+  :root { --edge: 20px; }
+  .site-header { padding: 0 16px 0 18px; }
+  .brand img { width: 27px; height: 33px; }
+  .brand__text strong { font-size: 11px; }
+  .header-call { font-size: 12px; }
+
+  /* 2026-10-15 (Ilya: "на телефоне один свайп пролистывает четверть"): the pin is 3x longer (was 520vh / 3100px, one screen of
+     scroll = 31% of the film at 390x844). Only this phone block changes; the slow-downs on polishing and the pull-back live in
+     app.js (FILM_PHONE_QUERY = this same max-width: 600px). Desktop (1000vh) and 601-900px keep their values. */
+  .cinema { height: 1560vh; min-height: 9300px; }
+  /* 2026-09-26 (mobile fix, Ilya: "видео прилипает к верху экрана"): row 2 (video) used to be
+     `auto` height (only as tall as the 1276:720 aspect-ratio box -- ~211px on a 375-wide phone)
+     while row 3 (hero-copy/scene-caption/cinema__close, unchanged below) took the rest as
+     `minmax(0, 1fr)`, leaving most of the screen a plain black gap under a tiny video. Swapping
+     which row is `1fr` makes the video fill all the space the text rows don't need, instead of
+     the other way around; text stays exactly where it was (still `grid-row: 3`, still sized to
+     its own content). Desktop (no media query) and the >=601px breakpoint are untouched. */
+  .cinema__sticky { min-height: 620px; display: grid; grid-template-rows: var(--header-h) minmax(0, 1fr) auto; background: #07080a; }
+  .cinema__media { position: relative; grid-row: 1 / -1; grid-column: 1; width: 100%; height: 100%; min-height: 0; overflow: hidden; z-index: 0; }
+  .hero-copy, .scene-caption, .scene-caption[data-position], .cinema__close { z-index: 2; }
+  .cinema__media video, .cinema__fallback { object-fit: cover; object-position: center center; }
+  .cinema__shade { background: linear-gradient(0deg, rgba(7,8,10,.88) 0%, rgba(7,8,10,.45) 34%, transparent 58%); z-index: 1; }
+  .media-status { bottom: 16px; }
+  .hero-copy { position: relative; grid-row: 3; grid-column: 1; left: auto; top: auto; width: auto; max-width: none; align-self: start; padding: 24px max(var(--edge), env(safe-area-inset-right)) max(80px, calc(64px + env(safe-area-inset-bottom))) max(var(--edge), env(safe-area-inset-left)); }
+  .hero-copy h1 { display: flex; flex-wrap: wrap; gap: 0 .25em; font-size: clamp(44px, 14vw, 58px); line-height: .95; }
+  .hero-copy p { margin-top: 16px; font-size: 15px; }
+  .hero-copy .text-link { margin-top: 19px; }
+  .scene-caption, .scene-caption[data-position] { position: relative; grid-row: 3; grid-column: 1; inset: auto; left: auto; right: auto; top: auto; bottom: auto; width: auto; align-self: start; max-width: none; padding: 30px max(var(--edge), env(safe-area-inset-right)) max(95px, calc(78px + env(safe-area-inset-bottom))) max(var(--edge), env(safe-area-inset-left)); }
+  .scene-caption::before { width: 60px; margin-bottom: 14px; }
+  .scene-caption__title { max-width: 11ch; font-size: clamp(31px, 9.2vw, 39px); line-height: 1.02; }
+  .scene-caption__note { margin-top: 12px; font-size: 15px; }
+  .cinema__footer { left: var(--edge); right: var(--edge); bottom: 20px; }
+  .cinema__prompt { max-width: 190px; }
+  .cinema__close { position: relative; grid-row: 3; grid-column: 1; left: auto; right: auto; bottom: auto; width: auto; align-self: start; padding: 24px max(var(--edge), env(safe-area-inset-right)) max(95px, calc(78px + env(safe-area-inset-bottom))) max(var(--edge), env(safe-area-inset-left)); }
+  .cinema__close p { margin-bottom: 22px; font-size: 33px; }
+  .button { width: 100%; }
+
+  .section { padding-top: 100px; padding-bottom: 100px; }
+  .section-heading { margin-bottom: 54px; }
+  .section-heading h2 { font-size: 34px; line-height: 1.08; }
+  .wishes__heading { gap: 22px; }
+  .wishes__content { grid-template-columns: 1fr; gap: 54px; }
+  .wish-choice { min-height: 108px; grid-template-columns: 38px minmax(0, 1fr) 24px; gap: 10px; padding: 23px 8px; }
+  .wish-choice__title { max-width: none; font-size: clamp(21px, 6.3vw, 27px); }
+  .wish-choice__indicator { width: 20px; height: 20px; }
+  .wish-details { position: static; min-height: 0; padding-top: 36px; }
+  .wish-details h3 { font-size: 28px; }
+  .wish-details p { margin-top: 20px; }
+  .wishes__cta { width: 100%; margin-top: 32px; }
+
+  .gallery { gap: 10px; }
+  .gallery__item, .gallery__item:nth-child(n) { grid-column: 1 / -1; aspect-ratio: 4 / 3; border-radius: 12px; }
+  .gallery__item span { opacity: 1; transform: none; padding-top: 45px; background: linear-gradient(transparent,rgba(0,0,0,.68)); left: 0; right: 0; bottom: 0; padding: 50px 14px 13px; }
+
+  .reviews__heading { align-items: flex-start; flex-direction: column; margin-bottom: 30px; }
+  .reviews__heading h2 { font-size: clamp(30px, 9.2vw, 38px); line-height: 1.08; }
+  .reviews__nav { width: 100%; }
+  .reviews__status { width: 100%; }
+  .reviews__controls { display: none; }
+  .reviews__track { grid-auto-columns: calc(100vw - 70px); gap: 12px; margin-right: calc(-1 * var(--edge)); padding-right: var(--edge); }
+  .review-card { min-height: 218px; padding: 26px 22px; }
+  .review-card blockquote { font-size: 18px; }
+  .review-card footer { align-items: flex-start; flex-direction: column; gap: 7px; }
+
+  .contact { min-height: 0; grid-template-columns: 1fr; gap: 62px; padding-top: 105px; }
+  .contact::after { inset: 0; opacity: .12; }
+  .contact__mark { width: 72vw; justify-self: center; font-size: 36vw; }
+  .contact__body h2 { font-size: 15vw; margin-bottom: 32px; }
+  .contact__phones { display: grid; }
+  .contact__actions { display: grid; }
+  .site-footer { align-items: flex-start; flex-direction: column; padding-bottom: max(48px, env(safe-area-inset-bottom)); }
+  .site-footer__links { flex-direction: column; gap: 12px; }
+
+  .lightbox { padding: 70px 14px 18px; }
+  .lightbox[open] { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) 52px; gap: 12px; }
+  .lightbox figure { grid-column: 1 / -1; grid-row: 1; height: auto; min-height: 0; }
+  .lightbox__arrow { grid-row: 2; }
+  .lightbox__arrow--prev { justify-self: end; }
+  .lightbox__arrow--next { justify-self: start; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-nav a:hover::after { right: 0; }
+  .header-call:hover { color: var(--ink); background: var(--paper); border-color: var(--paper); }
+  .button:hover { transform: translateY(-2px); }
+  .button--bright:hover { background: #ff812f; }
+  .button--dark:hover { background: #282b30; }
+  .button--line:hover { background: rgba(10,11,13,.08); }
+  .wish-choice:hover:not([aria-selected="true"]) { background: rgba(23,25,29,.045); }
+  .gallery__item:hover img { transform: scale(1.035); filter: brightness(.8); }
+  .gallery__item:hover span { opacity: 1; transform: translateY(0); }
+  .lightbox button:hover { background: rgba(255,255,255,.12); }
+  .reviews__controls button:not(:disabled):hover { background: rgba(240,238,232,.1); }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header { background: #07080a; backdrop-filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-loader, .site-loader__bar i { transition: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .cinema { height: 100dvh; min-height: 680px; }
+  .cinema__media video { display: none; }
+  .cinema__fallback { opacity: 1 !important; }
+  .scene-caption { --caption-y: 0px !important; }
+  .media-status, .cinema__footer { display: none; }
+  .button:active, .header-call:active, .text-link:active, .nav-toggle:active, .gallery__item:active, .lightbox button:active, .reviews__controls button:active { transform: none; }
+}
+
+  </style>
+<style data-legal>
+.legal-footer {
+  --legal-bg: #0b0c0e;
+  --legal-fg: #f0eee8;
+  --legal-muted: #aaa9a5;
+  --legal-line: rgba(240,238,232,.18);
+  --legal-accent: #ff680a;
+  --legal-edge: clamp(22px, 4.3vw, 72px);
+  --legal-font: 'Manrope DB', 'Manrope', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --legal-head: 'Unbounded DB', 'Manrope DB', system-ui, sans-serif;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: clamp(28px, 4vw, 48px) var(--legal-edge) calc(clamp(28px, 4vw, 48px) + env(safe-area-inset-bottom, 0px));
+  background: var(--legal-bg);
+  color: var(--legal-fg);
+  border-top: 1px solid var(--legal-line);
+  font-family: var(--legal-font);
+  font-size: 13px;
+  line-height: 1.55;
+  text-align: left;
+}
+.legal-footer__inner { max-width: 1100px; margin: 0 auto; }
+.legal-footer p { margin: 0; }
+.legal-footer p + p { margin-top: 8px; }
+.legal-footer__id { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline; color: var(--legal-fg); }
+.legal-footer__id strong { font-family: var(--legal-head); font-size: 14px; font-weight: 500; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.legal-footer__id--pending { color: var(--legal-muted); }
+.legal-footer__line { display: flex; flex-wrap: wrap; gap: 4px 18px; color: var(--legal-muted); }
+.legal-footer__line span { overflow-wrap: anywhere; }
+.legal-footer a { color: var(--legal-fg); text-decoration: underline; text-decoration-color: var(--legal-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.legal-footer a:hover, .legal-footer a:focus-visible { color: var(--legal-accent); }
+.legal-footer a:focus-visible { outline: 2px solid var(--legal-accent); outline-offset: 3px; border-radius: 2px; }
+.legal-footer__links { padding-top: 6px; }
+@media (max-width: 640px) {
+  .legal-footer { font-size: 12.5px; }
+  .legal-footer__id, .legal-footer__line { flex-direction: column; gap: 2px; }
+  .legal-footer a { display: inline-block; padding: 6px 0; } }
+</style>
+
+</head>
+<body>
+  <a class="skip-link" href="#main">К основному содержанию</a>
+  <!-- 2026-10-17 (Илья: «вместо "загружаем сцену" простая плашка "загрузка сайта", не дольше 5-10 секунд»): плашка на весь экран
+       до готовности первого экрана (постер загружен и ролик буферизован до порога), не дольше 8 с от начала загрузки (app.js,
+       SITE_LOADER_CAP_MS; запасной потолок в CSS, если скрипт не запустился). Название сразу из og:site_name лёгкой сборки. -->
+  <div class="site-loader" data-site-loader data-loading role="status" aria-live="polite">
+    <div class="site-loader__inner">
+      <p class="site-loader__name" data-business-name data-loader-name></p>
+      <p class="site-loader__label">Загрузка</p>
+      <span class="site-loader__bar" aria-hidden="true"><i data-loader-bar></i></span>
+    </div>
+  </div>
+  <script>(function () { var m = document.querySelector('meta[property="og:site_name"]'); var n = document.querySelector('[data-loader-name]'); if (m && n && m.content) n.textContent = m.content; })();</script>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="На главную" data-brand-link>
+      <img data-business-logo alt="" hidden>
+      <span class="brand__text"><strong data-business-name>Название</strong><small data-business-city>Город</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span><span class="sr-only">Открыть меню</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Основная навигация"></nav>
+    <a class="header-call" data-primary-call href="#contacts">Позвонить</a>
+  </header>
+
+  <main id="main">
+    <section class="cinema" id="cinema" aria-labelledby="hero-title">
+      <div class="cinema__sticky">
+        <div class="cinema__media" aria-label="Кинематографическая сцена детейлинга">
+          <video id="scrub-video" muted playsinline preload="auto" poster="assets/canon/0322c396c65043e7.jpg" aria-describedby="cinema-status"></video>
+          <img class="cinema__fallback" src="assets/canon/0322c396c65043e7.jpg" alt="Серый BMW в студии детейлинга">
+          <div class="cinema__shade" aria-hidden="true"></div>
+          <div class="media-status is-hidden" id="cinema-status" role="status" aria-live="polite">
+            <span class="media-status__label"></span>
+            <span class="media-status__bar" aria-hidden="true"><i></i></span>
+            <button type="button" hidden>Повторить</button>
+          </div>
+        </div>
+
+        <div class="hero-copy">
+          <h1 id="hero-title"><span data-hero-name-line="0">Название</span><span data-hero-name-line="1"></span></h1>
+          <p data-business-descriptor>Студия детейлинга</p>
+          <a class="text-link" href="#wishes">Выбрать цель <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v11M4 9l4 4 4-4"/></svg></a>
+        </div>
+
+        <div class="scene-caption" aria-live="polite" aria-atomic="true">
+          <p class="scene-caption__title"></p>
+          <p class="scene-caption__note"></p>
+        </div>
+
+        <div class="cinema__footer" aria-hidden="true">
+          <span class="cinema__prompt">Листайте, чтобы увидеть процесс</span>
+          <span class="cinema__progress"><i></i></span>
+        </div>
+
+        <div class="cinema__close">
+          <p>Точность видна<br>в каждом движении.</p>
+          <a class="button button--bright" data-primary-call href="#contacts">Обсудить автомобиль</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wishes section" id="wishes" aria-labelledby="wishes-title">
+      <div class="section-heading wishes__heading">
+        <h2 id="wishes-title" data-wishes-heading>Что хотите изменить в своём автомобиле?</h2>
+        <p data-wishes-introduction>Выберите задачу, с которой хотите начать разговор.</p>
+      </div>
+      <div class="wishes__content">
+        <div class="wish-list" id="wish-list" role="tablist" aria-label="Цель обращения" aria-orientation="vertical"></div>
+        <div class="wish-details" id="wish-details" role="tabpanel" aria-live="polite">
+          <h3 data-wish-selected-title></h3>
+          <p data-wish-selected-copy></p>
+          <a class="button button--dark wishes__cta" data-wishes-cta href="#contacts">Обсудить мой автомобиль</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="works section" id="works" aria-labelledby="works-title">
+      <div class="section-heading section-heading--split">
+        <h2 id="works-title">Реальные работы в студии</h2>
+        <p data-gallery-introduction></p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <section class="reviews section" id="reviews" aria-labelledby="reviews-title" hidden>
+      <div class="reviews__heading">
+        <h2 id="reviews-title">Отзывы клиентов</h2>
+        <div class="reviews__nav">
+          <div class="reviews__status" aria-hidden="true"><span data-review-current>01</span><i><b data-review-progress></b></i><span data-review-total>01</span></div>
+          <div class="reviews__controls" data-review-controls aria-label="Навигация по отзывам">
+            <button type="button" data-review-prev aria-label="Предыдущий отзыв">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>
+            </button>
+            <button type="button" data-review-next aria-label="Следующий отзыв">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="reviews__track" data-review-track tabindex="0" aria-label="Отзывы клиентов"></div>
+    </section>
+
+    <section class="contact section" id="contacts" aria-labelledby="contact-title">
+      <div class="contact__mark" data-contact-mark aria-hidden="true"></div>
+      <div class="contact__body">
+        <h2 id="contact-title" data-visit-heading>Свяжитесь<br>со студией.</h2>
+        <address data-address></address>
+        <div class="contact__phones" data-phones></div>
+        <div class="contact__actions" data-contact-actions></div>
+      </div>
+    </section>
+  </main>
+<footer class="legal-footer" data-legal-footer data-legal-kind="" aria-label="Сведения о продавце">
+  <div class="legal-footer__inner">
+    <p class="legal-footer__id legal-footer__id--pending">Реквизиты уточняются</p>
+    <p class="legal-footer__links"><a href="policy.html">Политика обработки данных</a></p>
+  </div>
+</footer>
+
+
+  <dialog class="lightbox" id="lightbox" aria-label="Просмотр фотографии">
+    <button class="lightbox__close" type="button" aria-label="Закрыть просмотр">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <button class="lightbox__arrow lightbox__arrow--prev" type="button" aria-label="Предыдущая фотография">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>
+    </button>
+    <figure>
+      <img alt="">
+      <figcaption></figcaption>
+    </figure>
+    <button class="lightbox__arrow lightbox__arrow--next" type="button" aria-label="Следующая фотография">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+    </button>
+  </dialog>
+  <!-- Lenis 1.3.26 license
+The MIT License
+
+Copyright (c) 2024 darkroom.engineering
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+  <script>(function(){var e=`1.3.26`;function t(e,t,n){return Math.max(e,Math.min(t,n))}function n(e,t,n){return(1-n)*e+n*t}function r(e,t,r,i){return n(e,t,1-Math.exp(-r*i))}function i(e,t){return(e%t+t)%t}var a=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(e){if(!this.isRunning)return;let n=!1;if(this.duration&&this.easing){this.currentTime+=e;let r=t(0,this.currentTime/this.duration,1);n=r>=1;let i=n?1:this.easing(r);this.value=this.from+(this.to-this.from)*i}else this.lerp?(this.value=r(this.value,this.to,this.lerp*60,e),Math.round(this.value)===Math.round(this.to)&&(this.value=this.to,n=!0)):(this.value=this.to,n=!0);n&&this.stop(),this.onUpdate?.(this.value,n)}stop(){this.isRunning=!1}fromTo(e,t,{lerp:n,duration:r,easing:i,onStart:a,onUpdate:o}){this.from=this.value=e,this.to=t,this.lerp=n,this.duration=r,this.easing=i,this.currentTime=0,this.isRunning=!0,a?.(),this.onUpdate=o}};function o(e,t){let n;return function(...r){clearTimeout(n),n=setTimeout(()=>{n=void 0,e.apply(this,r)},t)}}var s=class{width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;constructor(e,t,{autoResize:n=!0,debounce:r=250}={}){this.wrapper=e,this.content=t,n&&(this.debouncedResize=o(this.resize,r),this.wrapper instanceof Window?window.addEventListener(`resize`,this.debouncedResize):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener(`resize`,this.debouncedResize)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}},c=class{events={};emit(e,...t){let n=this.events[e]||[];for(let e=0,r=n.length;e<r;e++)n[e]?.(...t)}on(e,t){return this.events[e]?this.events[e].push(t):this.events[e]=[t],()=>{this.events[e]=this.events[e]?.filter(e=>t!==e)}}off(e,t){this.events[e]=this.events[e]?.filter(e=>t!==e)}destroy(){this.events={}}};let l={passive:!1};function u(e,t){return e===1?16.666666666666668:e===2?t:1}var d=class{touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new c;constructor(e,t={wheelMultiplier:1,touchMultiplier:1}){this.element=e,this.options=t,window.addEventListener(`resize`,this.onWindowResize),this.onWindowResize(),this.element.addEventListener(`wheel`,this.onWheel,l),this.element.addEventListener(`touchstart`,this.onTouchStart,l),this.element.addEventListener(`touchmove`,this.onTouchMove,l),this.element.addEventListener(`touchend`,this.onTouchEnd,l)}on(e,t){return this.emitter.on(e,t)}destroy(){this.emitter.destroy(),window.removeEventListener(`resize`,this.onWindowResize),this.element.removeEventListener(`wheel`,this.onWheel,l),this.element.removeEventListener(`touchstart`,this.onTouchStart,l),this.element.removeEventListener(`touchmove`,this.onTouchMove,l),this.element.removeEventListener(`touchend`,this.onTouchEnd,l)}onTouchStart=e=>{let{clientX:t,clientY:n}=e.targetTouches?e.targetTouches[0]:e;this.touchStart.x=t,this.touchStart.y=n,this.lastDelta={x:0,y:0},this.emitter.emit(`scroll`,{deltaX:0,deltaY:0,event:e})};onTouchMove=e=>{let{clientX:t,clientY:n}=e.targetTouches?e.targetTouches[0]:e,r=-(t-this.touchStart.x)*this.options.touchMultiplier,i=-(n-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=t,this.touchStart.y=n,this.lastDelta={x:r,y:i},this.emitter.emit(`scroll`,{deltaX:r,deltaY:i,event:e})};onTouchEnd=e=>{this.emitter.emit(`scroll`,{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:e})};onWheel=e=>{let{deltaX:t,deltaY:n,deltaMode:r}=e,i=u(r,this.window.width),a=u(r,this.window.height);t*=i,n*=a,t*=this.options.wheelMultiplier,n*=this.options.wheelMultiplier,this.emitter.emit(`scroll`,{deltaX:t,deltaY:n,event:e})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}};let f=e=>Math.min(1,1.001-2**(-10*e));var p=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;_rafId=null;_isDraggingSelection=!1;reducedMotionMediaQuery=window.matchMedia(`(prefers-reduced-motion: reduce)`);isTouching;isIos;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new a;emitter=new c;dimensions;virtualScroll;constructor({wrapper:t=window,content:n=document.documentElement,eventsTarget:r=t,smoothWheel:i=!0,syncTouch:a=!1,syncTouchLerp:o=.075,touchInertiaExponent:c=1.7,duration:l,easing:u,lerp:p=.1,infinite:m=!1,orientation:h=`vertical`,gestureOrientation:g=h===`horizontal`?`both`:`vertical`,touchMultiplier:_=1,wheelMultiplier:v=1,autoResize:y=!0,prevent:b,virtualScroll:x,overscroll:S=!0,autoRaf:C=!1,anchors:w=!1,autoToggle:T=!1,allowNestedScroll:E=!1,__experimental__naiveDimensions:D=!1,naiveDimensions:O=D,stopInertiaOnNavigate:k=!1,respectReducedMotion:A=!0}={}){window.lenisVersion=e,window.lenis||(window.lenis={}),window.lenis.version=e,h===`horizontal`&&(window.lenis.horizontal=!0),a===!0&&(window.lenis.touch=!0),this.isIos=/(iPad|iPhone|iPod)/g.test(navigator.userAgent),(!t||t===document.documentElement)&&(t=window),typeof l==`number`&&typeof u!=`function`?u=f:typeof u==`function`&&typeof l!=`number`&&(l=1),this.options={wrapper:t,content:n,eventsTarget:r,smoothWheel:i,syncTouch:a,syncTouchLerp:o,touchInertiaExponent:c,duration:l,easing:u,lerp:p,infinite:m,gestureOrientation:g,orientation:h,touchMultiplier:_,wheelMultiplier:v,autoResize:y,prevent:b,virtualScroll:x,overscroll:S,autoRaf:C,anchors:w,autoToggle:T,allowNestedScroll:E,naiveDimensions:O,stopInertiaOnNavigate:k,respectReducedMotion:A},this.dimensions=new s(t,n,{autoResize:y}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener(`scroll`,this.onNativeScroll),this.options.wrapper.addEventListener(`scrollend`,this.onScrollEnd,{capture:!0}),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.addEventListener(`click`,this.onClick),this.options.wrapper.addEventListener(`pointerdown`,this.onPointerDown),this.virtualScroll=new d(r,{touchMultiplier:_,wheelMultiplier:v}),this.virtualScroll.on(`scroll`,this.onVirtualScroll),this.options.autoToggle&&(this.checkOverflow(),this.rootElement.addEventListener(`transitionend`,this.onTransitionEnd)),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener(`scroll`,this.onNativeScroll),this.options.wrapper.removeEventListener(`scrollend`,this.onScrollEnd,{capture:!0}),this.options.wrapper.removeEventListener(`pointerdown`,this.onPointerDown),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.removeEventListener(`click`,this.onClick),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this._rafId&&cancelAnimationFrame(this._rafId)}on(e,t){return this.emitter.on(e,t)}off(e,t){return this.emitter.off(e,t)}onScrollEnd=e=>{e instanceof CustomEvent||(this.isScrolling===`smooth`||this.isScrolling===!1)&&e.stopPropagation()};dispatchScrollendEvent=()=>{this.options.wrapper.dispatchEvent(new CustomEvent(`scrollend`,{bubbles:this.options.wrapper===window,detail:{lenisScrollEnd:!0}}))};get overflow(){let e=this.isHorizontal?`overflow-x`:`overflow-y`;return getComputedStyle(this.rootElement)[e]}checkOverflow(){[`hidden`,`clip`].includes(this.overflow)?this.internalStop():this.internalStart()}onTransitionEnd=e=>{e.propertyName?.includes(`overflow`)&&e.target===this.rootElement&&this.checkOverflow()};setScroll(e){this.isHorizontal?this.options.wrapper.scrollTo({left:e,behavior:`instant`}):this.options.wrapper.scrollTo({top:e,behavior:`instant`})}onClick=e=>{let t=e.composedPath().filter(e=>e instanceof HTMLAnchorElement&&e.href).map(e=>new URL(e.href)),n=new URL(window.location.href);if(this.options.anchors){let e=t.find(e=>n.host===e.host&&n.pathname===e.pathname&&e.hash);if(e){let t=typeof this.options.anchors==`object`&&this.options.anchors?this.options.anchors:void 0,n=decodeURIComponent(e.hash);this.scrollTo(n,t);return}}if(this.options.stopInertiaOnNavigate&&t.some(e=>n.host===e.host&&n.pathname!==e.pathname)){this.reset();return}};onPointerDown=e=>{e.button===1&&this.reset()};isTouchOnSelectionHandle(e){let t=window.getSelection();if(!t||t.isCollapsed||t.rangeCount===0)return!1;let n=e.targetTouches[0]??e.changedTouches[0];if(!n)return!1;let r=t.getRangeAt(0).getClientRects();if(r.length===0)return!1;let i=r[0],a=r[r.length-1],o=Math.hypot(n.clientX-i.left,n.clientY-i.top)<=40,s=Math.hypot(n.clientX-a.right,n.clientY-a.bottom)<=40;return o||s}onVirtualScroll=e=>{if(typeof this.options.virtualScroll==`function`&&this.options.virtualScroll(e)===!1)return;let{deltaX:t,deltaY:n,event:r}=e;if(this.emitter.emit(`virtual-scroll`,{deltaX:t,deltaY:n,event:r}),r.ctrlKey||r.lenisStopPropagation)return;let i=r.type.includes(`touch`),a=r.type.includes(`wheel`);if(i&&this.isIos&&(r.type===`touchstart`&&(this._isDraggingSelection=this.isTouchOnSelectionHandle(r)),this._isDraggingSelection)){r.type===`touchend`&&(this._isDraggingSelection=!1);return}this.isTouching=r.type===`touchstart`||r.type===`touchmove`;let o=t===0&&n===0;if(this.options.syncTouch&&i&&r.type===`touchstart`&&o&&!this.isStopped&&!this.isLocked){this.reset();return}let s=this.options.gestureOrientation===`vertical`&&n===0||this.options.gestureOrientation===`horizontal`&&t===0;if(o||s)return;let c=r.composedPath();c=c.slice(0,c.indexOf(this.rootElement));let l=this.options.prevent,u=Math.abs(t)>=Math.abs(n)?`horizontal`:`vertical`;if(c.find(e=>e instanceof HTMLElement&&(typeof l==`function`&&l?.(e)||e.hasAttribute?.(`data-lenis-prevent`)||u===`vertical`&&e.hasAttribute?.(`data-lenis-prevent-vertical`)||u===`horizontal`&&e.hasAttribute?.(`data-lenis-prevent-horizontal`)||i&&e.hasAttribute?.(`data-lenis-prevent-touch`)||a&&e.hasAttribute?.(`data-lenis-prevent-wheel`)||this.options.allowNestedScroll&&this.hasNestedScroll(e,{deltaX:t,deltaY:n}))))return;if(this.isStopped||this.isLocked){r.cancelable&&r.preventDefault();return}if(!(this.options.syncTouch&&i||this.options.smoothWheel&&a)){this.isScrolling=`native`,this.animate.stop(),r.lenisStopPropagation=!0;return}let d=n;this.options.gestureOrientation===`both`?d=Math.abs(n)>Math.abs(t)?n:t:this.options.gestureOrientation===`horizontal`&&(d=t),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&this.limit>0&&(this.animatedScroll>0&&this.animatedScroll<this.limit||this.animatedScroll===0&&n>0||this.animatedScroll===this.limit&&n<0))&&(r.lenisStopPropagation=!0),r.cancelable&&r.preventDefault();let f=i&&this.options.syncTouch,p=i&&r.type===`touchend`;p&&(d=Math.sign(d)*Math.abs(this.velocity)**this.options.touchInertiaExponent),this.scrollTo(this.targetScroll+d,{programmatic:!1,...f?{lerp:p?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit(`scroll`,this)}onNativeScroll=()=>{if(this._resetVelocityTimeout!==null&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent){this._preventNextNativeScrollEvent=!1;return}if(this.isScrolling===!1||this.isScrolling===`native`){let e=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-e,this.direction=Math.sign(this.animatedScroll-e),this.isStopped||(this.isScrolling=`native`),this.emit(),this.velocity!==0&&(this._resetVelocityTimeout=setTimeout(()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()},400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){if(this.isStopped){if(this.options.autoToggle){this.rootElement.style.removeProperty(`overflow`);return}this.internalStart()}}internalStart(){this.isStopped&&(this.reset(),this.isStopped=!1,this.emit())}stop(){if(!this.isStopped){if(this.options.autoToggle){this.rootElement.style.setProperty(`overflow`,`clip`);return}this.internalStop()}}internalStop(){this.isStopped||(this.reset(),this.isStopped=!0,this.emit())}raf=e=>{let t=e-(this.time||e);this.time=e,this.animate.advance(t*.001),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))};scrollTo(e,{offset:n=0,immediate:r=!1,lock:i=!1,programmatic:a=!0,lerp:o=a?this.options.lerp:void 0,duration:s=a?this.options.duration:void 0,easing:c=a?this.options.easing:void 0,onStart:l,onComplete:u,force:d=!1,userData:p}={}){if(this.prefersReducedMotion&&(a?r=!0:(o=1,s=void 0,c=void 0)),(this.isStopped||this.isLocked)&&!d)return;let m=e,h=n;if(typeof m==`string`&&[`top`,`left`,`start`,`#`].includes(m))m=0;else if(typeof m==`string`&&[`bottom`,`right`,`end`].includes(m))m=this.limit;else{let e=null;if(typeof m==`string`?(e=m.startsWith(`#`)?document.getElementById(m.slice(1)):document.querySelector(m),e||(m===`#top`?m=0:console.warn(`Lenis: Target not found`,m))):m instanceof HTMLElement&&m?.nodeType&&(e=m),e){if(this.options.wrapper!==window){let e=this.rootElement.getBoundingClientRect();h-=this.isHorizontal?e.left:e.top}let t=e.getBoundingClientRect(),n=getComputedStyle(e),r=this.isHorizontal?Number.parseFloat(n.scrollMarginLeft):Number.parseFloat(n.scrollMarginTop),i=getComputedStyle(this.rootElement),a=this.isHorizontal?Number.parseFloat(i.scrollPaddingLeft):Number.parseFloat(i.scrollPaddingTop);m=(this.isHorizontal?t.left:t.top)+this.animatedScroll-(Number.isNaN(r)?0:r)-(Number.isNaN(a)?0:a)}}if(typeof m==`number`){if(m+=h,this.options.infinite){if(a){this.targetScroll=this.animatedScroll=this.scroll;let e=m-this.animatedScroll;e>this.limit/2?m-=this.limit:e<-this.limit/2&&(m+=this.limit)}}else m=t(0,m,this.limit);if(m===this.targetScroll){l?.(this),u?.(this);return}if(this.userData=p??{},r){this.animatedScroll=this.targetScroll=m,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),u?.(this),this.userData={},requestAnimationFrame(()=>{this.dispatchScrollendEvent()});return}a||(this.targetScroll=m),typeof s==`number`&&typeof c!=`function`?c=f:typeof c==`function`&&typeof s!=`number`&&(s=1),this.animate.fromTo(this.animatedScroll,m,{duration:s,easing:c,lerp:o,onStart:()=>{i&&(this.isLocked=!0),this.isScrolling=`smooth`,l?.(this)},onUpdate:(e,t)=>{this.isScrolling=`smooth`,this.lastVelocity=this.velocity,this.velocity=e-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=e,this.setScroll(this.scroll),a&&(this.targetScroll=e),t||this.emit(),t&&(this.reset(),this.emit(),u?.(this),this.userData={},requestAnimationFrame(()=>{this.dispatchScrollendEvent()}),this.preventNextNativeScrollEvent())}})}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame(()=>{this._preventNextNativeScrollEvent=!1})}hasNestedScroll(e,{deltaX:t,deltaY:n}){let r=Date.now();e._lenis||={};let i=e._lenis,a,o,s,c,l,u,d,f,p,m;if(r-(i.time??0)>2e3){i.time=Date.now();let t=window.getComputedStyle(e);if(i.computedStyle=t,a=[`auto`,`overlay`,`scroll`].includes(t.overflowX),o=[`auto`,`overlay`,`scroll`].includes(t.overflowY),l=[`auto`].includes(t.overscrollBehaviorX),u=[`auto`].includes(t.overscrollBehaviorY),i.hasOverflowX=a,i.hasOverflowY=o,!(a||o))return!1;d=e.scrollWidth,f=e.scrollHeight,p=e.clientWidth,m=e.clientHeight,s=d>p,c=f>m,i.isScrollableX=s,i.isScrollableY=c,i.scrollWidth=d,i.scrollHeight=f,i.clientWidth=p,i.clientHeight=m,i.hasOverscrollBehaviorX=l,i.hasOverscrollBehaviorY=u}else s=i.isScrollableX,c=i.isScrollableY,a=i.hasOverflowX,o=i.hasOverflowY,d=i.scrollWidth,f=i.scrollHeight,p=i.clientWidth,m=i.clientHeight,l=i.hasOverscrollBehaviorX,u=i.hasOverscrollBehaviorY;if(!(a&&s||o&&c))return!1;let h=Math.abs(t)>=Math.abs(n)?`horizontal`:`vertical`,g,_,v,y,b,x;if(h===`horizontal`)g=Math.round(e.scrollLeft),_=d-p,v=t,y=a,b=s,x=l;else if(h===`vertical`)g=Math.round(e.scrollTop),_=f-m,v=n,y=o,b=c,x=u;else return!1;return!x&&(g>=_||g<=0)?!0:(v>0?g<_:g>0)&&y&&b}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?`x`:`y`]}get isHorizontal(){return this.options.orientation===`horizontal`}get actualScroll(){let e=this.options.wrapper;return this.isHorizontal?e.scrollX??e.scrollLeft:e.scrollY??e.scrollTop}get scroll(){return this.options.infinite?i(this.animatedScroll,this.limit):this.animatedScroll}get progress(){return this.limit===0?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(e){this._isScrolling!==e&&(this._isScrolling=e,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(e){this._isStopped!==e&&(this._isStopped=e,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(e){this._isLocked!==e&&(this._isLocked=e,this.updateClassName())}get isSmooth(){return this.isScrolling===`smooth`}get prefersReducedMotion(){return this.options.respectReducedMotion&&this.reducedMotionMediaQuery.matches}get className(){let e=`lenis`;return this.options.autoToggle&&(e+=` lenis-autoToggle`),this.isStopped&&(e+=` lenis-stopped`),this.isLocked&&(e+=` lenis-locked`),this.isScrolling&&(e+=` lenis-scrolling`),this.isScrolling===`smooth`&&(e+=` lenis-smooth`),e}updateClassName(){this.cleanUpClassName(),this.className.split(` `).forEach(e=>{this.rootElement.classList.add(e)})}cleanUpClassName(){for(let e of Array.from(this.rootElement.classList))(e===`lenis`||e.startsWith(`lenis-`))&&this.rootElement.classList.remove(e)}};globalThis.Lenis=p,globalThis.Lenis.prototype=p.prototype})();
+//# sourceMappingURL=lenis.min.js.map</script>
+  <script>
+const siteConfig = {"seo":{"title":"Evo perfomance: студия детейлинга в Оренбурге","description":"Evo perfomance: студия детейлинга в Оренбурге, Полтавская улица, 43/3."},"business":{"name":"Evo perfomance","logo":{"src":"","alt":"","width":640,"height":640},"heroNameLines":["Evo perfomance"],"descriptor":"Студия детейлинга в Оренбурге","shortDescriptor":"Студия детейлинга","city":"Оренбург","visitHeadlineLines":["Заезжайте","в Оренбурге."],"address":"Полтавская улица, 43/3","addressFull":"Полтавская улица, 43/3","phones":[{"display":"+7 (922) 557-22-77","href":"tel:+79225572277"}],"contactMarkLines":["E","P"],"galleryIntroduction":"","contactLinks":[{"label":"Написать во ВКонтакте","href":"https://vk.com/evo.perfomance"},{"label":"Написать в Telegram","href":"https://t.me/+79225572277"},{"label":"Написать в WhatsApp","href":"https://wa.me/79225572277?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%0A%0A%D0%9F%D0%B8%D1%88%D1%83%20%D0%B8%D0%B7%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%202%D0%93%D0%98%D0%A1.%0A%0A"}],"footerLinks":[{"label":"ВКонтакте","href":"https://vk.com/evo.perfomance"}],"city_in":"в Оренбурге"},"adaptation":{"colors":{"accent":"#D9FF3F","heroTitle":"#f4f4f6","wishesBackground":"#e9eaec","wishesInk":"#11150D"},"finalStill":"assets/canon/6e77c10d71c72e9e.jpg","contactPhoto":"assets/opt/work-1-jpg-1600.jpg"},"navigation":[{"label":"Пожелания","href":"#wishes"},{"label":"Работы","href":"#works"},{"label":"Контакты","href":"#contacts"}],"wishes":{"heading":"Что хотите изменить в своём автомобиле?","introduction":"Выберите задачу, с которой хотите начать разговор.","cta":{"label":"Обсудить мой автомобиль","href":"#contacts"},"choices":[{"title":"Освежить внешний вид","description":"Вернуть автомобилю аккуратный, собранный вид и разобрать, какие следы эксплуатации хочется убрать в первую очередь."},{"title":"Сохранить состояние","description":"Обсудить текущее состояние автомобиля и выбрать подход к уходу за кузовом, салоном и часто используемыми зонами."},{"title":"Подготовить к продаже","description":"Привести внешний вид и салон в порядок перед показами, уделив внимание тому, что первым замечает будущий владелец."}]},"gallery":[{"src":"assets/work-1.jpg","alt":"реальная работа компании, выбранная по контакт-листу — студия детейлинга Evo perfomance, Оренбург","caption":"Авто после работ","_source_original_file":"4-2gis.jpg","srcset":"assets/opt/work-1-jpg-800.jpg 600w, assets/opt/work-1-jpg-1200.jpg 900w, assets/opt/work-1-jpg-1600.jpg 1200w, assets/work-1.jpg 1440w","sizes":"(max-width: 900px) 100vw, 1440px"},{"src":"assets/work-2.jpg","alt":"реальная работа компании, выбранная по контакт-листу — студия детейлинга Evo perfomance, Оренбург","caption":"Деталь после обработки","_source_original_file":"5-2gis.jpg","srcset":"assets/opt/work-2-jpg-800.jpg 600w, assets/opt/work-2-jpg-1200.jpg 900w, assets/work-2.jpg 960w","sizes":"(max-width: 900px) 100vw, 960px"},{"src":"assets/work-3.jpg","alt":"реальная работа компании, выбранная по контакт-листу — студия детейлинга Evo perfomance, Оренбург","caption":"Результат детейлинга","_source_original_file":"9-2gis.jpg","srcset":"assets/opt/work-3-jpg-800.jpg 600w, assets/opt/work-3-jpg-1200.jpg 900w, assets/opt/work-3-jpg-1600.jpg 1200w, assets/work-3.jpg 1440w","sizes":"(max-width: 900px) 100vw, 1440px"},{"src":"assets/work-4.jpg","alt":"реальная работа компании, выбранная по контакт-листу — студия детейлинга Evo perfomance, Оренбург","caption":"Уход за поверхностью","_source_original_file":"10-2gis.jpg","srcset":"assets/opt/work-4-jpg-800.jpg 450w, assets/opt/work-4-jpg-1200.jpg 675w, assets/opt/work-4-jpg-1600.jpg 900w, assets/work-4.jpg 1280w","sizes":"(max-width: 900px) 100vw, 1280px"},{"src":"assets/work-5.jpg","alt":"реальная работа компании, выбранная по контакт-листу — студия детейлинга Evo perfomance, Оренбург","caption":"Финишная обработка","_source_original_file":"28-vk.jpg","srcset":"assets/opt/work-5-jpg-800.jpg 533w, assets/work-5.jpg 640w","sizes":"(max-width: 900px) 100vw, 640px"},{"src":"assets/work-6.jpg","alt":"реальная работа компании, выбранная по контакт-листу — студия детейлинга Evo perfomance, Оренбург","caption":"Готовый автомобиль","_source_original_file":"53-vk.jpg","srcset":"assets/opt/work-6-jpg-800.jpg 599w, assets/work-6.jpg 640w","sizes":"(max-width: 900px) 100vw, 640px"}],"reviews":[{"author":"Пётр Н.","text":"Здравствуйте. Загонял свой Х7 на полную бронировку плёнкой сатин, шумоизоляцию, полировку фар, восстановление руля, восстановление анатомии сидений и покраска кожи.…","rating":5,"date":"2025-05-12","sourceUrl":"https://2gis.ru/orenburg/firm/70000001053829792/tab/reviews","_note":"quote обрезан до 20 слов"},{"author":"Городской житель","text":"Отличный сервис. Договорились с Артёмом. Приехала к назначеному времени. Произвели полировку двери. Дмитрий мастер своего дела. Сделал все на отлично…","rating":5,"date":"2025-05-07","sourceUrl":"https://2gis.ru/orenburg/firm/70000001053829792/tab/reviews","_note":"quote обрезан до 20 слов"}],"media":{"src":"../_shared/17ca93f829/media/scroll.mp4","phoneSrc":"../_shared/17ca93f829/media/scroll-phone.mp4","poster":"assets/canon/0322c396c65043e7.jpg","fallback":"assets/canon/6e77c10d71c72e9e.jpg","fps":24,"frames":577,"duration":24.041667,"captions":[{"start":3.45,"end":5.95,"title":"Точная работа","note":"Колесо очищается по участкам.","position":"left-low","mediaY":54},{"start":7.9,"end":9.65,"title":"Чистая оптика","note":"Микрофибра проходит по всей поверхности.","position":"left-high","mediaY":42},{"start":10.917,"end":13.083,"title":"Подготовка","note":"Кузов очищен перед следующим этапом.","position":"right-low","mediaY":50},{"start":13.083,"end":15.25,"title":"Ровный блик","note":"Полировка показывает состояние покрытия.","position":"left-low","mediaY":50},{"start":16.75,"end":19.25,"title":"Финишный проход","note":"Поверхность проверяется вручную.","position":"left-high","mediaY":55},{"start":20.6,"end":22.35,"title":"Готово к выдаче","note":"Автомобиль снова показан целиком.","position":"left-high","mediaY":68}]}};
+
+const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function hydrateBusinessContent() {
+  const { business, adaptation, navigation, wishes, gallery } = siteConfig;
+  const root = document.documentElement;
+  root.style.setProperty('--accent', adaptation.colors.accent);
+  root.style.setProperty('--hero-title', adaptation.colors.heroTitle);
+  root.style.setProperty('--wishes-bg', adaptation.colors.wishesBackground);
+  root.style.setProperty('--wishes-ink', adaptation.colors.wishesInk);
+  const setContactPhoto = () => root.style.setProperty('--contact-photo', `url("${adaptation.contactPhoto}")`);
+  if (document.readyState === 'complete') setContactPhoto(); else window.addEventListener('load', setContactPhoto, { once: true });
+  document.title = siteConfig.seo?.title || `${business.name}: детейлинг в ${business.city}`;
+  document.querySelector('meta[name="description"]').content = siteConfig.seo?.description || `${business.name}: ${business.descriptor}.`;
+  document.querySelectorAll('[data-business-name]').forEach((node) => { node.textContent = business.name; });
+  document.querySelectorAll('[data-business-city]').forEach((node) => { node.textContent = business.city; });
+  document.querySelector('[data-business-descriptor]').textContent = business.descriptor;
+  const descriptorInline = document.querySelector('[data-business-descriptor-inline]');
+  if (descriptorInline) descriptorInline.textContent = `${business.shortDescriptor} · ${business.city}`;
+  document.querySelector('[data-brand-link]').setAttribute('aria-label', `${business.name}: на главную`);
+  const logoImage = document.querySelector('[data-business-logo]');
+  if (business.logo?.src) {
+    logoImage.src = business.logo.src;
+    logoImage.alt = business.logo.alt || '';
+    if (business.logo.width) logoImage.width = business.logo.width;
+    if (business.logo.height) logoImage.height = business.logo.height;
+    logoImage.hidden = false;
+    const icon = document.createElement('link');
+    icon.rel = 'icon';
+    icon.href = business.logo.favicon || business.logo.src;
+    document.head.append(icon);
+  } else if (logoImage) {
+    // No logo: remove the <img> from the DOM entirely (not just hide it) so there is never a
+    // dangling <img> without a real image to show -- the text business name/city next to it
+    // (brand__text, always rendered regardless of logo) already covers this spot.
+    logoImage.remove();
+  }
+  document.querySelectorAll('[data-hero-name-line]').forEach((node, index) => {
+    node.textContent = business.heroNameLines[index] || (index === 0 ? business.name : '');
+  });
+  // A nav entry pointing at #reviews must not survive when there are no confirmed reviews:
+  // setupReviews() (called after this function) removes the empty #reviews section from the
+  // DOM, but it runs later, so document.getElementById('reviews') below would still find the
+  // not-yet-removed element and keep a dead nav link. Check the same reviews contract here too.
+  const hasReviews = Array.isArray(siteConfig.reviews) && siteConfig.reviews.some((item) => (
+    item && typeof item.author === 'string' && item.author.trim() && typeof item.text === 'string' && item.text.trim()
+  ));
+  const internalNavigation = navigation.filter(({ href }) => (
+    typeof href === 'string' &&
+    /^#[A-Za-z][\w:.-]*$/.test(href) &&
+    (href !== '#reviews' || hasReviews) &&
+    document.getElementById(href.slice(1))
+  ));
+  document.querySelector('.site-nav').innerHTML = internalNavigation
+    .map((item) => `<a href="${item.href}">${item.label}</a>`)
+    .join('');
+
+  // [2026-10-10, решение Ильи «охват»] У компании может не быть телефона и/или адреса (карточка 2ГИС без них): тогда кнопка звонка,
+  // телефонная строка и адрес не показываются вовсе, а не пустыми и не «undefined». С телефоном всё как раньше.
+  const phones = (Array.isArray(business.phones) ? business.phones : []).filter((phone) => phone && phone.href);
+  const primaryPhone = phones[0] || null;
+  document.querySelector('[data-contact-actions]').innerHTML = `
+    ${primaryPhone ? `<a class="button button--dark" data-primary-call href="${primaryPhone.href}">Позвонить</a>` : ''}
+    ${(business.contactLinks || []).map((item) => `<a class="button button--line" href="${item.href}" target="_blank" rel="noopener noreferrer">${item.label}</a>`).join('')}`;
+  document.querySelectorAll('[data-primary-call]').forEach((link) => {
+    if (primaryPhone) {
+      link.href = primaryPhone.href;
+      link.setAttribute('aria-label', `Позвонить: ${primaryPhone.display}`);
+    } else if (link.classList.contains('header-call')) {
+      link.remove();
+    }
+  });
+  const addressEl = document.querySelector('[data-address]');
+  if (business.addressFull) addressEl.textContent = business.addressFull;
+  else addressEl.remove();
+  const phonesEl = document.querySelector('[data-phones]');
+  if (primaryPhone) {
+    phonesEl.innerHTML = phones
+      .map((phone) => `<a href="${phone.href}">${phone.display}</a>`)
+      .join('');
+  } else {
+    phonesEl.remove();
+  }
+  const visitHeading = document.querySelector('[data-visit-heading]');
+  visitHeading.replaceChildren();
+  business.visitHeadlineLines.forEach((line, index) => {
+    if (index) visitHeading.append(document.createElement('br'));
+    visitHeading.append(document.createTextNode(line));
+  });
+  const contactMark = document.querySelector('[data-contact-mark]');
+  (business.contactMarkLines || []).forEach((line) => {
+    const span = document.createElement('span');
+    span.textContent = line;
+    contactMark.append(span);
+  });
+  const galleryIntroduction = document.querySelector('[data-gallery-introduction]');
+  galleryIntroduction.textContent = business.galleryIntroduction || '';
+  galleryIntroduction.hidden = !business.galleryIntroduction;
+  const footerLinksEl = document.querySelector('[data-footer-links]');
+  if (footerLinksEl) {
+    footerLinksEl.innerHTML = (business.footerLinks || [])
+      .map((item) => `<a href="${item.href}" target="_blank" rel="noopener noreferrer">${item.label}</a>`)
+      .join('');
+  }
+
+  document.querySelector('[data-wishes-heading]').textContent = wishes.heading;
+  document.querySelector('[data-wishes-introduction]').textContent = wishes.introduction;
+  document.querySelector('[data-wishes-cta]').textContent = wishes.cta.label;
+  document.querySelector('[data-wishes-cta]').href = wishes.cta.href;
+  document.querySelector('#wish-list').innerHTML = wishes.choices
+    .map((choice, index) => `
+      <button class="wish-choice" type="button" role="tab" id="wish-choice-${index}" data-wish-choice="${index}" aria-controls="wish-details" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}">
+        <span class="wish-choice__number" aria-hidden="true">0${index + 1}</span>
+        <span class="wish-choice__title">${choice.title}</span>
+        <span class="wish-choice__indicator" aria-hidden="true"></span>
+      </button>`)
+    .join('');
+
+  document.querySelector('#gallery').innerHTML = gallery
+    .map((item, index) => {
+      const label = item.caption ? `Открыть фотографию: ${item.caption}` : `Открыть фотографию ${index + 1}`;
+      return `
+      <button class="gallery__item${item.caption ? '' : ' gallery__item--plain'}" type="button" data-gallery-index="${index}" aria-label="${label}">
+        <img src="${item.src}"${item.srcset ? ` srcset="${item.srcset}" sizes="${item.sizes}"` : ''} alt="${item.alt}" width="1600" height="1200" loading="lazy" decoding="async">
+        ${item.caption ? `<span>${item.caption}</span>` : ''}
+      </button>`;
+    })
+    .join('');
+}
+
+function setupWishes() {
+  const buttons = [...document.querySelectorAll('[data-wish-choice]')];
+  const panel = document.querySelector('#wish-details');
+  const title = panel.querySelector('[data-wish-selected-title]');
+  const copy = panel.querySelector('[data-wish-selected-copy]');
+
+  const select = (index, moveFocus = false) => {
+    const normalizedIndex = (index + buttons.length) % buttons.length;
+    buttons.forEach((button, buttonIndex) => {
+      const selected = buttonIndex === normalizedIndex;
+      button.setAttribute('aria-selected', String(selected));
+      button.tabIndex = selected ? 0 : -1;
+    });
+    const selectedButton = buttons[normalizedIndex];
+    const choice = siteConfig.wishes.choices[normalizedIndex];
+    panel.setAttribute('aria-labelledby', selectedButton.id);
+    title.textContent = choice.title;
+    copy.textContent = choice.description;
+    if (moveFocus) selectedButton.focus();
+  };
+
+  buttons.forEach((button, index) => {
+    button.addEventListener('click', () => select(index));
+    button.addEventListener('keydown', (event) => {
+      const keyDirections = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
+      if (event.key in keyDirections) {
+        event.preventDefault();
+        select(index + keyDirections[event.key], true);
+      } else if (event.key === 'Home' || event.key === 'End') {
+        event.preventDefault();
+        select(event.key === 'Home' ? 0 : buttons.length - 1, true);
+      }
+    });
+  });
+
+  select(0);
+}
+
+function setupNavigation(getLenis, revealNow) {
+  const header = document.querySelector('.site-header');
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+  const links = [...nav.querySelectorAll('a')];
+
+  const setMenu = (open) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggle.querySelector('.sr-only').textContent = open ? 'Закрыть меню' : 'Открыть меню';
+  };
+
+  toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      setMenu(false);
+      // An anchor jump is a deliberate request to see that section now: reveal it immediately
+      // instead of waiting for IntersectionObserver to catch up mid-scroll (which can otherwise
+      // show the section still animating in, or briefly hidden, right as it lands in view).
+      revealNow?.(target);
+      const lenis = getLenis();
+      if (lenis) lenis.scrollTo(target, { offset: link.getAttribute('href') === '#top' ? 0 : -68, duration: 1.15 });
+      else target.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'auto' : 'smooth' });
+    });
+  });
+
+  const sections = links.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  const updateHeader = () => {
+    header.classList.toggle('is-solid', window.scrollY > 24);
+    let current = null;
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= window.innerHeight * 0.42) current = section.id;
+    }
+    links.forEach((link) => link.toggleAttribute('aria-current', link.getAttribute('href') === `#${current}`));
+  };
+  return updateHeader;
+}
+
+function setupLightbox() {
+  const dialog = document.querySelector('#lightbox');
+  const image = dialog.querySelector('img');
+  const caption = dialog.querySelector('figcaption');
+  const closeButton = dialog.querySelector('.lightbox__close');
+  const previousButton = dialog.querySelector('.lightbox__arrow--prev');
+  const nextButton = dialog.querySelector('.lightbox__arrow--next');
+  let index = 0;
+  let returnFocus = null;
+
+  const render = () => {
+    const item = siteConfig.gallery[index];
+    image.src = item.src;
+    image.alt = item.alt;
+    caption.textContent = item.caption;
+  };
+  const move = (amount) => {
+    index = (index + amount + siteConfig.gallery.length) % siteConfig.gallery.length;
+    render();
+  };
+  const close = () => dialog.close();
+
+  document.querySelectorAll('[data-gallery-index]').forEach((button) => {
+    button.addEventListener('click', () => {
+      returnFocus = button;
+      index = Number(button.dataset.galleryIndex);
+      render();
+      dialog.showModal();
+      document.body.classList.add('lightbox-open');
+      closeButton.focus();
+    });
+  });
+  closeButton.addEventListener('click', close);
+  previousButton.addEventListener('click', () => move(-1));
+  nextButton.addEventListener('click', () => move(1));
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) close(); });
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('lightbox-open');
+    setTimeout(() => returnFocus?.focus(), 0);
+  });
+  dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') move(-1);
+    if (event.key === 'ArrowRight') move(1);
+    if (event.key !== 'Tab') return;
+    const controls = [closeButton, previousButton, nextButton];
+    const current = controls.indexOf(document.activeElement);
+    if (event.shiftKey && current <= 0) {
+      event.preventDefault();
+      controls.at(-1).focus();
+    } else if (!event.shiftKey && current === controls.length - 1) {
+      event.preventDefault();
+      controls[0].focus();
+    }
+  });
+}
+
+function setupReviews() {
+  const reviews = Array.isArray(siteConfig.reviews) ? siteConfig.reviews.filter((item) => (
+    item && typeof item.author === 'string' && item.author.trim() && typeof item.text === 'string' && item.text.trim()
+  )) : [];
+  const section = document.querySelector('#reviews');
+  if (!reviews.length) {
+    section.remove();
+    return null;
+  }
+
+  section.hidden = false;
+  const track = section.querySelector('[data-review-track]');
+  const controls = section.querySelector('[data-review-controls]');
+  const previous = section.querySelector('[data-review-prev]');
+  const next = section.querySelector('[data-review-next]');
+  const current = section.querySelector('[data-review-current]');
+  const total = section.querySelector('[data-review-total]');
+  const progressBar = section.querySelector('[data-review-progress]');
+
+  reviews.forEach((review, index) => {
+    const article = document.createElement('article');
+    article.className = 'review-card';
+    article.setAttribute('aria-label', `Отзыв ${index + 1} из ${reviews.length}`);
+    const quote = document.createElement('blockquote');
+    quote.textContent = review.text;
+    const footer = document.createElement('footer');
+    const author = document.createElement('cite');
+    author.textContent = review.author;
+    footer.append(author);
+    const details = [];
+    if (Number.isFinite(review.rating)) details.push(`${review.rating} из 5`);
+    if (typeof review.date === 'string' && review.date.trim()) details.push(review.date.trim());
+    if (details.length) {
+      const meta = document.createElement('span');
+      meta.textContent = details.join(' · ');
+      footer.append(meta);
+    }
+    article.append(quote, footer);
+    track.append(article);
+  });
+
+  const cards = [...track.children];
+  total.textContent = String(cards.length).padStart(2, '0');
+  const currentIndex = () => {
+    const left = track.scrollLeft;
+    return cards.reduce((best, card, index) => (
+      Math.abs(card.offsetLeft - left) < Math.abs(cards[best].offsetLeft - left) ? index : best
+    ), 0);
+  };
+  const updateControls = () => {
+    const max = Math.max(0, track.scrollWidth - track.clientWidth);
+    const unnecessary = cards.length < 2 || max < 2;
+    const index = currentIndex();
+    controls.hidden = unnecessary;
+    previous.disabled = unnecessary || track.scrollLeft <= 2;
+    next.disabled = unnecessary || track.scrollLeft >= max - 2;
+    current.textContent = String(index + 1).padStart(2, '0');
+    progressBar.style.transform = `scaleX(${(index + 1) / cards.length})`;
+    cards.forEach((card, cardIndex) => card.classList.toggle('is-current', cardIndex === index));
+  };
+  const moveTo = (index, behavior = 'smooth') => {
+    const normalized = Math.max(0, Math.min(cards.length - 1, index));
+    track.scrollTo({ left: cards[normalized].offsetLeft, behavior: prefersReducedMotion.matches ? 'auto' : behavior });
+  };
+
+  previous.addEventListener('click', () => moveTo(currentIndex() - 1));
+  next.addEventListener('click', () => moveTo(currentIndex() + 1));
+  track.addEventListener('keydown', (event) => {
+    const directions = { ArrowLeft: -1, ArrowRight: 1 };
+    if (event.key in directions) {
+      event.preventDefault();
+      moveTo(currentIndex() + directions[event.key], 'auto');
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      moveTo(event.key === 'Home' ? 0 : cards.length - 1, 'auto');
+    }
+  });
+  let reviewRaf = 0;
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(reviewRaf);
+    reviewRaf = requestAnimationFrame(updateControls);
+  }, { passive: true });
+  window.addEventListener('resize', updateControls);
+  requestAnimationFrame(updateControls);
+  return { count: reviews.length, track, cards, updateControls };
+}
+
+// C1: reveal-on-scroll for the sections below the film (wishes / works / reviews / contact).
+// Safety contract: html.js-reveal (the only thing that lets any hidden-state CSS rule apply) is
+// added to <html> only after this function has actually set everything up, so a script error
+// earlier in the module, a browser without IntersectionObserver, or JS disabled entirely all
+// leave every section at its normal, fully visible layout -- nothing here is ever hidden by
+// default in markup/CSS. prefers-reduced-motion also skips this whole function, same reasoning.
+// Must run after hydrateBusinessContent()/setupWishes()/setupLightbox()/setupReviews() (the
+// gallery/wish-list/review DOM must already exist) and after fitOverflowingHeadings() (heading
+// mask-wrapping replaces a heading's childNodes with one wrapper span, which would fuse the
+// contact heading's two <br>-separated lines into one fake long "word" for the fit's word-width
+// probe if it wrapped first).
+function setupReveal() {
+  if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) return () => {};
+
+  const REVEAL_DELAY_BASE_MS = 160;
+  const REVEAL_DELAY_STEP_MS = 80;
+  const REVEAL_DELAY_MAX_STEPS = 6;
+
+  const sectionConfigs = [
+    {
+      el: document.querySelector('.wishes'),
+      heading: '.wishes__heading h2',
+      cascade: ['[data-wishes-introduction]', '#wish-list > .wish-choice', '#wish-details']
+    },
+    {
+      el: document.querySelector('.works'),
+      heading: '.works .section-heading h2',
+      cascade: ['.works .section-heading p'],
+      // .gallery__item is a real interactive button (hover-zoom, :active press, lightbox) with
+      // its own transform transitions, so it is deliberately kept off the generic .reveal-fade
+      // cascade below -- only its photo (img) gets the scale/opacity reveal, scoped to
+      // .is-revealing in CSS so the button's own timing is never permanently altered.
+      photoCascade: '.gallery__item'
+    },
+    {
+      el: document.querySelector('.reviews'),
+      heading: '.reviews__heading h2',
+      cascade: ['.reviews__nav', '[data-review-track]']
+    },
+    {
+      el: document.querySelector('.contact'),
+      heading: '.contact__body h2',
+      cascade: ['[data-address]', '[data-phones]', '[data-contact-actions]']
+    }
+  ].filter((config) => config.el);
+
+  if (!sectionConfigs.length) return () => {};
+
+  sectionConfigs.forEach(({ el, heading, cascade, photoCascade }) => {
+    el.classList.add('reveal-section');
+    const headingEl = el.querySelector(heading);
+    if (headingEl && !headingEl.querySelector('.reveal-mask-inner')) {
+      const inner = document.createElement('span');
+      inner.className = 'reveal-mask-inner';
+      inner.innerHTML = headingEl.innerHTML;
+      headingEl.innerHTML = '';
+      headingEl.appendChild(inner);
+      headingEl.classList.add('reveal-mask');
+    }
+    let step = 0;
+    cascade.forEach((selector) => {
+      el.querySelectorAll(selector).forEach((item) => {
+        item.classList.add('reveal-fade');
+        const delay = REVEAL_DELAY_BASE_MS + Math.min(step, REVEAL_DELAY_MAX_STEPS) * REVEAL_DELAY_STEP_MS;
+        item.style.setProperty('--reveal-delay', `${delay}ms`);
+        step += 1;
+      });
+    });
+    // photoCascade items only get the --reveal-delay custom property (inherited by their img
+    // for the CSS scale/opacity reveal); they deliberately do NOT get .reveal-fade (see the
+    // .gallery__item comment above config) so their own interactive transform transitions are
+    // never touched.
+    if (photoCascade) {
+      el.querySelectorAll(photoCascade).forEach((item) => {
+        const delay = REVEAL_DELAY_BASE_MS + Math.min(step, REVEAL_DELAY_MAX_STEPS) * REVEAL_DELAY_STEP_MS;
+        item.style.setProperty('--reveal-delay', `${delay}ms`);
+        step += 1;
+      });
+    }
+  });
+
+  const revealTimers = new WeakMap();
+  const reveal = (el) => {
+    if (el.classList.contains('is-inview')) return;
+    el.classList.add('is-inview', 'is-revealing');
+    clearTimeout(revealTimers.get(el));
+    revealTimers.set(el, window.setTimeout(() => el.classList.remove('is-revealing'), 1400));
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      reveal(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+  sectionConfigs.forEach(({ el }) => observer.observe(el));
+
+  document.documentElement.classList.add('js-reveal');
+
+  // Used by setupNavigation() so an anchor-menu jump shows its destination section already
+  // revealed instead of catching it mid-animation.
+  return (target) => {
+    if (!target || !target.classList.contains('reveal-section')) return;
+    observer.unobserve(target);
+    reveal(target);
+  };
+}
+
+function setupScrubVideo() {
+  const section = document.querySelector('#cinema');
+  const media = section.querySelector('.cinema__media');
+  const video = section.querySelector('#scrub-video');
+  const fallback = section.querySelector('.cinema__fallback');
+  const status = section.querySelector('.media-status');
+  const statusLabel = status.querySelector('.media-status__label');
+  const statusBar = status.querySelector('.media-status__bar i');
+  const retryButton = status.querySelector('button');
+  const heroCopy = section.querySelector('.hero-copy');
+  const caption = section.querySelector('.scene-caption');
+  const captionTitle = caption.querySelector('.scene-caption__title');
+  const captionNote = caption.querySelector('.scene-caption__note');
+  const close = section.querySelector('.cinema__close');
+  const progressBar = section.querySelector('.cinema__progress i');
+  const mediaConfig = siteConfig.media;
+  const nominalEnd = (mediaConfig.frames - 1) / mediaConfig.fps;
+  // End-hold tuning (2026-09-17, measured -- see PROJECT_SHARED_STATE.md "Тачпад: медленнее
+  // подписи и раздельный конец фильма — 2026-09-17"): FILM_END_HOLD_VIEWPORTS reserves this many
+  // viewport heights of the pin's own scroll distance, at the end, during which the video stays
+  // frozen on its last frame and the close-card stays fully shown before the section releases (see
+  // update()'s activeDistance/holdDistance split below). CLOSE_CARD_PROGRESS_THRESHOLD is the
+  // video/caption progress (0..1, i.e. reached BEFORE the hold zone) past which the close-card
+  // starts its fade-in; chosen so it only fires after the last caption's own exit (which reaches
+  // opacity 0 essentially exactly at its own `end` timestamp) plus a caption-free pause.
+  const FILM_END_HOLD_VIEWPORTS = 1;
+  const CLOSE_CARD_PROGRESS_THRESHOLD = 0.978;
+
+  // Phone scroll pace (2026-10-15, Ilya: "на телефоне один свайп пролистывает четверть, нужно медленнее;
+  // на ключевых моментах (полировка, отдаление) замедление; на компьютере всё нормально"). PHONE ONLY: the
+  // pin is 3x longer in styles.css (@media (max-width: 600px) .cinema, same query as FILM_PHONE_QUERY) and the
+  // scroll-to-frame map below is non-linear: every frame interval gets a scroll weight of 1 plus a smooth
+  // (cosine) bump of FILM_DWELL_GAIN over the polishing pass and over the final pull-back to the whole car,
+  // so those two moments take about 3x more scroll than the rest. Desktop and tablets (min-width 601px) never
+  // enter this branch: update() keeps the plain linear `progress` there, byte for byte as before.
+  // Times are seconds of the canon scroll video (24 fps, 577 frames): polisher on the hood ~10.5-15.3 s
+  // (caption "Ровный блик" 13.08-15.25), camera pull-back to the whole car ~19.0-22.3 s.
+  const FILM_PHONE_QUERY = '(max-width: 600px)';
+  const FILM_DWELL_GAIN = 2;
+  const FILM_DWELL_ZONES = [{ center: 12.9, half: 2.4 }, { center: 20.6, half: 1.7 }];
+  const filmPhone = window.matchMedia(FILM_PHONE_QUERY);
+  let dwellCumulative = null;
+  // Cumulative scroll weight per frame, normalized to 0..1 (built once, ~576 numbers).
+  const buildDwellCumulative = () => {
+    const frames = mediaConfig.frames;
+    const cumulative = new Float64Array(frames);
+    for (let i = 0; i < frames - 1; i += 1) {
+      const t = (i + 0.5) / mediaConfig.fps;
+      let weight = 1;
+      for (const zone of FILM_DWELL_ZONES) {
+        const x = Math.min(1, Math.abs(t - zone.center) / zone.half);
+        weight += FILM_DWELL_GAIN * 0.5 * (1 + Math.cos(Math.PI * x));
+      }
+      cumulative[i + 1] = cumulative[i] + weight;
+    }
+    const total = cumulative[frames - 1] || 1;
+    for (let i = 0; i < frames; i += 1) cumulative[i] /= total;
+    return cumulative;
+  };
+  // scroll progress 0..1 -> film progress 0..1 (monotone, 0->0, 1->1)
+  const dwellProgress = (scroll) => {
+    if (!dwellCumulative) dwellCumulative = buildDwellCumulative();
+    const last = dwellCumulative.length - 1;
+    if (scroll <= 0) return 0;
+    if (scroll >= 1) return 1;
+    let low = 0;
+    let high = last;
+    while (high - low > 1) {
+      const mid = (low + high) >> 1;
+      if (dwellCumulative[mid] <= scroll) low = mid; else high = mid;
+    }
+    const span = dwellCumulative[high] - dwellCumulative[low] || 1;
+    return (low + (scroll - dwellCumulative[low]) / span) / last;
+  };
+
+  let targetTime = 0;
+  let targetFrame = 0;
+  let progress = 0;
+  let activeCaption = -1;
+  let hasMetadata = false;
+  let disposed = false;
+
+  video.muted = true;
+  video.playsInline = true;
+  video.pause();
+  fallback.src = mediaConfig.poster;
+
+  // 2026-10-17, лёгкий ролик для телефона. На телефоне (FILM_PHONE_QUERY, та же граница, что у мобильной раскладки и пина 1560vh)
+  // берётся mediaConfig.phoneSrc: тот же фильм (24 fps, 577 кадров), кадрированный по центру до 720x720, 6,2 МБ вместо 15.
+  // Кадрирование совпадает с CSS телефона: object-fit: cover, object-position: center center, высота кадра целиком; блок ролика на
+  // телефоне не шире 600 px и не ниже 620 px (min-height .cinema__sticky), поэтому видимая часть всегда внутри центральных 720 px.
+  // Компьютер и планшет (шире 600 px) получают прежний mediaConfig.src. Поворот телефона через границу меняет источник (swapVideoSource).
+  let attachedSource = '';
+  const pickVideoSource = () => (filmPhone.matches && mediaConfig.phoneSrc ? mediaConfig.phoneSrc : mediaConfig.src);
+  let sourceAttached = false;
+  let sourceAttaching = false;
+  const attachVideoSource = async () => {
+    if (sourceAttached) {
+      video.load();
+      return;
+    }
+    if (sourceAttaching) return;
+    sourceAttaching = true;
+    try {
+      const resolver = window.__DB_RESOLVE_VIDEO_SOURCE__;
+      const source = typeof resolver === 'function' ? await resolver() : pickVideoSource();
+      if (disposed) return;
+      attachedSource = source;
+      video.src = source;
+      sourceAttached = true;
+      video.load();
+    } catch {
+      if (!disposed) showError();
+    } finally {
+      sourceAttaching = false;
+    }
+  };
+
+  // 2026-10-17, плашка «Загрузка» (index.html [data-site-loader]) вместо надписи «Загружаем сцену». Плашка уходит, когда готов
+  // первый экран: постер (.cinema__fallback) загружен, первый кадр ролика есть (loadeddata/canplay, как раньше) и ролик
+  // буферизован на SITE_LOADER_BUFFER_S от начала (хватает на первый экран и начало скраба; дальше скраб сам ограничен буфером,
+  // bufferedSeekLimit ниже, и ролик догружается в фоне). Жёсткий потолок SITE_LOADER_CAP_MS от начала загрузки страницы:
+  // после него плашка уходит в любом случае (постер стоит под ней, ролик проявится по первому кадру). Ошибка ролика: плашка
+  // уходит сразу, показывается прежнее сообщение с кнопкой «Повторить». Полоса: большее из доли готовности и доли потолка.
+  // Пока плашка видна, у неё атрибут data-loading (рекордер фабрики ждёт, пока его нет); после ухода hidden.
+  const SITE_LOADER_CAP_MS = 8000;
+  const SITE_LOADER_BUFFER_S = 1.5;
+  const SITE_LOADER_FADE_MS = 450;
+  const loader = document.querySelector('[data-site-loader]');
+  const loaderBar = loader ? loader.querySelector('[data-loader-bar]') : null;
+  let loaderDone = !loader;
+  let firstFrame = false;
+  let bufferedAhead = 0;
+  const posterReady = () => fallback.complete && fallback.naturalWidth > 0;
+  const finishLoader = () => {
+    if (loaderDone) return;
+    loaderDone = true;
+    if (loaderBar) loaderBar.style.transform = 'scaleX(1)';
+    loader.classList.add('is-leaving');
+    window.setTimeout(() => {
+      loader.hidden = true;
+      loader.removeAttribute('data-loading');
+    }, prefersReducedMotion.matches ? 0 : SITE_LOADER_FADE_MS);
+  };
+  const updateLoader = () => {
+    if (loaderDone) return;
+    const elapsed = performance.now();
+    const videoNeeded = !prefersReducedMotion.matches;
+    const target = Number.isFinite(video.duration) ? Math.min(SITE_LOADER_BUFFER_S, video.duration - 0.05) : SITE_LOADER_BUFFER_S;
+    const bufferShare = videoNeeded ? clamp(bufferedAhead / Math.max(0.1, target)) : 1;
+    const dataShare = 0.1 + 0.25 * (posterReady() ? 1 : 0) + 0.15 * (firstFrame || !videoNeeded ? 1 : 0) + 0.5 * bufferShare;
+    if (loaderBar) loaderBar.style.transform = `scaleX(${Math.max(dataShare, clamp(elapsed / SITE_LOADER_CAP_MS)).toFixed(3)})`;
+    const videoReady = !videoNeeded || (firstFrame && (bufferedAhead >= target || video.readyState >= 4));
+    if ((posterReady() && videoReady) || elapsed >= SITE_LOADER_CAP_MS) finishLoader();
+  };
+  if (loader) {
+    window.setTimeout(updateLoader, Math.max(0, SITE_LOADER_CAP_MS - performance.now()));
+    const loaderTick = () => {
+      if (loaderDone || disposed) return;
+      updateLoader();
+      window.setTimeout(loaderTick, 250);
+    };
+    loaderTick();
+    fallback.addEventListener('load', updateLoader);
+  }
+  const hideStatus = () => {
+    firstFrame = true;
+    status.classList.add('is-hidden');
+    media.classList.add('is-ready');
+    updateLoader();
+  };
+  const showError = () => {
+    finishLoader();
+    status.classList.remove('is-hidden');
+    media.classList.remove('is-ready');
+    statusLabel.textContent = 'Видео не загрузилось. Можно продолжить со статичным кадром.';
+    statusBar.parentElement.hidden = true;
+    retryButton.hidden = false;
+    fallback.src = siteConfig.adaptation.finalStill || mediaConfig.fallback;
+  };
+  // Сколько секунд ролика загружено подряд от начала (для плашки). Прежняя полоса оверлея убрана вместе с надписью.
+  const bufferedProgress = () => {
+    if (!video.duration || !video.buffered.length) return;
+    const ranges = video.buffered;
+    bufferedAhead = ranges.start(0) <= 0.05 ? ranges.end(0) : 0;
+    updateLoader();
+  };
+  // --- Continuously-smoothed scrub, watchdog-protected (ported 1:1 from
+  // work/barber-cinematic-template/app.js) -- adapted from
+  // work/grooming-cinematic-template/demo/index.html's proven-on-real-trackpad approach. Two
+  // earlier versions both regressed: a frame-capped catch-up could only advance ~20 frames/s
+  // once a real (GPU) browser's seek latency exceeded a couple of frame-budgets, visibly
+  // falling seconds behind; an rVFC-exclusive completion gate could then deadlock outright on a
+  // seek that lands on a visually-identical frame. `shown` is instead a continuous (not
+  // frame-stepped) exponential follower of the raw progress-derived target time, always moving
+  // every time it's updated; `video.currentTime` is only reassigned when `!video.seeking` and
+  // the remaining gap exceeds ~half a frame, so at most one seek is ever in flight, and it
+  // always targets wherever `shown` has smoothed to *right now*. Update runs from three places
+  // (rAF loop via update(), Lenis's own 'scroll' event, and the video's 'seeked' event).
+  // FILM_SCRUB_WATCHDOG_MS is our own addition: if `video.seeking` stays true past that budget,
+  // the next call forces a fresh currentTime assignment instead of waiting on a seek that may
+  // never resolve.
+  //
+  // 2026-09-18: a night-of-2026-09-17 revision added a forward "play-to-target" branch (real
+  // video.play() at an elevated playbackRate to catch up on ordinary forward scroll, seeking only
+  // for backward motion/big jumps). Reverted per user report (Chrome and Safari): the browser
+  // drops frames under playbackRate catch-up, so forward motion stuttered/skipped instead of
+  // playing smoothly, and Safari in particular rendered almost nothing during the catch-up
+  // ("три кадра на всю анимацию"). Forward and backward motion are both driven by the same
+  // frame-quantized seek below again, exactly like the plain seek path already used for backward
+  // motion, small settle-in corrections, and everything else.
+  const FILM_SCRUB_WATCHDOG_MS = 120;
+  let shown = 0;
+  let lastScrubAt = 0;
+  let seekWatchdogAt = 0;
+  // Frame-grid quantization (ported 1:1 from work/barber-cinematic-template/app.js): seek target
+  // is always the nearest whole frame's *center* time ((n+0.5)/fps, never the exact frame
+  // boundary), and a new seek is only issued when that frame number actually changes.
+  // 2026-10-16, scrub without freezes on a slow network. Probe (Slow 4G, scrolling 3 s after load): 11-12 of 12 steps
+  // showed no new frame. Every seek into a part of the file that was not downloaded yet made the browser abort and
+  // restart its range request, so the download crawled (~16-43 KB/s of ~188) and the picture froze. Now the time we seek
+  // to never goes past the end of the contiguous buffered range that holds the current picture, minus `bufferMargin`:
+  // the picture follows the scroll target as far as the film is loaded and catches up by itself while `buffered` grows
+  // (updateScrub runs every animation frame), and the download is never cut. Chrome reports `buffered` of a progressive
+  // file as a byte share of the duration, which can run ahead of the really decodable time (by up to ~2 s on the
+  // detailing film), so the margin starts at FILM_SCRUB_BUFFER_MARGIN_S and grows by 0.5 s whenever such a seek still
+  // waits for data after FILM_SCRUB_BUFFER_WAIT_MS; while it waits it is not re-targeted (a re-seek would only chase the
+  // download front again), the watchdog for it is FILM_SCRUB_BUFFER_WATCHDOG_MS. A target in a range loaded through the
+  // end of the film, a picture outside any loaded range, or a jump back outside loaded data: plain seek with the 120 ms
+  // watchdog, exactly as before (so with the whole film loaded nothing changes). If the browser has stopped downloading
+  // by itself (networkState IDLE) and the range end has not moved for FILM_SCRUB_BUFFER_STALL_MS, one seek to the frame
+  // just past the loaded range asks it to continue from there. Nothing buffered yet: no seek (first frame as before).
+  // Returns the time to seek to (<= want) or -1 for "no seek now"; `limitKind` tells updateScrub which watchdog applies.
+  const FILM_SCRUB_BUFFER_MARGIN_S = 0.5;
+  const FILM_SCRUB_BUFFER_MARGIN_MAX_S = 4;
+  const FILM_SCRUB_BUFFER_WAIT_MS = 300;
+  const FILM_SCRUB_BUFFER_WATCHDOG_MS = 3000;
+  const FILM_SCRUB_BUFFER_STALL_MS = 1000;
+  let bufferMargin = FILM_SCRUB_BUFFER_MARGIN_S;
+  let bufferStallEnd = -1;
+  let bufferStallAt = 0;
+  let limitKind = 'plain';
+  let seekKind = 'plain';
+  const bufferedSeekLimit = (want, now, fps) => {
+    const ranges = video.buffered;
+    limitKind = 'plain';
+    if (!ranges.length) return -1;
+    const at = video.currentTime;
+    const tail = Number.isFinite(video.duration) ? video.duration - 0.05 : Infinity;
+    let heldEnd = -1;
+    for (let i = 0; i < ranges.length; i += 1) {
+      const start = ranges.start(i);
+      const end = ranges.end(i);
+      if (want >= start && end >= tail) return want;
+      if (want >= start && want <= end - bufferMargin) {
+        limitKind = 'buffered';
+        return want;
+      }
+      if (heldEnd < 0 && at >= start - 0.05 && at <= end + 0.05) heldEnd = end;
+    }
+    if (heldEnd < 0 || want <= at) return want;
+    limitKind = 'buffered';
+    if (heldEnd !== bufferStallEnd) {
+      bufferStallEnd = heldEnd;
+      bufferStallAt = now;
+    }
+    if (video.networkState === video.NETWORK_IDLE && now - bufferStallAt >= FILM_SCRUB_BUFFER_STALL_MS) {
+      bufferStallAt = now;
+      limitKind = 'nudge';
+      return Math.min(want, heldEnd + 1 / fps);
+    }
+    return Math.max(at, heldEnd - bufferMargin);
+  };
+  let lastScrubFrame = -1;
+  const updateScrub = () => {
+    if (disposed || prefersReducedMotion.matches || !hasMetadata) return;
+    const now = performance.now();
+    const dt = lastScrubAt ? Math.min(0.25, (now - lastScrubAt) / 1000) : 0;
+    lastScrubAt = now;
+    shown += (targetTime - shown) * (1 - Math.exp(-dt * 18));
+    if (Math.abs(targetTime - shown) < 0.01) shown = targetTime;
+
+    let forceReseek = false;
+    if (video.seeking) {
+      if (!seekWatchdogAt) seekWatchdogAt = now;
+      if (seekKind === 'buffered' && now - seekWatchdogAt > FILM_SCRUB_BUFFER_WAIT_MS) {
+        seekKind = 'buffered-slow';
+        bufferMargin = Math.min(FILM_SCRUB_BUFFER_MARGIN_MAX_S, bufferMargin + 0.5);
+      }
+      if (now - seekWatchdogAt < (seekKind === 'plain' ? FILM_SCRUB_WATCHDOG_MS : FILM_SCRUB_BUFFER_WATCHDOG_MS)) return;
+      forceReseek = true;
+    } else {
+      seekWatchdogAt = 0;
+    }
+    const fps = mediaConfig.fps;
+    const durationEnd = Number.isFinite(video.duration) ? Math.max(0, video.duration - 1 / fps) : nominalEnd;
+    const seekBaseTime = bufferedSeekLimit(Math.min(Math.max(0, shown), nominalEnd, durationEnd), now, fps);
+    if (seekBaseTime < 0) return;
+    const frameNum = Math.max(0, Math.min(mediaConfig.frames - 1, Math.round(seekBaseTime * fps)));
+    if (frameNum === lastScrubFrame && !forceReseek) return;
+    const quantizedTime = Math.min((frameNum + 0.5) / fps, durationEnd);
+    try {
+      video.currentTime = quantizedTime;
+      lastScrubFrame = frameNum;
+      seekKind = limitKind;
+      seekWatchdogAt = now;
+    } catch {
+      // ignore -- next tick retries
+    }
+  };
+  const setCaption = (index) => {
+    if (index === activeCaption) return;
+    activeCaption = index;
+    const item = mediaConfig.captions[index];
+    caption.removeAttribute('data-position');
+    if (!item) {
+      captionTitle.textContent = '';
+      captionNote.textContent = '';
+      return;
+    }
+    captionTitle.textContent = item.title;
+    captionNote.textContent = item.note;
+    caption.dataset.position = item.position;
+  };
+  const smoothstep = (value) => {
+    const x = clamp(value);
+    return x * x * (3 - 2 * x);
+  };
+  const updateCaptionMotion = (item, atTime) => {
+    if (!item) {
+      caption.style.setProperty('--caption-opacity', '0');
+      caption.style.setProperty('--caption-note-opacity', '0');
+      caption.style.setProperty('--caption-y', '30px');
+      caption.style.setProperty('--caption-line', '0');
+      return;
+    }
+    const local = clamp((atTime - item.start) / Math.max(0.001, item.end - item.start));
+    const enter = smoothstep(local / 0.18);
+    const exit = smoothstep((1 - local) / 0.18);
+    const visibility = Math.min(enter, exit);
+    const noteEnter = smoothstep((local - 0.06) / 0.2);
+    const noteExit = smoothstep((0.94 - local) / 0.2);
+    const noteVisibility = Math.min(noteEnter, noteExit);
+    caption.style.setProperty('--caption-opacity', visibility.toFixed(4));
+    caption.style.setProperty('--caption-note-opacity', noteVisibility.toFixed(4));
+    caption.style.setProperty('--caption-y', `${((1 - visibility) * 30).toFixed(2)}px`);
+    caption.style.setProperty('--caption-line', visibility.toFixed(4));
+  };
+  const update = () => {
+    const rect = section.getBoundingClientRect();
+    const distance = rect.height - window.innerHeight;
+    // End-hold zone (ported from work/beauty-cinematic-template/app.js's scrollGeometry(),
+    // 2026-09-17): the last FILM_END_HOLD_VIEWPORTS worth of the pin's own scroll distance is
+    // reserved so the video/captions/progress bar finish (progress === 1) a bit BEFORE the
+    // section is actually released, instead of releasing the instant the last frame is reached.
+    // `progress` here drives the video frame, captions and progress bar and is normalized against
+    // activeDistance (distance minus the hold reserve), so it reaches 1 with holdDistance of
+    // pinned scroll still remaining -- during that remainder the video stays on its last frame and
+    // the close-card (see below) stays fully shown, un-animated, before the page is allowed to
+    // continue. The trackpad lead-clamp/exit-guard in setupFilmVirtualScrollGuard() operates on
+    // the section's raw offsetTop/offsetHeight (the FULL pin span including this hold reserve), so
+    // it keeps capping scroll speed and swallowing fling inertia throughout the hold zone too.
+    const holdDistance = distance > 0 ? Math.min(distance * 0.5, window.innerHeight * FILM_END_HOLD_VIEWPORTS) : 0;
+    const activeDistance = Math.max(1, distance - holdDistance);
+    progress = distance > 0 ? clamp(-rect.top / activeDistance) : 0;
+    // Phone only (see FILM_PHONE_QUERY): non-linear scroll->film map with slow-downs; elsewhere identical to before.
+    const filmProgress = filmPhone.matches && distance > 0 ? dwellProgress(progress) : progress;
+    targetFrame = Math.round(filmProgress * (mediaConfig.frames - 1));
+    targetTime = targetFrame / mediaConfig.fps;
+    // updateScrub() runs first and advances video.currentTime (by real playback or by a
+    // quantized seek) toward targetTime; captions/progress-bar/close-card below are then driven
+    // by that *actual* displayed position (effProgress/effTime), not the raw scroll-derived
+    // `progress`/`targetTime`, so on-screen text can never race ahead of the picture while a
+    // forward "doigryvanie" catch-up is still in flight.
+    updateScrub();
+    const effTime = video.currentTime;
+    const effProgress = clamp(effTime / nominalEnd);
+
+    progressBar.style.width = `${effProgress * 100}%`;
+    heroCopy.style.opacity = String(clamp(1 - effProgress / 0.145));
+    heroCopy.style.transform = `translateY(${-18 * clamp(effProgress / 0.145)}px) scale(${1 - 0.035 * clamp(effProgress / 0.145)})`;
+    heroCopy.style.pointerEvents = effProgress < 0.12 ? 'auto' : 'none';
+    // Threshold moved from the old 0.985 (see CLOSE_CARD_PROGRESS_THRESHOLD comment above
+    // setupFilmVirtualScrollGuard) so the card only starts its existing 350/450ms CSS fade-in
+    // (.cinema__close.is-visible, styles.css) once the last caption ("Готово к выдаче") has
+    // already fully faded out and a caption-free pause has passed -- previously it fired at 0.985
+    // while that caption was often still at full opacity, and the section released almost
+    // immediately after, so the card barely appeared before the page moved on.
+    close.classList.toggle('is-visible', effProgress > CLOSE_CARD_PROGRESS_THRESHOLD);
+
+    const index = mediaConfig.captions.findIndex((item) => effTime >= item.start && effTime <= item.end);
+    setCaption(index);
+    const captionItem = mediaConfig.captions[index];
+    updateCaptionMotion(captionItem, effTime);
+    // The last caption's fade-out window can extend slightly past the video's own last frame
+    // (nominalEnd), so the smoothstep exit never quite reaches 0 while scroll is clamped at
+    // progress === 1: force the caption fully invisible and non-rendering once the scrub has
+    // reached the very end of the film, instead of leaving a faint residual overlay. Scrolling
+    // back up drops progress below 1 and this class is removed, restoring the normal fade.
+    caption.classList.toggle('is-scroll-ended', effProgress >= 1);
+    media.style.setProperty('--media-y', `${captionItem?.mediaY ?? 50}%`);
+
+    window.__DB_SITE__ = {
+      ready: media.classList.contains('is-ready'),
+      progress: Number(progress.toFixed(4)),
+      filmProgress: Number(filmProgress.toFixed(4)),
+      targetFrame,
+      targetTime: Number(targetTime.toFixed(4)),
+      currentTime: Number(video.currentTime.toFixed(4)),
+      seeking: video.seeking,
+      reducedMotion: prefersReducedMotion.matches,
+      videoSize: `${video.videoWidth}x${video.videoHeight}`
+    };
+  };
+
+  video.addEventListener('loadedmetadata', () => {
+    hasMetadata = true;
+    bufferedProgress();
+    video.currentTime = 0;
+    shown = 0;
+    lastScrubAt = 0;
+    seekWatchdogAt = 0;
+  });
+  video.addEventListener('loadeddata', hideStatus, { once: true });
+  video.addEventListener('canplay', hideStatus, { once: true });
+  video.addEventListener('progress', bufferedProgress);
+  // Third scrub-update trigger alongside the rAF loop (via update(), see animate() below) and
+  // Lenis's own 'scroll' event (wired right after Lenis is constructed): as soon as a seek this
+  // code issued actually completes, immediately check whether `shown` has moved on since.
+  video.addEventListener('seeked', updateScrub);
+  // Ролик телефона не открылся (нет файла у старой сборки, сбой сети): один раз пробуем обычный ролик, потом прежняя ошибка.
+  video.addEventListener('error', () => {
+    if (attachedSource && attachedSource !== mediaConfig.src && mediaConfig.src && typeof window.__DB_RESOLVE_VIDEO_SOURCE__ !== 'function') {
+      attachedSource = mediaConfig.src;
+      hasMetadata = false;
+      lastScrubFrame = -1;
+      video.src = mediaConfig.src;
+      video.load();
+      return;
+    }
+    showError();
+  });
+  retryButton.addEventListener('click', () => {
+    retryButton.hidden = true;
+    status.classList.add('is-hidden');
+    statusLabel.textContent = '';
+    fallback.src = mediaConfig.poster;
+    attachVideoSource();
+  });
+  prefersReducedMotion.addEventListener('change', () => {
+    if (!prefersReducedMotion.matches) updateScrub();
+    update();
+  });
+
+  const swapVideoSource = () => {
+    if (!sourceAttached || typeof window.__DB_RESOLVE_VIDEO_SOURCE__ === 'function') return;
+    const next = pickVideoSource();
+    if (next === attachedSource) return;
+    attachedSource = next;
+    hasMetadata = false;
+    lastScrubFrame = -1;
+    video.src = next;
+    video.load();
+  };
+  filmPhone.addEventListener('change', swapVideoSource);
+
+  if (document.readyState === 'complete') setTimeout(attachVideoSource, 0);
+  else window.addEventListener('load', () => setTimeout(attachVideoSource, 0), { once: true });
+
+  return { update, destroy: () => { disposed = true; } };
+}
+
+// Long city/business names can overflow their fixed-width column at some viewport widths
+// (hero name over the video, and the closing "Ждём вас в <city>." heading), since both are
+// pre-split into rendered lines with no per-word breakpoint. Shrink font-size stepwise after
+// fonts settle -- and again on resize -- until the LONGEST WORD (not the whole, possibly
+// multi-line, element) fits its own box with a small margin, down to a floor of ~40px. Word
+// width is measured with a detached probe span (font-family/weight/style/letter-spacing copied
+// from the real element, white-space: pre) rather than el.scrollWidth: with overflow-wrap:
+// anywhere active on el itself, the browser already breaks the run to avoid overflow, so
+// el.scrollWidth can never exceed el.clientWidth even mid-word -- that made the previous
+// scrollWidth-based check stop one pixel short of a real fit and still let a word split. Once a
+// size fits with margin, overflow-wrap stays normal and word-break stays keep-all (breaks only
+// at spaces/hyphens, never inside a word); overflow-wrap: anywhere is only re-enabled as a last
+// resort if the longest word still doesn't fit even at the floor size.
+const HEADING_FIT_TARGETS = [
+  { selector: '.hero-copy h1', checkSiblingOverlap: true },
+  { selector: '.contact__body h2', checkSiblingOverlap: false }
+];
+function fitOverflowingHeadings() {
+  const minPx = 40;
+  const wordMarginPx = 4;
+
+  // Each `[data-hero-name-line]` span is one pre-split business-name row (h1); otherwise split
+  // the element's own child nodes on <br> boundaries (h2's visitHeadlineLines). Either way,
+  // textContent is never read across two rows concatenated together (which would fuse the last
+  // word of one line with the first word of the next into one fake, too-long "word").
+  function getLineTexts(el) {
+    const heroLines = el.querySelectorAll('[data-hero-name-line]');
+    if (heroLines.length) return [...heroLines].map((line) => line.textContent || '');
+    const lines = [];
+    let current = '';
+    el.childNodes.forEach((node) => {
+      if (node.nodeName === 'BR') {
+        lines.push(current);
+        current = '';
+      } else {
+        current += node.textContent || '';
+      }
+    });
+    lines.push(current);
+    return lines;
+  }
+
+  // A "word" is a run with no legal line-break opportunity inside it: split on whitespace, then
+  // keep each hyphen attached to the segment before it (default UA line-breaking already allows
+  // a break right after a hyphen, same as word-break: keep-all does for non-CJK text).
+  function widestWordWidth(el, probe) {
+    const words = getLineTexts(el)
+      .flatMap((line) => line.split(/\s+/))
+      .flatMap((chunk) => chunk.split(/(?<=-)/))
+      .filter(Boolean);
+    let widest = 0;
+    for (const word of words) {
+      probe.textContent = word;
+      widest = Math.max(widest, probe.getBoundingClientRect().width);
+    }
+    return widest;
+  }
+
+  function fitOne(el, checkSiblingOverlap) {
+    const sibling = checkSiblingOverlap ? el.nextElementSibling : null;
+    el.style.fontSize = '';
+    el.style.overflowWrap = 'normal';
+    el.style.wordBreak = 'keep-all';
+    let size = parseFloat(getComputedStyle(el).fontSize);
+
+    const probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;left:-99999px;top:0;white-space:pre;pointer-events:none;';
+    const computed = getComputedStyle(el);
+    probe.style.fontFamily = computed.fontFamily;
+    probe.style.fontWeight = computed.fontWeight;
+    probe.style.fontStyle = computed.fontStyle;
+    probe.style.letterSpacing = computed.letterSpacing;
+    document.body.append(probe);
+
+    const stillOverflows = () => {
+      probe.style.fontSize = `${size}px`;
+      if (widestWordWidth(el, probe) > el.clientWidth - wordMarginPx) return true;
+      if (sibling) {
+        const a = el.getBoundingClientRect();
+        const b = sibling.getBoundingClientRect();
+        if (a.bottom > b.top + 1) return true;
+      }
+      return false;
+    };
+
+    let guard = 0;
+    let overflowing = stillOverflows();
+    while (overflowing && size > minPx && guard < 80) {
+      size -= 1;
+      el.style.fontSize = `${size}px`;
+      overflowing = stillOverflows();
+      guard += 1;
+    }
+    probe.remove();
+
+    if (overflowing) {
+      // Even the floor size doesn't fit the longest word (or still overlaps the sibling below):
+      // fall back to the CSS backstop that breaks anywhere, rather than leave it stuck
+      // overflowing/overlapping at the floor size.
+      el.style.overflowWrap = 'anywhere';
+      el.style.wordBreak = '';
+    }
+  }
+  const run = () => {
+    HEADING_FIT_TARGETS.forEach(({ selector, checkSiblingOverlap }) => {
+      document.querySelectorAll(selector).forEach((el) => fitOne(el, checkSiblingOverlap));
+    });
+  };
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(run).catch(run); }
+  else { run(); }
+  window.addEventListener('resize', run);
+}
+
+// --- Lead-based trackpad-fling guard for the pinned #cinema section (ported 1:1 from
+// work/barber-cinematic-template/app.js, 2026-09-17, second revision) -- adapted from
+// work/grooming-cinematic-template/demo/index.html's `virtualScroll` guard, proven on a real
+// trackpad. A strong swipe delivers a dense burst of native `wheel` events (macOS momentum,
+// ~8-16ms apart); Lenis has no concept of "gesture speed", it only accumulates every delta into
+// targetScroll and chases it -- so a fling's whole burst used to land within ~1s regardless of
+// the section's real content length. `options.virtualScroll(e)` is called synchronously by
+// Lenis's own onVirtualScroll on the very same {deltaX, deltaY, event} object it goes on to
+// read from, so mutating e.deltaY here is picked up immediately -- this is Lenis's own
+// sanctioned interception point, not a second competing wheel listener.
+//  (a) Lead cap -- while `lenis.animatedScroll` (the real, already-rendered scroll position) is
+//      inside the pinned span, the guard caps how far `lenis.targetScroll` may run ahead of it
+//      ("lead"): if the lead in the requested direction already equals FILM_LEAD_K * innerHeight,
+//      the delta is fully rejected (return false); otherwise it's capped to whatever room is
+//      left. Because animatedScroll only closes the gap at Lenis's own catch-up rate per frame,
+//      capping the gap itself caps the effective scroll speed to roughly a fixed px/s regardless
+//      of how the input stream is shaped. FILM_LEAD_K is tuned against this section's own pinned
+//      distance and confirmed by CDP measurement.
+//  (b) Exit guard -- once a delta would push animatedScroll past the pinned span's bottom (or
+//      above its top), that one delta is let through unclamped (so the section can actually be
+//      left), but every further same-direction delta of the *same* gesture is swallowed
+//      (e.deltaY = 0) until either a >FILM_PAUSE_MS gap appears in the incoming stream (a
+//      gesture actually ending) or the direction reverses (an unambiguous new gesture, which
+//      must react immediately). This stops the remaining momentum of one fling from carrying the
+//      page through the next section(s).
+function setupFilmVirtualScrollGuard() {
+  const section = document.querySelector('#cinema');
+  // 0.15 -> 0.12 (2026-09-17, measured via headless CDP 10x100px/90ms wheel-tick test): the
+  // lowest K that still clears the ">=~600px for a 10-tick, 100px/90ms wheel burst" floor with a
+  // safe margin (measured 663px at 0.12 vs 445px at 0.08, both against the *old* 600vh pin -- the
+  // wheel-tick response depends only on K/innerHeight, not on the pin's own scroll distance, so
+  // this margin is unaffected by the .cinema height increase below). v_max scales ~linearly with
+  // K (measured 706.7px/s at 0.15, 565.4px/s at 0.12), so this alone only trims max fling speed by
+  // ~20%; the much larger caption-readability gain here (see .cinema height in styles.css) comes
+  // from lengthening the pin, not from K.
+  const FILM_LEAD_K = 0.12;
+  const FILM_PAUSE_MS = 120;
+  const FILM_EXIT_SAFETY_MS = 3000;
+  let filmExit = null;
+  let filmLastEventAt = 0;
+  return function filmVirtualScrollGuard(e) {
+    if (prefersReducedMotion.matches || !e.deltaY || !lenis) return true;
+    const now = typeof e.event?.timeStamp === 'number' ? e.event.timeStamp : performance.now();
+    const dir = e.deltaY > 0 ? 1 : -1;
+    const gapMs = filmLastEventAt ? now - filmLastEventAt : Infinity;
+    filmLastEventAt = now;
+    if (filmExit && (gapMs > FILM_PAUSE_MS || filmExit.dir !== dir || now - filmExit.startedAt > FILM_EXIT_SAFETY_MS)) {
+      filmExit = null;
+    }
+    if (filmExit && filmExit.dir === dir) {
+      e.deltaY = 0;
+      e.deltaX = 0;
+      return true;
+    }
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight - window.innerHeight;
+    if (bottom <= top) return true;
+    const y = lenis.animatedScroll;
+    if (y < top - 2 || y > bottom + 2) return true;
+    if ((y >= bottom - 1 && dir > 0) || (y <= top + 1 && dir < 0)) {
+      filmExit = { dir, startedAt: now };
+      return true;
+    }
+    const maxLead = window.innerHeight * FILM_LEAD_K;
+    const lead = lenis.targetScroll - lenis.animatedScroll;
+    if (lead * dir >= maxLead) return false;
+    const room = maxLead - lead * dir;
+    e.deltaY = dir * Math.min(Math.abs(e.deltaY), room);
+    e.deltaX = 0;
+    return true;
+  };
+}
+
+hydrateBusinessContent();
+fitOverflowingHeadings();
+setupWishes();
+setupLightbox();
+const reviews = setupReviews();
+window.__DB_REVIEWS__ = reviews ? { count: reviews.count } : null;
+const revealNow = setupReveal();
+
+let lenis = null;
+if (!prefersReducedMotion.matches && window.Lenis) {
+  lenis = new window.Lenis({
+    autoRaf: false,
+    duration: 1.08,
+    smoothWheel: true,
+    syncTouch: false,
+    // wheelMultiplier raised from 0.9 to 1 (2026-09-17): Lenis applies wheelMultiplier to the
+    // raw deltaY inside its own onWheel *before* virtualScroll(e) ever sees it, so at 0.9 a
+    // synthetic 10x100px wheel test could never exceed 900px pre-guard regardless of the
+    // film-section lead cap below -- measured 853-876px against a required >=900px. 1 removes
+    // that pre-guard ceiling; the lead-based film guard is what now bounds scroll speed inside
+    // the pinned section, same as the other two canons (which never set wheelMultiplier).
+    wheelMultiplier: 1,
+    touchMultiplier: 1.05,
+    virtualScroll: setupFilmVirtualScrollGuard()
+  });
+}
+
+const updateNavigation = setupNavigation(() => lenis, revealNow);
+const scrub = setupScrubVideo();
+if (lenis) lenis.on('scroll', () => scrub.update());
+
+let animationFrameId = 0;
+function animate(time) {
+  if (lenis) lenis.raf(time);
+  scrub.update();
+  updateNavigation();
+  animationFrameId = requestAnimationFrame(animate);
+}
+animationFrameId = requestAnimationFrame(animate);
+
+window.addEventListener('pagehide', () => {
+  cancelAnimationFrame(animationFrameId);
+  scrub.destroy();
+  lenis?.destroy();
+}, { once: true });
+
+document.fonts.ready.then(() => document.documentElement.classList.add('fonts-loaded'));
+
+</script>
+</body>
+</html>
