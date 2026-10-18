@@ -1,0 +1,863 @@
+/* barber-pole-hero-v3 -- page.css.
+   Everything below the hero: services / works / masters / reviews / contacts. Reuses :root tokens
+   from hero.css (loaded first) -- no new fonts, no CDN, no network.
+   2026-09-22 (craft2 pass, user feedback): softer hero->page transition, editorial services list,
+   reviews rhythm inside the pinned 100vh scene, contacts as a full last screen. Section reveal is
+   a single mechanic for the whole page: .reveal (opacity 0->1, translateY 24px->0, 700ms
+   cubic-bezier(.2,.7,.2,1), JS stagger 80ms via --reveal-delay, class is-inview, IntersectionObserver).
+   Without JS nothing gets the .reveal class, under prefers-reduced-motion .reveal is inert -- in both
+   cases everything is simply visible. */
+
+/* hero.css's own `html, body { height: 100% }` was written for a hero-only page. With content below,
+   height:100% on BOTH html and body traps the overflow inside body (window.scrollY stays 0). Restore
+   ordinary document scrolling; .hero clips its own internals with its own overflow:hidden. */
+html, body { height: auto; min-height: 100%; overflow-x: visible; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+:root {
+  --page-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --line: rgb(255 255 255 / 0.08);
+}
+
+/* ---------- page shell + hero -> first section transition ---------- */
+
+/* NOTE: .page must stay NON-positioned. page.js's reviews goTo() uses `section.offsetTop` as a
+   document-relative value (offsetParent = body); a `position:relative` here would silently re-base
+   it to .page and break the one-gesture-one-review mechanic (found and fixed in the craft2 QA run). */
+.page {
+  background: var(--bg);
+  color: var(--ink);
+}
+/* 36vh gradient from the hero's darkest wall tone (#020202) into the page background. A plain
+   in-flow element pulled back under the first section with a negative margin (no positioning, see
+   the note above); positioned sections paint over it. There is NO sticky/pin/"lead" wrapper anymore
+   (removed per user request, see README "A.3 revert") -- the hero is a plain 100vh section, this is
+   just the tonal hand-off underneath the first section. */
+.page__fade {
+  height: 36vh;
+  margin-bottom: -36vh;
+  background: linear-gradient(to bottom, #020202 0%, var(--bg) 100%);
+  pointer-events: none;
+}
+
+.page section {
+  position: relative;
+  padding: clamp(64px, 9vw, 128px) var(--pad-x) clamp(64px, 10vw, 140px);
+  max-width: 1360px;
+  margin: 0 auto;
+}
+.page section[hidden] { display: none; }
+/* first section gets a touch more air so the gradient hand-off above reads as one soft slope */
+.page > section:first-of-type { padding-top: clamp(88px, 14vh, 152px); }
+
+/* ---------- shared section chrome ---------- */
+
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+.section-heading__title-row {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(10px, 1.4vw, 20px);
+}
+.section-heading__count {
+  flex: none;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: clamp(11px, 0.6vw + 6px, 13px);
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  opacity: 0.85;
+}
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
+  font-size: clamp(40px, 5.6vw, 96px);
+  line-height: 0.96;
+  margin: 0;
+  color: var(--ink);
+}
+.section-heading__note {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(12px, 0.7vw + 6px, 14px);
+  opacity: 0.6;
+  max-width: 32ch;
+}
+
+/* ---------- reveal (one mechanic for the whole page) ---------- */
+
+.reveal {
+  transform: translateY(24px);
+  transition: opacity 700ms var(--page-ease), transform 700ms var(--page-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+/* 2026-09-23 (reveal fix): the hidden start state lives ONLY on :not(.is-inview). Before, it was
+   `.reveal { opacity: 0 }` + `.reveal.is-inview { opacity: 1 }`: elements with their own resting
+   opacity further down (.contacts__city .92, __status .9, __address .86, __foot .42,
+   .services__aside-status .85) beat the plain .reveal (same specificity, later in the file), so
+   they were already visible before the reveal and only slid up 24px -- and after it
+   .reveal.is-inview forced them to 1. Now: 0 until in view (0,2,0 beats them), then back to their
+   own value (or the default 1), with the 700ms opacity transition in both cases. */
+.reveal:not(.is-inview) { opacity: 0; }
+.reveal.is-inview { transform: none; will-change: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- services (editorial price list) ---------- */
+
+.services__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+.services__aside { display: none; }
+@media (min-width: 1200px) {
+  .services__layout { grid-template-columns: minmax(0, 1fr) 300px; }
+  .services__aside {
+    display: block;
+    position: sticky;
+    top: clamp(32px, 8vh, 72px);
+    /* the list's first row starts right under a 1px top rule; line the framed card up with it */
+    margin-top: 1px;
+  }
+}
+.services__aside-inner {
+  border: 1px solid var(--line);
+  padding: clamp(24px, 2vw, 32px);
+  position: relative;
+}
+.services__aside-inner::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 44px; height: 2px;
+  background: var(--accent);
+}
+.services__aside-count {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.services__aside-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(88px, 8vw, 120px);
+  line-height: 0.9;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.services__aside-cap {
+  font-family: var(--font-text);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.services__aside-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0 0;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0.85;
+}
+.services__aside-status[hidden] { display: none; }
+.services__aside-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+.services__aside-actions:empty { display: none; }
+.services__aside-actions .contacts__btn { justify-content: center; }
+
+.services__list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+/* 2026-09-23 (v4 video check: the hover line vanished for a frame between two rows): ONE accent
+   marker for the whole list instead of a ::before per row. page.js setupServicesMarker() writes
+   --mk-y (row top, px) and --mk-h (row height, px as a plain number); the 1px-tall marker is moved
+   and stretched by a single transform, so going from row to row it SLIDES and is never at 0.
+   First hover draws it in top-down from the row's top edge, leaving the list collapses it towards
+   the bottom edge -- the same look the per-row line had. */
+.services__list::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 2px;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: 0 0;
+  transform: translateY(var(--mk-y, 0px)) scaleY(var(--mk-h, 0));
+  transition: transform 320ms var(--page-ease);
+  pointer-events: none;
+  z-index: 1;
+}
+.services__list.is-mk-instant::before { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .services__list::before { transition: none; }
+}
+.services__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "idx name  price"
+    "idx note  dur";
+  align-items: baseline;
+  column-gap: clamp(18px, 2.6vw, 40px);
+  padding: clamp(22px, 2.6vw, 34px) clamp(14px, 1.8vw, 26px);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 280ms var(--page-ease);
+}
+/* 2026-09-23 (reveal fix): the shorthand above (same specificity, later than .reveal) wiped the
+   reveal's opacity/transform transition AND its --reveal-delay stagger, so every row popped in at
+   once with a 0ms jump. Rows with .reveal get both transitions back plus the hover background. */
+.services__row.reveal {
+  transition: opacity 700ms var(--page-ease) var(--reveal-delay, 0ms),
+              transform 700ms var(--page-ease) var(--reveal-delay, 0ms),
+              background-color 280ms var(--page-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .services__row.reveal { transition: background-color 280ms var(--page-ease); }
+}
+/* lit row (page.js .is-hot: set on entering a row, kept until another row is entered or the pointer
+   leaves the list -- never cleared in between); the accent line itself is .services__list::before */
+.services__row.is-hot,
+.services__row:focus-within { background: rgb(255 255 255 / 0.03); }
+.services__idx {
+  grid-area: idx;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 2.8vw, 44px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  opacity: 0.22;
+  min-width: 2.1ch;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 280ms var(--page-ease);
+}
+.services__row.is-hot .services__idx,
+.services__row:focus-within .services__idx { opacity: 0.42; }
+.services__name {
+  grid-area: name;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(20px, 1.1vw + 15px, 34px);
+  line-height: 1.12;
+  color: var(--ink);
+}
+.services__note {
+  grid-area: note;
+  margin: 8px 0 0;
+  font-family: var(--font-text);
+  font-size: clamp(12px, 0.5vw + 6px, 14px);
+  line-height: 1.4;
+  opacity: 0.5;
+  max-width: 56ch;
+}
+.services__price {
+  grid-area: price;
+  justify-self: end;
+  text-align: right;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(22px, 1.2vw + 14px, 34px);
+  line-height: 1.1;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: color 280ms var(--page-ease);
+}
+.services__row.is-hot .services__price,
+.services__row:focus-within .services__price { color: var(--accent); }
+.services__duration {
+  grid-area: dur;
+  justify-self: end;
+  margin: 8px 0 0;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .services__row {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "idx name"
+      "idx price"
+      "idx dur"
+      "idx note";
+    column-gap: 14px;
+    padding: 20px 10px;
+  }
+  .services__idx { font-size: 26px; }
+  .services__price,
+  .services__duration { justify-self: start; text-align: left; }
+  .services__price { margin-top: 6px; font-size: 20px; }
+}
+
+/* ---------- works gallery ---------- */
+
+/* 2026-09-22 (craft3, user feedback "работы почему не картинкой, а длинные прямоугольники --
+   нужно полностью их показывать"): every photo is shown WHOLE. No object-fit: cover, no mosaic,
+   no crop. One row of equal height: each <img> is `height: var(--works-h); width: auto`, so a card
+   is exactly the photo's own proportion. Caption sits UNDER the photo, small -- never over it.
+   `aspect-ratio: auto 3 / 4` only reserves a portrait box before the image has loaded; once
+   loaded the natural ratio wins (that is what `auto` means here).
+
+   2026-09-23 (works-hscroll, user feedback "в работах вниз лагает, не даёт пролистнуть"): the
+   old horizontal ribbon was its own scroll container with scroll-snap, and page.js turned a
+   vertical wheel over it into `scrollLeft += deltaY` + preventDefault(). Snap pulled every such
+   small programmatic step straight back to the first card, so scrollLeft never moved, the
+   "at the end -> let the page scroll" test never became true, and the page stood still under
+   the pointer (reproduced with real CDP wheel events: 0 px of page scroll for 6.7 s).
+   NEW MECHANIC -- no wheel/touch listener at all, only the native page scroll:
+     .works__pin       the whole works screen (heading + photos); position: sticky; 100svh tall
+                       while the section is .is-pinned
+     .works__viewport  full-bleed strip, overflow-x: clip (NOT a scroll container, so it can
+                       never catch a wheel/touch gesture)
+     .works__gallery   the row (width: max-content), moved with transform: translate3d() by
+                       page.js from the section's own scroll position (rAF)
+   page.js sets the section height to pin height + horizontal overflow + a short hold, so every
+   pixel scrolled down moves the row one pixel sideways; after the last photo the pin releases
+   and the page continues. Modes (page.js layoutWorks, class on section.works):
+     (none)      everything fits the content width at a good height -> one static row, no pin
+     .is-pinned  sticky pin + row travel (desktop/tablet, >= 768px -- no horizontal swipe needed)
+     .is-grid    prefers-reduced-motion -> no pin, whole photos wrap into rows going down
+     .is-grid.is-column  phone (< 768px, 2026-09-23: на телефоне без закрепления) -> no pin,
+                 one photo per row straight down, each whole and as wide as the content column */
+.page section.works {
+  max-width: none;
+  padding: 0;
+}
+.works__pin {
+  box-sizing: border-box;
+  padding: clamp(64px, 9vw, 128px) 0 clamp(64px, 10vw, 140px);
+}
+/* the heading keeps the same 1360px content column as every other section (width: 100% --
+   inside the pinned flex column auto side margins would otherwise shrink it and centre it) */
+.works .section-heading {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--pad-x);
+}
+.works__viewport {
+  overflow: hidden; /* fallback for engines without overflow: clip */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.works__gallery {
+  --works-h: 520px; /* overwritten by page.js layoutWorks() */
+  --works-gap: clamp(12px, 1.6vw, 22px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--works-gap);
+  width: max-content;
+  /* first photo starts on the same left edge as the heading / other sections' content column;
+     in the pinned mode the last photo ends on the matching right edge */
+  padding-left: max(var(--pad-x), calc((100% - 1360px) / 2 + var(--pad-x)));
+  padding-right: max(var(--pad-x), calc((100% - 1360px) / 2 + var(--pad-x)));
+}
+.works__item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.works__item img {
+  display: block;
+  height: var(--works-h);
+  width: auto;
+  max-width: none;
+  aspect-ratio: auto 3 / 4;
+  border-radius: 6px;
+  background: rgb(236 231 222 / 0.06);
+  transition: filter 340ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .works__item:hover img { filter: brightness(1.06); }
+}
+.works__caption {
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  opacity: 0.6;
+  padding: 0 2px;
+}
+
+/* pinned: one viewport-tall screen, heading + row centred as a group (like the reviews scene) */
+.works.is-pinned .works__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 7vh, 88px) 0 clamp(28px, 5vh, 64px);
+}
+.works.is-pinned .section-heading { margin-bottom: clamp(20px, 3.6vh, 44px); }
+.works.is-pinned .works__gallery { will-change: transform; }
+
+/* reduced motion: no pin, no travel -- whole photos simply wrap into rows downwards */
+.works.is-grid .works__gallery {
+  width: auto;
+  flex-wrap: wrap;
+  row-gap: clamp(20px, 2.4vw, 32px);
+}
+
+/* phone column (page.js adds .is-column together with .is-grid below 768px): one photo per row,
+   full content width, height from the photo's own proportion. width/height stay auto and only
+   max-* constrain, so the browser keeps the natural ratio: a normal photo is exactly as wide as
+   the column, a very tall one is scaled down to fit the screen instead of being cropped. */
+.works.is-column .works__gallery {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: auto;
+  row-gap: clamp(22px, 6vw, 32px);
+}
+/* photos in the column come into view one by one, so the sibling stagger (up to 560 ms for the
+   8th photo) would only make each of them late -- in the column every photo reveals on arrival */
+.works.is-column .works__item.reveal { transition-delay: 0ms; }
+.works.is-column .works__item img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 72px);
+  max-height: calc(100svh - 72px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .works__item img { transition: none; }
+}
+@media (max-width: 767px) {
+  .works__item { gap: 8px; }
+  .works__caption { font-size: 11px; }
+}
+
+/* ---------- masters (optional) ---------- */
+
+.masters__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(20px, 2.4vw, 36px);
+}
+.masters__item { text-align: left; }
+.masters__photo {
+  width: min(160px, 100%);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  background: rgb(236 231 222 / 0.06);
+  display: block;
+  margin-bottom: 14px;
+}
+.masters__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
+  font-size: clamp(16px, 1.2vw + 10px, 22px);
+  margin: 0;
+  color: var(--ink);
+}
+.masters__role {
+  font-family: var(--font-text);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  margin: 4px 0 0;
+}
+
+/* ---------- reviews (stepped, one gesture == one review; mechanics in page.js untouched) ---------- */
+
+/* .page section.reviews-section beats the generic `.page section` rule by specificity. The section
+   is N*100svh + 120px tall (the per-review scroll unit render()/goTo() in page.js depend on); the
+   sticky scene is exactly one viewport tall and lays its compact content out in a fixed rhythm:
+   heading -> 64px -> quote (with the big accent mark behind/above it) -> 24px -> author -> 32px ->
+   progress line. The group is vertically centred inside the 100svh scene, so there is never a big
+   hole between heading and quote regardless of viewport height. */
+.page section.reviews-section {
+  --review-count: 1;
+  padding: 0;
+  max-width: none;
+}
+.reviews-section:not(.is-single) { height: calc(var(--review-count) * 100svh + 120px); }
+.reviews-sticky {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 8vh, 96px) var(--pad-x);
+  max-width: 1360px;
+  margin: 0 auto;
+}
+.reviews-section.is-single .reviews-sticky { position: relative; height: auto; min-height: 60vh; }
+.reviews-heading { position: relative; margin: 0 0 64px; }
+.reviews-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--display-tracking);
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+  margin: 0;
+  color: var(--ink);
+}
+.reviews-stage {
+  position: relative;
+  padding-bottom: 32px; /* author line -> 32px -> progress line */
+}
+.reviews-stage::before {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  background: rgb(255 255 255 / 0.1);
+}
+.reviews-stage[style*="--rprog"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  width: var(--rprog, 0%);
+  background: var(--accent);
+  transition: width 500ms var(--ease-out);
+}
+.reviews-track {
+  position: relative;
+  outline: none;
+  /* 2026-09-23 (v4 video check: "on a review change the heading, quote and progress line jump
+     20-90 px in one frame"): all cards share ONE grid cell, so the track is always as tall as
+     the tallest card and never changes height when .is-active moves. Before, only the active
+     card was in flow (relative) and the rest absolute: the track took the ACTIVE card's height,
+     and because the sticky scene centres its content vertically, heading/quote/line re-centred
+     by half the height difference in the frame the class moved (measured 1440: 41.9 px, 390:
+     13.8 px per frame / 55.8 px spread; qa/page/v4-fixes-check.mjs). */
+  display: grid;
+}
+/* 2026-09-22 (craft3, user feedback "перелистываю -- прошлые отзывы виднеются в прозрачности"):
+   the card state is a class (`is-active`), not a scroll-driven crossfade. There is NO window in
+   which two cards are both visible: the leaving card drops 1 -> 0 in 100ms and is then
+   visibility:hidden (pointer-events none the whole time), the arriving card starts only at 140ms
+   (>= the leave duration) and eases in over 260ms with a 6px lift. All cards sit in the same grid
+   cell (see .reviews-track), so they wrap at exactly the same width -- page.js fitReviewCard()
+   measures them all at that width. Stepping mechanic in page.js is untouched. */
+.review-card {
+  max-width: 60%;
+  min-width: 0;
+  position: relative;
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 100ms ease-out, visibility 0s linear 100ms, transform 0s linear 100ms;
+}
+.review-card.is-active {
+  position: relative;
+  grid-area: 1 / 1;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 260ms var(--page-ease) 140ms, transform 260ms var(--page-ease) 140ms, visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-card, .review-card.is-active { transition: none; transform: none; }
+}
+.review-card blockquote {
+  position: relative;
+  margin: 0 0 24px;
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: clamp(32px, 3vw, 44px);
+  line-height: 1.12;
+  color: var(--ink);
+}
+/* giant accent quotation mark, 150px at opacity .35, sitting behind/above the first line */
+.review-card blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.05em;
+  top: -0.5em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 150px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.review-card blockquote > span { position: relative; z-index: 1; }
+.review-card footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  font-family: var(--font-text);
+}
+.review-card cite {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.review-card footer span {
+  font-size: 14px;
+  opacity: 0.6;
+}
+@media (max-width: 900px) {
+  .review-card { max-width: 100%; }
+  .review-card blockquote { font-size: clamp(24px, 5.2vw, 32px); }
+  .review-card blockquote::before { font-size: 96px; top: -0.45em; }
+  .reviews-heading { margin-bottom: 40px; }
+}
+
+/* ---------- contacts (last screen) ---------- */
+
+/* The section itself is the 1360px content box (`.page section`), so its tone must bleed to the
+   viewport edges by other means: a spread box-shadow (ink overflow only -- never scrollable, so no
+   horizontal scrollbar) clipped to the section's own vertical extent. No 100vw involved. */
+.contacts {
+  --contacts-bg: color-mix(in srgb, var(--bg) 100%, white 4%);
+  background: var(--contacts-bg);
+  box-shadow: 0 0 0 100vmax var(--contacts-bg);
+  clip-path: inset(0 -100vmax);
+}
+.page section.contacts {
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(72px, 10vh, 120px);
+  padding-bottom: clamp(48px, 6vh, 80px);
+}
+.contacts__content {
+  position: relative;
+  max-width: 100%;
+  padding-top: 36px;
+  z-index: 1;
+}
+/* thin accent rule at the top of the block, drawn left->right on entry */
+.contacts__rule {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transition: transform 900ms var(--page-ease) 120ms;
+}
+/* hidden start state only once page.js has armed it (JS off -> the line is simply there) */
+.contacts__rule.is-armed { transform: scaleX(0); }
+.contacts__content.is-inview .contacts__rule { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .contacts__rule, .contacts__rule.is-armed { transform: none; transition: none; }
+}
+.contacts__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
+  font-size: 220px; /* page.js fitContactsName(): 220 -> 160 by width, wraps/shrinks further only if needed */
+  line-height: 0.92;
+  margin: 0;
+  color: var(--ink);
+  white-space: nowrap;
+  max-width: 100%;
+}
+.contacts__city {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
+  font-size: clamp(64px, 6.6vw, 96px);
+  line-height: 1;
+  margin: 8px 0 0;
+  /* outlined text: the fill is the section's own tone (not transparent) and, with paint-order,
+     is painted over the stroke -- so where neighbouring contours of this ultra-condensed face
+     overlap (the K-A leg/stem junction) the crossing inner lines are covered by the glyph body and
+     only the outer silhouette stays. Visually identical to a transparent fill everywhere else. */
+  color: var(--contacts-bg);
+  -webkit-text-stroke: 1px var(--ink);
+  paint-order: stroke fill;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+.contacts__city:empty { display: none; }
+.contacts__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: clamp(28px, 4vh, 44px) 0 0;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(16px, 0.7vw + 11px, 20px);
+  opacity: 0.9;
+}
+.contacts__status[hidden] { display: none; }
+.contacts__dot {
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  border: 1.3px solid var(--ink);
+  background: transparent;
+  flex: none;
+  transition: background-color 200ms linear, border-color 200ms linear, box-shadow 200ms linear;
+}
+[data-open="1"] > .contacts__dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.contacts__address {
+  font-style: normal;
+  font-family: var(--font-text);
+  font-size: clamp(15px, 0.6vw + 10px, 18px);
+  margin: 10px 0 0;
+  opacity: 0.86;
+}
+.contacts__address[hidden] { display: none; }
+.contacts__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  margin-top: clamp(24px, 3.4vh, 32px);
+}
+.contacts__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 160ms var(--ease-out), opacity 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+.contacts__btn:active { transform: scale(0.97); }
+.contacts__btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.contacts__btn--primary {
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+}
+.contacts__btn--line {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgb(236 231 222 / 0.32);
+}
+.contacts__btn--line:hover { border-color: rgb(236 231 222 / 0.6); }
+
+.contacts__mark {
+  position: absolute;
+  right: var(--pad-x);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(160px, 22vw, 360px);
+  line-height: 1;
+  color: rgb(236 231 222 / 0.05);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.contacts__mark:empty { display: none; }
+
+/* small text column on the right: "2ГИС / Яндекс Карты / Telegram ..." -- rendered ONLY for hrefs
+   the config actually has (page.js addLink()); empty -> display:none, nothing invented. */
+.contacts__links {
+  position: absolute;
+  right: var(--pad-x);
+  bottom: clamp(48px, 6vh, 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 1;
+}
+.contacts__links:empty { display: none; }
+.contacts__link {
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.66;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: opacity 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+.contacts__link:hover,
+.contacts__link:focus-visible { opacity: 1; border-color: var(--accent); outline: none; }
+
+.contacts__foot {
+  margin: clamp(40px, 7vh, 64px) 0 0;
+  font-family: var(--font-text);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  opacity: 0.42;
+}
+.contacts__foot:empty { display: none; }
+
+@media (max-width: 767px) {
+  .contacts__mark { display: none; }
+  .contacts__links {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    margin: 18px 0 0; /* chrome-cut adaptation patch C1: section already has the side padding */
+  }
+}
+@media (max-width: 600px) {
+  .contacts__content { padding-top: 28px; }
+  .contacts__city { font-size: clamp(30px, 9vw, 44px); margin-top: 6px; }
+  .contacts__actions { flex-direction: column; align-items: stretch; }
+  .contacts__btn { justify-content: center; }
+}
