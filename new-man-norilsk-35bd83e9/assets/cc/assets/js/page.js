@@ -321,7 +321,23 @@
       section.classList.toggle("is-grid", next === "grid");
       section.classList.toggle("is-column", next === "grid" && phoneMq.matches);
     }
+    // 2026-10-17 (iPhone Safari, user report "листаю до конца страницы, перекидывает обратно на
+    // отзывы"): layoutWorksNow() measures in the pinned geometry first (setMode("pin") = one
+    // 100svh screen) and only then picks the real mode. On a phone the real mode is the taller
+    // photo column, so for that moment the document was ~940 px shorter (FORMA 390x664: works
+    // 1601 -> 664 px). Safari fires `resize` whenever its toolbars show or hide (they come back
+    // at the end of the page), and a page that is scrolled near the bottom while the document is
+    // briefly shorter gets its scroll position clamped -- that dropped the reader into the reviews
+    // scene, whose settle() then snapped onto a review. Holding the document at its current height
+    // during the measurement (inline min-height on <html>, removed straight after, same task, before
+    // paint) keeps the scroll where it is; the final layout and every pixel are unchanged.
     function layoutWorks() {
+      var root = document.documentElement;
+      var prevMinHeight = root.style.minHeight;
+      root.style.minHeight = root.scrollHeight + "px";
+      try { layoutWorksNow(); } finally { root.style.minHeight = prevMinHeight; }
+    }
+    function layoutWorksNow() {
       var ratios = ratiosOf();
       var sum = ratios.reduce(function (a, b) { return a + b; }, 0);
       var maxRatio = Math.max.apply(null, ratios);

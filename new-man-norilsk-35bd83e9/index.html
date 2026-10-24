@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-template="chrome-cut" data-template-version="v-6b4d12d270">
+<html lang="ru" data-template="chrome-cut" data-template-version="v-7c53762b90">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,9 +20,56 @@ if (location.protocol !== "file:") {
 <link rel="preload" as="image" href="assets/cc/media/poster-esrgan.webp">
 <link rel="stylesheet" href="assets/cc/assets/css/hero.css">
 <link rel="stylesheet" href="assets/cc/assets/css/page.css">
+<style data-legal>
+.legal-footer {
+  --legal-bg: #000;
+  --legal-fg: #ece7de;
+  --legal-muted: rgba(236,231,222,.62);
+  --legal-line: rgb(255 255 255 / .12);
+  --legal-accent: #2f7df4;
+  --legal-edge: clamp(20px, 4vw, 64px);
+  --legal-font: 'Hero Text', -apple-system, system-ui, 'Segoe UI', Arial, sans-serif;
+  --legal-head: 'Hero Display', 'Arial Narrow', sans-serif;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: clamp(28px, 4vw, 48px) var(--legal-edge) calc(clamp(28px, 4vw, 48px) + env(safe-area-inset-bottom, 0px));
+  background: var(--legal-bg);
+  color: var(--legal-fg);
+  border-top: 1px solid var(--legal-line);
+  font-family: var(--legal-font);
+  font-size: 13px;
+  line-height: 1.55;
+  text-align: left;
+}
+.legal-footer__inner { max-width: 1100px; margin: 0 auto; }
+.legal-footer p { margin: 0; }
+.legal-footer p + p { margin-top: 8px; }
+.legal-footer__id { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline; color: var(--legal-fg); }
+.legal-footer__id strong { font-family: var(--legal-head); font-size: 14px; font-weight: 500; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.legal-footer__id--pending { color: var(--legal-muted); }
+.legal-footer__line { display: flex; flex-wrap: wrap; gap: 4px 18px; color: var(--legal-muted); }
+.legal-footer__line span { overflow-wrap: anywhere; }
+.legal-footer a { color: var(--legal-fg); text-decoration: underline; text-decoration-color: var(--legal-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.legal-footer a:hover, .legal-footer a:focus-visible { color: var(--legal-accent); }
+.legal-footer a:focus-visible { outline: 2px solid var(--legal-accent); outline-offset: 3px; border-radius: 2px; }
+.legal-footer__links { padding-top: 6px; }
+@media (max-width: 640px) {
+  .legal-footer { font-size: 12.5px; }
+  .legal-footer__id, .legal-footer__line { flex-direction: column; gap: 2px; }
+  .legal-footer a { display: inline-block; padding: 6px 0; } }
+</style>
+<meta name="robots" content="noindex,nofollow">
 </head>
 <body>
 <main class="hero" id="hero">
+<script>
+/* 2026-10-17 (iPhone: wide layout for seconds before the phone layout): hero.js used to write
+   data-layout only after document.fonts.ready, so until then the hero had no data-layout and
+   rendered the base (wide) rules. Set it here, synchronously, before any hero child is parsed.
+   The query must stay identical to mqWide in assets/js/hero.js. */
+document.getElementById("hero").setAttribute("data-layout", window.matchMedia("(min-width:900px) and (min-aspect-ratio:6/5)").matches ? "wide" : "stacked");
+</script>
 
   <div class="wall" id="wall" aria-hidden="true">
     <div class="wall__bounce" id="wallBounce"></div>
@@ -166,7 +213,13 @@ if (location.protocol !== "file:") {
     <nav class="contacts__links" id="contactsLinks" aria-label="Карты и соцсети"></nav>
   </section>
 
-</div><script src="hero.config.js"></script>
+</div><footer class="legal-footer" data-legal-footer data-legal-kind="" aria-label="Сведения о продавце">
+  <div class="legal-footer__inner">
+    <p class="legal-footer__id legal-footer__id--pending">Реквизиты уточняются</p>
+    <p class="legal-footer__links"><a href="policy.html">Политика обработки данных</a></p>
+  </div>
+</footer>
+<script src="hero.config.js"></script>
 <script src="assets/cc/assets/js/hero.js"></script>
 <script src="assets/cc/assets/js/page.js"></script>
 </body>

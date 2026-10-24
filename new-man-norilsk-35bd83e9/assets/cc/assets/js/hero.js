@@ -565,6 +565,9 @@
 
   function isReducedMotion() { return FORCE_REDUCE_MOTION || mqReduce.matches; }
   function layoutMode() { return mqWide.matches ? "wide" : "stacked"; }
+  // 2026-10-17: final layout attribute right away (index.html also sets it inline after <main>),
+  // never "nothing/wide first, stacked later" while the fonts are still loading.
+  heroEl.setAttribute("data-layout", layoutMode());
 
   var GEOM = {}; // recomputed by measureAndLayout()
 
@@ -1519,6 +1522,8 @@
     var by = ((sy + sh * 0.52) / heroRect.height) * 100;
     wallBounceEl.style.setProperty("--bounce-x", bx.toFixed(2) + "%");
     wallBounceEl.style.setProperty("--bounce-y", by.toFixed(2) + "%");
+    // 2026-10-16: pole top edge in % of the hero; read only by the stacked .wall__base rule (hero.css)
+    wallEl.style.setProperty("--pole-top", ((sy / heroRect.height) * 100).toFixed(2) + "%");
 
     resizeHazeCanvas();
 
@@ -1664,6 +1669,7 @@
     var parallaxNeutralized = typeof CR !== "undefined" && (CR.parallaxX !== 0 || CR.parallaxY !== 0);
     if (parallaxNeutralized) applyParallaxOffsets(0, 0);
     if (layoutMode() === "wide") layoutWide(); else layoutStacked();
+    heroEl.setAttribute("data-laid", "1"); // 2026-10-17: text layer may show now (hero.css)
     if (parallaxNeutralized) applyParallaxOffsets(CR.parallaxX, CR.parallaxY);
     if (typeof onLayoutChanged === "function") onLayoutChanged();
   }
@@ -2865,7 +2871,19 @@
   }
 
   if (document.fonts && document.fonts.ready) {
+    // 2026-10-17 (iPhone, slow network): the title was hidden until ALL fonts were in
+    // (document.fonts.ready also waits for both Manrope TTFs, ~190 KB), i.e. seconds without the
+    // shop name. The title fit only depends on "Hero Display" (font-display:block, 18 KB, preloaded),
+    // so a first layout pass runs as soon as that face is loaded; the full pass + start() below
+    // still run on fonts.ready exactly as before (same final geometry).
+    var fontsDone = false;
+    if (document.fonts.load) {
+      document.fonts.load('700 200px "Hero Display"').then(function () {
+        if (!fontsDone) measureAndLayout();
+      }).catch(function () {});
+    }
     document.fonts.ready.then(function () {
+      fontsDone = true;
       measureAndLayout(); // first pass with real metrics
       start();
     }).catch(start);

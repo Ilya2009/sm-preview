@@ -776,6 +776,18 @@ a { color: inherit; }
   .cursor-ring { transition-duration: 1ms; }
 }
 
+/* 2026-10-17 (iPhone, slow network): the CTA row is in the HTML, but the nav, the title and the
+   texts around it are written by hero.js. Until hero.js has done its first layout pass the text
+   column would show a lone CTA at the top that then jumps down when the nav and the title arrive.
+   Keep the text layer invisible until that first pass (hero.js sets data-laid on .hero); the wall
+   and the pole poster stay visible. visibility only: geometry and measurement are unaffected. */
+.hero:not([data-laid]) .lane,
+.hero:not([data-laid]) .outline-sign,
+.hero:not([data-laid]) .stacked-sign,
+.hero:not([data-laid]) .side-slogans {
+  visibility: hidden;
+}
+
 /* ---------- stacked (mobile) layout ---------- */
 
 .hero[data-layout="stacked"] {
@@ -797,6 +809,46 @@ a { color: inherit; }
      here) -- stays effectively translate3d(0,0,0) since parallax never runs on the
      touch-primary devices this stacked layout targets (hover:fine gate, section 9b). */
   transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0);
+  /* 2026-10-16 (mobile "black box" fix): the footage frames are opaque near-black RGB (0..9) while the
+     wall behind them is graphite (~#0c0e12 + bounce tint), so on a phone the frame read as a darker
+     rectangle with a flat top edge (reported with a screenshot; the stacked pole hangs mid-screen, its
+     top/bottom crop edge is not hidden by the hero edge as on desktop). mix-blend-mode:screen on the
+     .pole stacking context makes black add nothing (the wall shows through exactly), the bright
+     pole is unchanged; the extra top fade dissolves the footage's flat top edge (the same eased
+     curve as --pole-mask-x, 7% of the pole height). Stacked layout only: desktop is untouched. */
+  mix-blend-mode: screen;
+  --pole-mask-top: linear-gradient(to bottom,
+    rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .028) 1.167%, rgba(0, 0, 0, .111) 2.333%,
+    rgba(0, 0, 0, .25) 3.5%, rgba(0, 0, 0, .444) 4.667%, rgba(0, 0, 0, .694) 5.833%,
+    rgba(0, 0, 0, 1) 7%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask-image: var(--pole-mask-x), var(--pole-mask-top);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--pole-mask-x), var(--pole-mask-top);
+  mask-composite: intersect;
+}
+/* 2026-10-16 (mobile, dark patch above the pole, take 2): measured in headless Chrome the
+   stacked pole layer adds light only (screen), so the patch the phone still shows is the footage's
+   opaque near-black frame (RGB 0..9, frame edge rows exactly 0) NOT being blended away on the
+   device: the frame then reads ~6-8 levels darker than the graphite wall (~9 at the pole's top
+   row) at the top and ~0 at the bottom, where the wall is black anyway ("dark above, clean
+   below"). Fix that does not depend on the blend at all: in the stacked layout the wall itself
+   fades to near black over the 16% of the hero just above the pole top and stays there, so the
+   frame and the wall match from the pole's top row down. --pole-top is the pole's top edge in %
+   of the hero (written by hero.js layoutAmbient(); the fallback is the usual 40% zone). Eased
+   curve (same family as --pole-mask-x), only the stacked layout: desktop is untouched. */
+.hero[data-layout="stacked"] .wall__base {
+  background:
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) calc(var(--pole-top, 60%) - 16%),
+      rgba(0, 0, 0, .028) calc(var(--pole-top, 60%) - 13.5%),
+      rgba(0, 0, 0, .111) calc(var(--pole-top, 60%) - 11%),
+      rgba(0, 0, 0, .25) calc(var(--pole-top, 60%) - 8.5%),
+      rgba(0, 0, 0, .444) calc(var(--pole-top, 60%) - 6%),
+      rgba(0, 0, 0, .694) calc(var(--pole-top, 60%) - 3.5%),
+      rgba(0, 0, 0, .9) calc(var(--pole-top, 60%) - 1%),
+      rgba(0, 0, 0, .9) 100%),
+    radial-gradient(120% 92% at 50% 42%, transparent 38%, rgb(0 0 0 / 0.62) 100%),
+    linear-gradient(164deg, #101214 0%, #0a0b0c 38%, #060607 68%, #000 100%);
 }
 .hero[data-layout="stacked"] .nav {
   padding-top: 18px;
