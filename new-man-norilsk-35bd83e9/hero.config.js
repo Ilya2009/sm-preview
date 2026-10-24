@@ -3,7 +3,7 @@
 window.HERO_CONFIG = {
   "demo": false,
   "template": "chrome-cut",
-  "templateVersion": "v-7c53762b90",
+  "templateVersion": "v-03b1750236",
   "name": "NewMan",
   "nameCase": "upper",
   "nameLines": null,
@@ -19,6 +19,10 @@ window.HERO_CONFIG = {
     "href": "tel:+79050909797"
   },
   "nav": [
+    {
+      "label": "Услуги",
+      "href": "#services"
+    },
     {
       "label": "Работы",
       "href": "#works"
@@ -78,7 +82,72 @@ window.HERO_CONFIG = {
     "parallax": true,
     "chromeTint": false
   },
-  "services": [],
+  "services": [
+    {
+      "name": "Стрижка Мужская",
+      "price": "1 800 ₽"
+    },
+    {
+      "name": "Удлиненная стрижка (ножницами)",
+      "price": "2 200 ₽"
+    },
+    {
+      "name": "Коррекция Бороды",
+      "price": "1 200 ₽"
+    },
+    {
+      "name": "Стрижка Детская (до 7 лет)",
+      "price": "1 300 ₽"
+    },
+    {
+      "name": "Стрижка Машинкой (одна насадка)",
+      "price": "1 000 ₽"
+    },
+    {
+      "name": "Стрижка+Коррекция бороды",
+      "price": "3 000 ₽"
+    },
+    {
+      "name": "Папа+Сын ( сын до 7 лет)",
+      "price": "3 100 ₽"
+    },
+    {
+      "name": "Друг+Друг",
+      "price": "3 600 ₽"
+    },
+    {
+      "name": "Депиляция Воском (нос)",
+      "price": "600 ₽"
+    },
+    {
+      "name": "Депиляция Воском (уши)",
+      "price": "600 ₽"
+    },
+    {
+      "name": "Депиляция Воском (щеки)",
+      "price": "800 ₽"
+    },
+    {
+      "name": "Депилация (переносица брови)",
+      "price": "600 ₽"
+    },
+    {
+      "name": "Камуфляж седины (БОРОДЫ)",
+      "price": "1 500 ₽"
+    },
+    {
+      "name": "Камуфляж седины (ГОЛОВА)",
+      "price": "1 500 ₽"
+    },
+    {
+      "name": "Коррекция бровей",
+      "price": "1 000 ₽"
+    },
+    {
+      "name": "Окантовка (головы)",
+      "price": "800 ₽"
+    }
+  ],
   "works": [
     {
       "src": "assets/work-1.jpg",
