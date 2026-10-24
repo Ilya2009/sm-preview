@@ -74,3 +74,8 @@
 .services { background: var(--ink-soft); color: var(--paper); }
 .services .section-heading h2 { max-width: 18ch; }
 .services__all { margin: clamp(40px, 5vw, 64px) 0 0; }
+
+/* 2026-10-24: переходы по якорям (например «Все фотографии на главной» -> #works) не прячут заголовок под фиксированную шапку */
+html { scroll-padding-top: calc(var(--header-h, 74px) + 16px); }
+[id] { scroll-margin-top: calc(var(--header-h, 74px) + 16px); }
+#top { scroll-margin-top: 0; }

@@ -14,7 +14,7 @@
   --ease-out: cubic-bezier(.23, 1, .32, 1);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--ink); scrollbar-color: var(--accent) var(--ink); scrollbar-width: thin; }
+html { scroll-padding-top: calc(var(--header-h) + 16px); scroll-behavior: smooth; background: var(--ink); scrollbar-color: var(--accent) var(--ink); scrollbar-width: thin; }
 body { margin: 0; min-width: 320px; overflow-x: clip; background: var(--ink); color: var(--paper); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 body.nav-open { overflow: hidden; }
 ::selection { background: var(--accent); color: #090909; }
@@ -110,7 +110,7 @@ img { max-width: 100%; }
 .svc-works__head h2 { margin: 0; font-family: var(--display); font-size: clamp(20px, 2vw, 28px); font-weight: 500; letter-spacing: -.035em; }
 .svc-works__head a { font-size: 14px; font-weight: 600; }
 .svc-works__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.5vw, 22px); }
-.svc-works__row img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; background: #d9d6cd; }
+.svc-works__row img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; border-radius: 14px; background: #d9d6cd; }
 
 /* другие услуги */
 .svc-more { padding: clamp(70px, 9vw, 130px) var(--edge); background: var(--ink-soft); }
@@ -162,8 +162,8 @@ img { max-width: 100%; }
   .header-call { font-size: 12px; }
   .svc-hero h1 { font-size: 32px; }
   .svc-hero__actions .button, .svc-cta__actions .button { width: 100%; }
-  .svc-works__row { grid-template-columns: 1fr 1fr; }
-  .svc-works__row img:nth-child(3) { display: none; }
+  .svc-works__row { grid-template-columns: 1fr; gap: 14px; }
+  .svc-works__row img { aspect-ratio: 4 / 5; }
   .svc-steps li { grid-template-columns: 34px 1fr; gap: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition-duration: 0s !important; scroll-behavior: auto !important; } }
