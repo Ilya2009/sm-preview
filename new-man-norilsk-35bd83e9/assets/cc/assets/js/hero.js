@@ -2050,7 +2050,7 @@
     dyingStartT: 0,
     dyingFromLight: 0,
     dyingFromFill: 0,
-    autoFollowHours: true,
+    autoFollowHours: false, // 2026-10-24: sign never auto-switches off with opening hours
     boltHintShown: false,
     rafId: 0,
     lastT: 0,
@@ -2330,8 +2330,8 @@
    * ========================================================== */
   function initialPowerFromRules() {
     if (FORCED_STATE) return FORCED_STATE;
-    if (!hoursState.valid) return "on";
-    return hoursState.isOpen ? "on" : "off";
+    // 2026-10-24: client preview, the sign always burns on load (was: "off" outside opening hours)
+    return "on";
   }
 
   function boot() {
