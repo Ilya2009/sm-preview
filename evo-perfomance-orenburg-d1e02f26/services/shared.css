@@ -1,0 +1,76 @@
+/* Evo perfomance: меню «Услуги» с выпадающим списком и карточки услуг. Общий файл для главной и страниц услуг.
+   Добавлено 2026-10-24 (правки клиента от 20.10). Цвета и шрифты берутся из переменных сайта (--accent, --ink, --paper, --display, --body). */
+
+/* ---------- выпадающее меню (компьютер) ---------- */
+.nav-item { position: relative; display: flex; align-items: center; }
+.nav-sub-toggle { display: none; }
+.nav-drop {
+  position: absolute; z-index: 120; top: 100%; left: 50%;
+  padding-top: 26px;
+  opacity: 0; visibility: hidden; transform: translate(-50%, -6px);
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0s linear 180ms;
+}
+.nav-item--drop:hover .nav-drop,
+.nav-item--drop:focus-within .nav-drop {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0);
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0s;
+}
+.nav-drop__inner {
+  display: grid; grid-template-columns: repeat(3, minmax(210px, 1fr)); gap: 28px 34px;
+  width: max-content; max-width: min(860px, 92vw);
+  padding: 28px 32px 30px;
+  background: #0b0c0e; border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 0 0 14px 14px;
+  box-shadow: 0 30px 70px rgba(0,0,0,.55);
+}
+.nav-drop__title { margin: 0 0 12px; color: #8d8c88; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.nav-drop .nav-drop__group a { display: block; padding: 7px 0; color: #deddd8; font-size: 13.5px; line-height: 1.3; }
+.nav-drop .nav-drop__group a::after { display: none; }
+.nav-drop .nav-drop__group a:hover, .nav-drop .nav-drop__group a:focus-visible { color: var(--accent); }
+.nav-drop__all { grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid var(--line); }
+.nav-drop .nav-drop__all a { display: inline-block; color: var(--accent); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .site-nav { max-height: calc(100dvh - var(--header-h)); overflow-y: auto; overscroll-behavior: contain; }
+  .nav-item--drop { display: grid; grid-template-columns: 1fr 48px; align-items: stretch; border-bottom: 1px solid var(--line); }
+  .nav-item--drop > a { border-bottom: 0 !important; }
+  .nav-sub-toggle { display: grid; place-items: center; border: 0; background: transparent; color: var(--paper); cursor: pointer; }
+  .nav-sub-toggle span { width: 9px; height: 9px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-3px) rotate(45deg); transition: transform 180ms var(--ease-out); }
+  .nav-sub-toggle[aria-expanded="true"] span { transform: translateY(2px) rotate(-135deg); }
+  .nav-drop { position: static; grid-column: 1 / -1; padding: 0; opacity: 1; visibility: visible; transform: none; display: none; transition: none; }
+  .nav-item--drop:hover .nav-drop, .nav-item--drop:focus-within .nav-drop { transform: none; }
+  .nav-item--drop.is-sub-open .nav-drop { display: block; }
+  .nav-drop__inner { display: block; width: auto; max-width: none; padding: 0 0 14px; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+  .nav-drop__group { margin-bottom: 8px; }
+  .nav-drop__title { margin: 12px 0 2px; }
+  .site-nav .nav-drop .nav-drop__group a { padding: 11px 0; border-bottom: 0; font-family: var(--body); font-size: 15px; }
+  .nav-drop__all { padding-top: 6px; border-top: 0; }
+}
+
+/* ---------- карточки услуг ---------- */
+.service-groups { display: grid; gap: clamp(44px, 5vw, 72px); }
+.service-group__title { margin: 0 0 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--accent); font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.service-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.service-card {
+  position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px; min-height: 190px; height: 100%;
+  padding: 22px 22px 20px; border: 1px solid var(--line); border-radius: 16px; background: rgba(240,238,232,.035);
+  color: var(--paper); text-decoration: none;
+  transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out), background 180ms var(--ease-out);
+}
+.service-card__n { color: #77767a; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.service-card__t { font-family: var(--display); font-size: clamp(17px, 1.5vw, 21px); font-weight: 500; line-height: 1.15; letter-spacing: -.03em; text-wrap: balance; }
+.service-card__d { color: #b1b0ab; font-size: 14px; line-height: 1.45; }
+.service-card__a { justify-self: end; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; color: var(--paper); font-size: 15px; transition: background 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out); }
+.service-card:active { transform: scale(.985); }
+.service-card:focus-visible { box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover { border-color: var(--accent); background: rgba(217,255,63,.06); transform: translateY(-2px); }
+  .service-card:hover .service-card__a { background: var(--accent); border-color: var(--accent); color: #0b0c0e; }
+}
+@media (max-width: 900px) { .service-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .service-cards { grid-template-columns: 1fr; } .service-card { min-height: 0; } }
+@media (prefers-reduced-motion: reduce) { .nav-drop, .service-card, .service-card__a { transition: none; } }
+
+/* ---------- блок «Услуги» на главной ---------- */
+.services { background: var(--ink-soft); color: var(--paper); }
+.services .section-heading h2 { max-width: 18ch; }
+.services__all { margin: clamp(40px, 5vw, 64px) 0 0; }
