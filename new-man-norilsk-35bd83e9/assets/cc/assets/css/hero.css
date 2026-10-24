@@ -1,0 +1,863 @@
+/* barber-pole-hero-v3 -- hero-only stylesheet.
+   No CDN, no @import, no network. Fonts are local files (see below).
+   Only opacity/transform/clip-path/filter are ever transitioned or animated. */
+
+@font-face {
+  /* Roboto Flex, official google/fonts OFL source, statically instanced at
+     wdth:25 wght:1000 XTRA:335 XOPQ:90 YTUC:760 YTAS:854 opsz:144 (real axis
+     position, no scaleX/scaleY stretch -- see tools/make_display_font.py for the
+     exact recipe and README.md 2026-09-22 section for the measured ratio). Declared
+     as weight 700 to match the existing font-weight:700 rules below unchanged --
+     the file itself is a single static instance, the CSS weight number is just the
+     face-selection key. */
+  font-family: "Hero Display";
+  src: url("../fonts/hero-display-ultra.woff2") format("woff2"),
+       url("../fonts/hero-display-ultra.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Hero Text";
+  src: url("../fonts/manrope-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hero Text";
+  src: url("../fonts/manrope-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #000;
+  --ink: #ece7de;
+  --cta-bg: #f1e4cf;
+  --cta-ink: #14110d;
+  --accent: #2f7df4;
+  --accent-outline: rgb(47 125 244 / 0.62);
+  --pole-red: 255 52 40;
+  --pole-blue: 40 90 255;
+  /* a-cinema variant (2026-09-22): desaturated (~40%) spill colors derived from --pole-red/blue
+     via CSS's own color-mix() at paint time (no JS/build-step color math needed -- see
+     hero.js's layoutSpill() which builds the actual multi-stop radial-gradient strings from
+     these two tokens). Kept as separate tokens from --pole-red/--pole-blue on purpose: the
+     pole footage's own stripe colors (--pole-red/--pole-blue, used only by the ignite-flash
+     CSS elsewhere) are explicitly NOT touched by this variant. */
+  --glow-red: color-mix(in srgb, rgb(var(--pole-red)) 60%, rgb(111 111 111) 40%);
+  --glow-blue: color-mix(in srgb, rgb(var(--pole-blue)) 60%, rgb(94 94 94) 40%);
+  --font-display: "Hero Display", "Arial Narrow", sans-serif;
+  --font-text: "Hero Text", -apple-system, sans-serif;
+  /* 2026-09-22 v2: 0em, deliberately NOT negative. The v1 instance (XTRA:335, rejected
+     for fused/illegible letters -- see tools/make_display_font.py) used -0.02em to
+     squeeze a bit more compression out of an already-tight font; the current instance
+     (XTRA:468, the font's own default) was chosen and measured (ratio 4.312, see
+     tools/specimen-flex.html / qa/integration/specimen-flex.png) at 0em, specifically
+     to keep every counter open. Adding negative tracking back on top of this generous
+     an XTRA would start closing the same gaps that make it legible -- not applied.
+     Mirrored in assets/js/hero.js's DISPLAY_LETTER_SPACING_EM so the canvas pre-measure
+     used by the fit algorithm matches what actually renders in the DOM. */
+  --display-tracking: 0em;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --hh: 900px; /* fallback; assets/js/hero.js overwrites with the real hero height in px */
+  --pad-x: clamp(24px, 5.6vw, 108px);
+  --gutter: clamp(32px, 4vw, 72px);
+  --lane-w: calc(70.2vw - 0.2128 * var(--hh) - var(--gutter) - var(--pad-x));
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- hero shell ---------- */
+
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  background: var(--bg);
+  isolation: isolate;
+}
+
+/* ---------- a-cinema: wall backdrop (deep graphite, not flat black) ---------- */
+/* 2026-09-22 variant. Sits at z-index 0, entirely behind .pole (z-index 1) and .haze/
+   .pole-reflection (also z-index 0, painted after this in DOM order). Three stacked layers:
+   1) .wall__bounce -- two very faint warm/cool radial patches roughly where the pole's own
+      red/blue light would realistically bounce off a wall (positioned to match GEOM.pole via
+      inline custom properties set once by hero.js's layoutAmbient(), so it tracks the pole
+      across wide/stacked layouts instead of being hand-tuned for one viewport).
+   2) .wall__base -- the actual graphite gradient + vignette (darker at all four corners/edges,
+      a touch lighter where the pole's glow would fall, pure #000 toward the outer edges so it
+      still reads as "black" from a distance -- MEDIA_REPORT.json's measured corner color of the
+      pole crop itself is #000, so the wall doesn't need to match a non-black sprite edge).
+   3) .wall__grain -- a tiled, inline SVG feTurbulence tile (no external PNG, no network),
+      mix-blend-mode:overlay at ~4% opacity: enough to break up the smooth gradient banding on a
+      real display without reading as visible "static". */
+.wall {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* 2026-09-22: cursor-parallax (assets/js/hero.js section 9b) writes .style.transform here
+     directly (max +/-2px, smoothed ~150ms) -- 0 on touch/reduced-motion (never runs there). */
+  will-change: transform;
+}
+.wall__bounce {
+  position: absolute;
+  inset: 0;
+  /* --bounce-x/--bounce-y default to the pole's usual resting spot (wide layout, ~70% across)
+     so the very first paint (before hero.js's first layout pass) already looks right; JS then
+     keeps these in sync with the real pole rect on every layout/resize. */
+  --bounce-x: 70%;
+  --bounce-y: 46%;
+  /* 2026-09-22: --wall-tint-red/--wall-tint-blue are set by hero.js's applyLightFilter() (section
+     6d) to --glow-red/--glow-blue pre-mixed with a small, S.light-gated amount of the guarded
+     brand accent ("15-25% подмешивание акцента к спиллу"); the var() fallback keeps this rule
+     working unchanged (pure --glow-red/--glow-blue) when the feature/guard is off or before JS
+     has run once. */
+  background:
+    radial-gradient(38% 46% at calc(var(--bounce-x) - 6%) calc(var(--bounce-y) - 4%),
+      color-mix(in srgb, var(--wall-tint-red, var(--glow-red)) 7%, transparent), transparent 72%),
+    radial-gradient(40% 50% at calc(var(--bounce-x) + 4%) calc(var(--bounce-y) + 14%),
+      color-mix(in srgb, var(--wall-tint-blue, var(--glow-blue)) 6%, transparent), transparent 72%);
+}
+.wall__base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 92% at 50% 42%, transparent 38%, rgb(0 0 0 / 0.62) 100%),
+    linear-gradient(164deg, #101214 0%, #0a0b0c 38%, #060607 68%, #000 100%);
+}
+.wall__grain {
+  position: absolute;
+  inset: -4%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0.62  0 0 0 0 0.66  0 0 0 0 0.72  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- a-cinema: drifting haze behind the pole ---------- */
+/* Positioned/sized by hero.js's layoutAmbient() (same GEOM.pole source as .spill's ellipses),
+   drawn by drawHaze() in the rAF loop (section 6b). The blur is a CSS filter on the canvas
+   element itself (one compositor-side blur per paint, not a per-pixel JS blur pass) so the
+   actual per-frame JS cost is just a handful of arc() fills -- see README.md for the measured
+   cost. */
+.haze {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(15px);
+  will-change: opacity, transform;
+}
+
+/* ---------- a-cinema: soft reflection pooling beside the pole base ---------- */
+/* A blurred+flipped crop of the pole's own base, clipped by a radial gradient baked into the
+   canvas alpha (hero.js drawReflection()). .pole already spans the full 100% hero height (fixed
+   composition, BUILD_SPEC), so there is no empty floor plane below it to hold a literal mirrored
+   reflection -- this sits just ABOVE the pole (z-index 1.5, same mix-blend-mode:screen family as
+   .spill) and is positioned to bleed mostly into the wall just past the pole's own right edge,
+   only lightly grazing the base itself -- it reads as reflected light pooling beside the mount,
+   not a duplicate photo pasted over the real one. */
+.pole-reflection {
+  position: absolute;
+  z-index: 1.5;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transform: scaleY(-1);
+  filter: blur(9px);
+  opacity: 0.1;
+}
+
+/* ---------- pole ---------- */
+
+/* 2026-09-22 (a-cinema integration, seam fix): the pole's own crop is an exact opaque rectangle
+   (aspect-ratio 428/714, matching poleMedia/poster/canvas 1:1 via object-fit:contain) sitting on
+   top of the now-continuous .wall behind it. MEDIA_REPORT.json's own footage has a baked-in
+   glow reaching ~45-100px in from each crop edge -- a variant-A-style edge treatment that only
+   DARKENS that zone (paints translucent black on the canvas) still leaves an opaque, differently
+   -toned rectangle: the wall is continuous everywhere, but the pole's edge never actually let it
+   through, so a "column of different shade" stays visible right at the crop boundary (reported
+   defect, verified in qa/integration/seam-check-*.json: pre-fix luma delta across the boundary
+   was well above the 1/255 target).
+   Fix: mask the WHOLE .pole element (its own inline background-image fallback, the <img> poster,
+   AND the <canvas> -- all three, one mechanism, always in sync, "the poster gets the same mask
+   as the canvas" by construction rather than by keeping two separate curves in sync by hand) so
+   its rendered alpha genuinely goes to 0 right at the crop edge and the ALREADY-continuous .wall
+   underneath shows through cleanly -- not a darkened pole, an literally erased one. Structure
+   (mirrored both edges, csoords are % of .pole's own box so this is layout-size-independent):
+     0%   .. 8%  flat alpha 0   -- a deliberately generous "dead zone" (>=40px even at the
+                                    narrowest tested pole width) so a 20px sampled band anywhere
+                                    inside it never picks up any pole-content bleed at all.
+     8%   .. 19% eased alpha 0->1 (t^2, matches the "eased not linear" reasoning used elsewhere
+                                    in this file for the spill ellipses -- see hero.js's
+                                    GLOW_FALLOFF_SAMPLES/buildGlowStops() comment) -- the visible
+                                    part of the taper, 19% still comfortably short of the visible
+                                    glass cylinder per MEDIA_REPORT.json's own cropBox.rationale.
+     19%  .. 81% flat alpha 1   -- fully opaque core, untouched.
+   (81%..100% mirrors 19%..0% above.) This replaces (does not duplicate) the earlier
+   buildEdgeFeatherMask()/renderer.edgeMask per-frame canvas darken pass -- that function has
+   been removed from hero.js; this single static CSS rule now does its whole job plus the parts
+   it could never reach (the poster <img> and the div's own inline background-image, both drawn
+   BEHIND the canvas -- once the canvas is transparent at the edge, whatever sits behind it must
+   also be transparent there, or the seam just reappears one layer down). No JS/per-frame cost. */
+.pole {
+  position: absolute;
+  z-index: 1;
+  /* 2026-09-23: bleed --pole-bleed past the hero's top AND bottom edge (.hero clips it) so the
+     +/-5px pointer parallax (PARALLAX_AMP.pole) can never lift the footage's crop edge into view
+     as a thin strip. hero.js POLE_BLEED must match. */
+  --pole-bleed: 8px;
+  top: calc(-1 * var(--pole-bleed));
+  /* 2026-09-22 (page-build pass): shifted right per coordinator request -- old 70.2% left about
+     ~11-13% of the hero's own width empty to the right of the pole (varying by viewport); this
+     halves that (measured ~5.5-6.6% at the 4 tested widths, see README). Facts/side-slogans
+     positioning (below, layoutSpill() in hero.js) now derives itself from the pole's live rect,
+     so it automatically never overlaps this new position -- feather mask and parallax amplitude
+     untouched. */
+  left: 75.7%;
+  height: calc(100% + 2 * var(--pole-bleed));
+  /* 2026-09-22: cursor-parallax translate appended AFTER the centering translateX(-50%) --
+     assets/js/hero.js section 9b writes --parallax-x/--parallax-y on THIS element (the whole
+     .pole container: body + bolt button + the mask below all move as one unit, so the mask
+     never drifts relative to the frame it's cropping -- no seam). Defaults to 0px (touch/
+     reduced-motion/feature-off never write these vars, so nothing moves there). Max +/-4px.
+     2026-09-22 (quick fix, point 1): `--pole-shift-x` composes into the SAME translate3d as a
+     third, independent additive term (not a replacement) -- layoutSpill() (hero.js) writes a
+     negative px value here only when the facts column would otherwise not fit beside the pole at
+     >=1200px width, shifting the whole pole (mask included, so no seam) further left by exactly
+     enough to make room. Defaults to 0px, so nothing moves when the column already fits. */
+  transform: translateX(-50%) translate3d(calc(var(--parallax-x, 0px) + var(--pole-shift-x, 0px)), var(--parallax-y, 0px), 0);
+  will-change: transform;
+  aspect-ratio: 428 / 714;
+  --pole-mask-x: linear-gradient(to right,
+    rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 8%,
+    rgba(0, 0, 0, .028) 9.833%, rgba(0, 0, 0, .111) 11.667%, rgba(0, 0, 0, .25) 13.5%,
+    rgba(0, 0, 0, .444) 15.333%, rgba(0, 0, 0, .694) 17.167%, rgba(0, 0, 0, 1) 19%,
+    rgba(0, 0, 0, 1) 81%,
+    rgba(0, 0, 0, .694) 82.833%, rgba(0, 0, 0, .444) 84.667%, rgba(0, 0, 0, .25) 86.5%,
+    rgba(0, 0, 0, .111) 88.333%, rgba(0, 0, 0, .028) 90.167%,
+    rgba(0, 0, 0, 0) 92%, rgba(0, 0, 0, 0) 100%);
+  /* 2026-09-23: fades the base out -- applied only on .pole[data-short="1"] (below). */
+  --pole-mask-y: linear-gradient(to bottom,
+    rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 84%, rgba(0, 0, 0, .8) 88%, rgba(0, 0, 0, .5) 92%,
+    rgba(0, 0, 0, .22) 95.5%, rgba(0, 0, 0, .05) 98.5%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: var(--pole-mask-x);
+  mask-image: var(--pole-mask-x);
+}
+/* 2026-09-23 (bottom-crop fix): only when hero.js had to shrink the pole below the hero's own
+   height (data-short="1", >=1200px column-fit fallback) -- the footage's bottom crop edge would
+   otherwise hang in mid-air above the hero's bottom («обрыв под столбом»). Intersect the
+   existing horizontal feather with a vertical fade so the base dissolves into the dark wall. */
+.pole[data-short="1"] {
+  -webkit-mask-image: var(--pole-mask-x), var(--pole-mask-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--pole-mask-x), var(--pole-mask-y);
+  mask-composite: intersect;
+}
+
+.pole__media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* 2026-09-23 (v4 black-frame fix): identity filter from the first frame on, so hero.js
+     applyLightFilter() only ever changes filter VALUES, never adds/removes the filter layer. */
+  filter: brightness(1) saturate(1);
+}
+
+.pole__poster,
+.pole__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.pole__poster { z-index: 1; }
+.pole__canvas { z-index: 2; }
+.pole__poster[data-hidden="1"] { visibility: hidden; }
+
+/* pole bolt -- 2026-09-22: the ONLY interaction left (on/off). A real <button>, not a
+   decorative div with JS hit-testing: the browser gives it click/Enter/Space/Tab for free.
+   Two concentric boxes on purpose -- the OUTER button is the tap/click target (>=48x48 CSS px,
+   per WCAG 2.5.5, regardless of how small the photographed bolt looks at a given viewport
+   width), the INNER .pole__bolt-ring matches the actual photographed bolt size/position
+   (MEDIA_REPORT.json hotspot cx=0.4813 cy=0.8081 of .pole) and carries the visible glow ring,
+   so the tappable area is never smaller *or visually bigger* than intended. */
+.pole__bolt {
+  position: absolute;
+  left: 48.13%;
+  top: 80.81%;
+  width: max(48px, 16%);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: block;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pole__bolt:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.pole__bolt-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6.07%;
+  min-width: 16px;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  pointer-events: none;
+}
+.pole__bolt-ring::after {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  border-radius: 999px;
+  border: 1px solid rgb(210 178 110 / 0);
+  box-shadow: 0 0 0 0 rgb(210 178 110 / 0);
+  transition: border-color 160ms linear, box-shadow 160ms linear;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pole__bolt:hover .pole__bolt-ring::after { border-color: rgb(210 178 110 / 0.7); box-shadow: 0 0 14px 2px rgb(210 178 110 / 0.35); }
+}
+.pole__bolt:focus-visible .pole__bolt-ring::after,
+.pole__bolt[data-boot-hint="1"] .pole__bolt-ring::after {
+  border-color: rgb(210 178 110 / 0.7);
+  box-shadow: 0 0 14px 2px rgb(210 178 110 / 0.35);
+}
+
+/* First-hover text hint; disappears for good after the first click (hero.js: dismissBoltTip()
+   sets data-tip-dismissed="1" on toggle()). Centered above the bolt and width-bounded so it
+   cannot push the document wider (.hero has overflow:hidden regardless, but this keeps the
+   label itself from clipping mid-word at 390px). */
+.pole__bolt-tip {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -8px);
+  margin: 0;
+  width: max-content;
+  max-width: 130px;
+  text-align: center;
+  font-family: var(--font-text);
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  background: rgb(10 10 8 / 0.78);
+  padding: 5px 9px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms var(--ease-out);
+}
+.pole__bolt[data-tip-dismissed="1"] .pole__bolt-tip { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .pole__bolt:hover .pole__bolt-tip { opacity: 1; }
+}
+.pole__bolt:focus-visible .pole__bolt-tip { opacity: 1; }
+
+/* ---------- text lane (wide) ---------- */
+
+.lane {
+  position: absolute;
+  z-index: 2;
+  left: var(--pad-x);
+  top: calc(0.07 * var(--hh));
+  width: var(--lane-w); /* already the exact content width -- no padding-based double count */
+  /* 2026-09-22 (craft pass, point A.2): explicit flex column -- nav/title/lane__rest already
+     stacked top-to-bottom via normal block flow, this just makes that structural (no margin
+     collapsing between direct children to fight, deterministic auto height for the real gap
+     measurement enforceLaneSignGap() in hero.js does against the outline sign below it). */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(14px, 1.6vw, 28px);
+  flex-wrap: wrap;
+}
+.nav a {
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(11px, 0.78vw + 2px, 13px);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  opacity: 0.72;
+  transition: opacity 160ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover { opacity: 1; }
+}
+.nav a:focus-visible { opacity: 1; }
+
+.title {
+  display: inline-block;
+  margin: calc(0.044 * var(--hh)) 0 0;
+  visibility: hidden;
+  max-width: 100%;
+}
+.title[data-ready="1"] { visibility: visible; }
+.title__line {
+  position: relative;
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: var(--display-tracking);
+  white-space: nowrap;
+  color: #000;
+  -webkit-text-stroke: 3px var(--accent-outline);
+  paint-order: stroke fill;
+  font-size: var(--title-fs, 80px);
+}
+.title__line::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+  opacity: var(--title-fill-opacity, 1);
+  clip-path: var(--title-clip, inset(0 0 0 0));
+  will-change: clip-path, opacity;
+}
+
+/* 2026-09-22: flashlight local title reveal (cursor companion, section 9b of hero.js). Only
+   active while [data-flashlight="1"] on .hero (sign OFF + hover:fine pointer + the pointer has
+   actually moved + feature on + not reduced-motion) -- overrides the two properties above that
+   normally hide the fill layer when the sign is off (opacity via --title-fill-opacity=0, and the
+   power-on wipe's own clip-path, which sits at "fully clipped" while off): opacity is forced back
+   to 1 and a small radial mask (not the wipe clip-path -- explicitly cleared below so the two
+   never fight) punches a soft circular hole around the cursor instead, independent of the global
+   ignite/dying choreography. --fx/--fy/--flashlight-r are written PER title__line (not once on
+   .title) so the circle lines up correctly even when the name wraps to 2 lines. */
+.hero[data-flashlight="1"] .title__line::after {
+  opacity: 1;
+  clip-path: none;
+  -webkit-mask-image: radial-gradient(circle var(--flashlight-r, 110px) at var(--fx, -9999px) var(--fy, -9999px), #000 0%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(circle var(--flashlight-r, 110px) at var(--fx, -9999px) var(--fy, -9999px), #000 0%, #000 60%, transparent 100%);
+}
+
+.lane__rest {
+  display: flow-root;
+}
+
+/* 2026-09-22 (craft2): .motto rules removed -- the element is gone from index.html (user request),
+   .lede now sits directly under the title with its own top margin. */
+
+.lede {
+  margin: calc(0.026 * var(--hh)) 0 0;
+  max-width: 24em;
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: clamp(13px, 0.9vw + 4px, 18px);
+  line-height: 1.45;
+  color: var(--ink);
+  opacity: 0.7;
+}
+.lede:empty,
+.lede[hidden] { display: none; }
+
+.actions {
+  margin-top: calc(0.04 * var(--hh));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 12px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: clamp(40px, calc(0.062 * var(--hh)), 56px);
+  padding: 0 22px 0 24px;
+  border-radius: 999px;
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+  text-decoration: none;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(13px, 0.8vw + 5px, 16px);
+  box-shadow: 0 0 24px rgb(241 228 207 / 0.18);
+  transition: transform 160ms var(--ease-out);
+}
+.cta__arrow { display: inline-block; transition: transform 160ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover .cta__arrow { transform: translateX(3px); }
+}
+.cta:active { transform: scale(0.97); }
+.cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* sign (status + switch) */
+
+.sign {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+.sign__status {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(12px, 0.7vw + 5px, 14px);
+  color: var(--ink);
+  opacity: 0.78;
+  transition: opacity 150ms linear;
+}
+.sign__status[hidden] { display: none; }
+.sign__dot {
+  width: 7px; height: 7px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1.3px solid var(--ink);
+  flex: none;
+}
+.sign__status[data-open="1"] .sign__dot { background: var(--ink); }
+
+/* 2026-09-22 (user decision): the separate "Вывеска вкл/выкл" track/knob switch that used to
+   live here is removed -- the bolt on the pole itself (.pole__bolt, above) is now the only
+   on/off control. .sign__status (the hours-driven open/closed text) is unaffected. */
+
+/* outline sign */
+
+.outline-sign.outline-sign--wide {
+  position: absolute;
+  left: var(--pad-x);
+  bottom: 6.5%;
+  z-index: 2;
+  margin: 0;
+  color: #000;
+  -webkit-text-stroke: 2.5px rgb(236 231 222 / 0.72);
+  paint-order: stroke fill;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--display-tracking);
+  white-space: pre-line;
+  font-size: var(--sign-fs, 56px);
+  max-width: var(--lane-w);
+}
+
+/* side slogans */
+
+.side-slogans {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0; /* overwritten per-layout by JS (layoutSpill) to poleRight + 8px */
+  bottom: 0;
+  width: 1px; /* a zero-footprint anchor column; children are absolutely positioned off it */
+  display: none;
+  color: var(--ink);
+}
+.side-slogans[data-visible="1"] { display: block; }
+.side-slogans__item {
+  position: absolute;
+  left: 0;
+  max-width: 132px; /* matches the sideVisible>=132px column check in hero.js layoutWide() */
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(9px, 0.55vw + 4px, 11px);
+  line-height: 1.7;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  white-space: pre-line;
+  overflow-wrap: break-word; /* guards a long word without anywhere's min-content shrink-to-fit bug */
+  opacity: 0.6;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgb(236 231 222 / 0.28);
+}
+.side-slogans__item--a { top: 7%; }
+.side-slogans__item--b { top: 46%; }
+/* --c used to be the vertical phone/demo block's spot (bottom: 6.5% ~= top: 93.5%) -- freed up
+   when that block moved to .phone-line under the CTA row, see 2026-09-22 note in index.html. */
+.side-slogans__item--c { top: 85%; }
+.side-slogans__item:empty { display: none; }
+
+/* facts mode (2026-09-22): same 3 slots/positions/divider-line as the slogan rendering above,
+   just different typography -- a big display-font number + a small uppercase caption under it,
+   instead of a wrapped all-caps phrase. Selected by hero.js via data-mode on the parent so the
+   two renderings never fight over the same computed styles. */
+.side-slogans[data-mode="facts"] .side-slogans__item {
+  opacity: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.1;
+  white-space: normal;
+}
+.side-slogans__fact-value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 2.6vw + 6px, 48px);
+  line-height: 1;
+  letter-spacing: var(--display-tracking);
+  color: var(--ink);
+}
+.side-slogans__fact-label {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(9px, 0.5vw + 4px, 11px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.stacked-sign { display: none; }
+
+/* phone line (2026-09-22): small, horizontal, secondary -- relocated out of the vertical
+   writing-mode side-slogans contact block (removed) into a plain line under the CTA/status
+   row, in both wide and stacked layouts. Hidden entirely (not just faint) when there is no
+   phone in CONFIG. */
+.phone-line {
+  margin: 10px 0 0;
+}
+.phone-line[hidden] { display: none; }
+.phone-line__link {
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: clamp(13px, 0.35vw + 9px, 14px);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  opacity: 0.55;
+  text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .phone-line__link:hover { opacity: 0.85; }
+}
+.phone-line__link:focus-visible { opacity: 0.85; outline: 1px solid rgb(236 231 222 / 0.5); outline-offset: 2px; }
+
+/* facts inline fallback row (2026-09-22, craft pass point A.1) -- see hero.js layoutSpill() */
+.facts-inline {
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 22px;
+}
+.facts-inline[hidden] { display: none; }
+.facts-inline__item {
+  position: relative;
+  padding-right: 22px;
+  font-family: var(--font-text);
+  font-size: 13px;
+  color: var(--ink);
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.facts-inline__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 14px;
+  transform: translateY(-50%);
+  background: rgb(236 231 222 / 0.28);
+}
+.facts-inline__value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+.facts-inline__label {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+}
+
+/* light spill */
+
+.spill {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.spill__ellipse { position: absolute; }
+
+/* ---------- cursor companion (2026-09-22, hover:fine pointer only) ---------- */
+/* A thin ring next to the SYSTEM cursor (never hidden -- no `cursor:none` anywhere in this
+   file) that (a) magnet-morphs to the shape of a hovered interactive element (CTA/nav/bolt),
+   and (b) while the sign is off, swells into a soft ~220px (~160px under 1024px width) circle
+   of "light" -- assets/js/hero.js's updateCursorRing() drives left/top via transform (rAF,
+   exponential ~120ms lag) plus direct width/height/border-radius writes (magnet morph target),
+   all read-only from CSS's point of view. pointer-events:none throughout, so it never steals a
+   click from the CTA/nav/bolt underneath. Hidden entirely on any device without a fine pointer
+   (touch gets nothing at all -- both this display:none gate AND hero.js's own hover:fine check
+   before it ever starts the interaction loop). */
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--cta-bg) 50%, transparent);
+  background: transparent;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  display: none;
+  transition: opacity 150ms var(--ease-out), border-color 160ms linear, background 160ms linear;
+  will-change: transform, width, height, border-radius;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cursor-ring { display: block; }
+}
+.cursor-ring.is-visible { opacity: 1; }
+/* Flashlight state (sign off, see .hero[data-flashlight]): the thin outline becomes a soft
+   glow disc instead -- the border fades out and a gentle radial fill takes over, so the SAME
+   element reads as "a small pool of light" rather than a magnet ring. */
+.cursor-ring--flashlight {
+  border-color: transparent;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 46%,
+    rgba(255, 255, 255, 0) 78%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring { transition-duration: 1ms; }
+}
+
+/* ---------- stacked (mobile) layout ---------- */
+
+.hero[data-layout="stacked"] {
+  --pad-x: 16px; /* fixed per BUILD_SPEC 4.4, overrides the wide clamp() for this scope+descendants */
+}
+.hero[data-layout="stacked"] .lane {
+  left: var(--pad-x);
+  right: var(--pad-x);
+  top: 0;
+  width: auto; /* stretched between left and right offsets = content width, no padding needed */
+}
+.hero[data-layout="stacked"] .pole {
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: var(--stacked-pole-right, 16px);
+  height: var(--stacked-zone-h, 40%);
+  /* 2026-09-22: same parallax var as the wide rule above (no centering translateX to keep
+     here) -- stays effectively translate3d(0,0,0) since parallax never runs on the
+     touch-primary devices this stacked layout targets (hover:fine gate, section 9b). */
+  transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0);
+}
+.hero[data-layout="stacked"] .nav {
+  padding-top: 18px;
+  /* flex-start (not space-between): with 4 nav labels this wraps to 2 rows on narrow phones,
+     and space-between stretched each wrapped row independently -- a lone last-row item (e.g.
+     "КОНТАКТЫ") got shoved edge-to-edge with dead space next to it instead of reading as a
+     left-aligned list. .nav's own `gap` (base rule above) still spaces the items. */
+  justify-content: flex-start;
+  letter-spacing: 0.16em;
+  font-size: 11px;
+}
+.hero[data-layout="stacked"] .title {
+  margin-top: clamp(14px, 3.4vh, 26px);
+}
+.hero[data-layout="stacked"] .lede {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hero[data-layout="stacked"] .actions {
+  margin-top: 14px;
+  align-items: flex-start;
+}
+.hero[data-layout="stacked"] .cta {
+  height: 48px;
+  min-width: 168px;
+  justify-content: center;
+}
+.hero[data-layout="stacked"] .outline-sign.outline-sign--wide,
+.hero[data-layout="stacked"] .side-slogans {
+  display: none;
+}
+.hero[data-layout="stacked"] .stacked-sign {
+  position: absolute;
+  left: 16px;
+  bottom: 24px;
+  z-index: 2;
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: pre-line;
+  color: #000;
+  -webkit-text-stroke: 1.6px rgb(236 231 222 / 0.72);
+  paint-order: stroke fill;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--display-tracking);
+  font-size: var(--stacked-sign-fs, 22px);
+  display: none;
+}
+.hero[data-layout="stacked"] .stacked-sign[data-active="1"] { display: block; }
+
+.hero[data-layout="wide"] .stacked-sign { display: none; }
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .cta, .cta__arrow { transition-duration: 1ms; }
+}
+.hero[data-motion="reduce"] .cta,
+.hero[data-motion="reduce"] .cta__arrow {
+  transition-duration: 1ms;
+}
