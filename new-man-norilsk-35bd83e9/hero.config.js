@@ -156,6 +156,18 @@ window.HERO_CONFIG = {
     {
       "src": "assets/work-2.jpg",
       "caption": "Переход длины"
+    },
+    {
+      "src": "assets/work-3.jpg",
+      "caption": "Работа барбера"
+    },
+    {
+      "src": "assets/work-4.jpg",
+      "caption": "Интерьер салона"
+    },
+    {
+      "src": "assets/work-5.jpg",
+      "caption": "Фасад и вход"
     }
   ],
   "masters": [],
