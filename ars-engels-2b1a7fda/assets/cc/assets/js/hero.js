@@ -2056,7 +2056,7 @@
     dyingStartT: 0,
     dyingFromLight: 0,
     dyingFromFill: 0,
-    autoFollowHours: true,
+    autoFollowHours: CONFIG.signAlwaysOn === false, // 2026-10-24: signAlwaysOn (default true) = sign never auto-switches off with opening hours
     boltHintShown: false,
     rafId: 0,
     lastT: 0,
@@ -2336,6 +2336,8 @@
    * ========================================================== */
   function initialPowerFromRules() {
     if (FORCED_STATE) return FORCED_STATE;
+    // 2026-10-24: signAlwaysOn (default true, decision of Ilya): the sign always burns on load; ?state= wins above
+    if (CONFIG.signAlwaysOn !== false) return "on";
     if (!hoursState.valid) return "on";
     return hoursState.isOpen ? "on" : "off";
   }

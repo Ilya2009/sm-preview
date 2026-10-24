@@ -305,8 +305,10 @@ a { color: inherit; }
   object-fit: contain;
 }
 .pole__poster { z-index: 1; }
-.pole__canvas { z-index: 2; }
+/* 2026-10-24: canvas hidden until hero.js swaps the poster out, so the lit poster is never covered by black */
+.pole__canvas { z-index: 2; visibility: hidden; }
 .pole__poster[data-hidden="1"] { visibility: hidden; }
+.pole__poster[data-hidden="1"] ~ .pole__canvas { visibility: visible; }
 
 /* pole bolt -- 2026-09-22: the ONLY interaction left (on/off). A real <button>, not a
    decorative div with JS hit-testing: the browser gives it click/Enter/Space/Tab for free.
